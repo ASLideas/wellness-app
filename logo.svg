@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" role="img" aria-label="Natural Wellness">
+  <title>Natural Wellness — loto, circuito y cerebro</title>
+  <g fill="#3F6F5B">
+    <path d="M100 18c-10 22-16 42-16 58 0 18 7 32 16 42 9-10 16-24 16-42 0-16-6-36-16-58z"/>
+    <path d="M52 78c18-8 36-10 52-8-8 16-12 32-12 46 0 10 2 20 8 30-22-8-38-24-48-68z"/>
+    <path d="M148 78c-18-8-36-10-52-8 8 16 12 32 12 46 0 10-2 20-8 30 22-8 38-24 48-68z"/>
+    <path d="M22 108c28-2 50 4 70 18-14 8-28 14-44 16-18 2-26-16-26-34z"/>
+    <path d="M178 108c-28-2-50 4-70 18 14 8 28 14 44 16 18 2 26-16 26-34z"/>
+    <path d="M40 132c18 8 40 14 60 14s42-6 60-14c-16 14-36 24-60 24s-44-10-60-24z"/>
+  </g>
+  <g fill="none" stroke="#91B3BC" stroke-width="2.2" stroke-linecap="round">
+    <path d="M100 46v18M100 64c-10 8-16 18-16 28 0 8 4 14 10 18M100 64c10 8 16 18 16 28 0 8-4 14-10 18"/>
+    <path d="M84 92h-10M116 92h10M78 80v-8M122 80v-8M90 110h-8M110 110h8"/>
+  </g>
+  <circle cx="100" cy="82" r="16" fill="#F6F3EC"/>
+  <circle cx="100" cy="82" r="14" fill="none" stroke="#2B4251" stroke-width="2.4"/>
+  <path d="M100 74v10" stroke="#2B4251" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M93 86a9 9 0 1 0 14 0" fill="none" stroke="#2B4251" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="74" cy="92" r="2.2" fill="#5B7D87"/>
+  <circle cx="126" cy="92" r="2.2" fill="#5B7D87"/>
+  <circle cx="78" cy="72" r="2.2" fill="#5B7D87"/>
+  <circle cx="122" cy="72" r="2.2" fill="#5B7D87"/>
+  <circle cx="82" cy="110" r="2.2" fill="#5B7D87"/>
+  <circle cx="118" cy="110" r="2.2" fill="#5B7D87"/>
+</svg>

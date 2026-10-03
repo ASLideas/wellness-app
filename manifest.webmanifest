@@ -1,0 +1,20 @@
+{
+  "name": "Natural Wellness",
+  "short_name": "Wellness",
+  "description": "Videoteca gratuita Secretos Milenarios y salas virtuales de Natural Wellness.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#2E323C",
+  "theme_color": "#2E323C",
+  "lang": "es-CL",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
