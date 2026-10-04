@@ -96,7 +96,7 @@
 
         <div class="flex flex-col gap-2.5 w-full md:w-auto">
           <button onclick="openProModal()" class="w-full text-center rounded-2xl bg-currant text-white px-5 py-3 text-xs font-bold hover:bg-slate transition shadow-md flex items-center justify-center gap-2">
-            <span>👩‍⚕️</span> Publicar Clase / Video en Natural Wellness
+            <span>👩‍⚕️️</span> Publicar Clase / Video en Natural Wellness
           </button>
           <button onclick="openEvaluationModal()" class="w-full text-center rounded-2xl bg-slate text-white px-5 py-3 text-xs font-semibold hover:bg-rain transition">
             ⭐ Dejar Evaluación / Reseña
@@ -106,12 +106,19 @@
     </section>
 
     <!-- BANNER MODO ADMIN -->
-    <div id="admin-banner" class="hidden mb-4 p-3.5 rounded-2xl bg-amber-50 border-2 border-amber-400 text-amber-900 flex justify-between items-center text-xs font-bold shadow-sm">
+    <div id="admin-banner" class="hidden mb-4 p-3.5 rounded-2xl bg-amber-50 border-2 border-amber-400 text-amber-900 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs font-bold shadow-sm">
       <div class="flex items-center gap-2">
         <span class="text-lg">🔓</span>
-        <span>MODO ADMIN ACTIVO: Puedes editar títulos, corregir videos que no carguen y eliminar contenidos.</span>
+        <span>MODO ADMIN ACTIVO: Puedes editar videos, ajustar salas y administrar el catálogo.</span>
       </div>
-      <button onclick="closeAdminMode()" class="bg-amber-800 text-white px-3 py-1 rounded-xl text-[11px] hover:bg-amber-900">Bloquear</button>
+      <div class="flex gap-2">
+        <button onclick="editarVideoActual()" class="bg-amber-500 text-white px-3 py-1.5 rounded-xl text-xs hover:bg-amber-600 transition flex items-center gap-1">
+          ✏️ Editar Video Actual
+        </button>
+        <button onclick="closeAdminMode()" class="bg-amber-800 text-white px-3 py-1.5 rounded-xl text-xs hover:bg-amber-900 transition">
+          Bloquear Admin
+        </button>
+      </div>
     </div>
 
     <!-- TRANSMISIÓN DE SABIDURÍA MILENARIA -->
@@ -130,8 +137,8 @@
           <button onclick="openProModal()" class="bg-currant text-white text-xs font-bold px-3.5 py-2 rounded-full hover:bg-slate transition shadow flex items-center gap-1">
             <span>➕</span> Publicar Video
           </button>
-          <button onclick="editarVideoActual()" class="bg-amber-500 text-white text-xs font-bold px-3.5 py-2 rounded-full hover:bg-amber-600 transition shadow flex items-center gap-1">
-            <span>✏️</span> Editar Video Actual
+          <button id="btn-edit-main-player" onclick="editarVideoActual()" class="hidden admin-only bg-amber-500 text-white text-xs font-bold px-3.5 py-2 rounded-full hover:bg-amber-600 transition shadow flex items-center gap-1">
+            <span>✏️</span> Editar Video
           </button>
         </div>
       </div>
@@ -168,9 +175,6 @@
             </div>
 
             <div class="flex gap-2 shrink-0">
-              <button onclick="editarVideoActual()" class="bg-amber-500 text-white text-xs font-bold px-3.5 py-2 rounded-full hover:bg-amber-600 transition flex items-center gap-1 shadow">
-                ✏️ Editar Video
-              </button>
               <button onclick="compartirWhatsApp('¡Miren esta clase en Natural Wellness!', window.location.href)" class="bg-emerald-600 text-white text-xs font-bold px-3.5 py-2 rounded-full hover:bg-emerald-700 transition flex items-center gap-1 shadow">
                 💬 Compartir
               </button>
@@ -182,11 +186,9 @@
         <div class="lg:col-span-1 bg-white p-4 rounded-3xl border border-rain/20 shadow-sm flex flex-col gap-3">
           <div class="flex justify-between items-center border-b border-rain/15 pb-2">
             <h4 class="text-xs font-bold text-slate uppercase tracking-wide">▶ Catálogo Recomendado</h4>
-            <div class="flex gap-2">
-              <button onclick="openProModal()" class="text-[11px] font-bold text-currant hover:underline flex items-center gap-0.5">
-                <span>➕</span> Publicar
-              </button>
-            </div>
+            <button onclick="openProModal()" class="text-[11px] font-bold text-currant hover:underline flex items-center gap-0.5">
+              <span>➕</span> Publicar
+            </button>
           </div>
           <div id="sidebar-playlist" class="flex flex-col gap-3 max-h-[480px] overflow-y-auto no-scrollbar">
             <!-- Renderizado dinámicamente desde data.js -->
@@ -195,16 +197,29 @@
       </div>
     </section>
 
-    <!-- SECCIÓN SALAS VIRTUALES -->
+    <!-- SECCIÓN SALAS VIRTUALES CON DESPLEGABLE Y CAPACIDAD DINÁMICA (>20 PERS) -->
     <section id="salas" class="py-6 border-t border-rain/20">
-      <div class="mb-4 flex justify-between items-end">
+      <div class="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-slate">Salas Virtuales Adaptadas</h2>
-          <p class="text-xs text-rain mt-0.5">Espacios interactivos para videollamadas en vivo, talleres y consultas privadas</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate">Salas Virtuales Adaptadas & Escalables</h2>
+          <p class="text-xs text-rain mt-0.5">Espacios interactivos en vivo. Si el grupo supera las 20 personas, la sala se expande automáticamente.</p>
         </div>
-        <button onclick="openAdminModal()" class="hidden admin-delete-btn bg-currant text-white text-xs font-bold px-3 py-1.5 rounded-xl">➕ Editar Salas</button>
+
+        <!-- DESPLEGABLE DE SALAS DISPONIBLES -->
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <label class="text-xs font-bold text-slate shrink-0">🏛️ Filtrar Sala:</label>
+          <select id="select-sala-filtro" onchange="filtrarOEscalarSala(this.value)" class="p-2 rounded-xl border border-rain/30 text-xs font-bold bg-white text-slate outline-none shadow-sm w-full sm:w-auto">
+            <option value="todas">Ver Todas las Salas Disponibles</option>
+            <option value="sala-1">Sala Lotus (Hasta 6 personas - VIP)</option>
+            <option value="sala-2">Sala Cielo (Hasta 8 personas - Cocina Demo)</option>
+            <option value="sala-3">Sala Bosque (Hasta 10 personas - Movilidad)</option>
+            <option value="sala-4">Sala Raíz (Consulta 1:1 + Videoteca)</option>
+            <option value="sala-multitudinaria">🚀 Sala Multitudinaria / Evento (> 20 a 100+ personas)</option>
+          </select>
+        </div>
       </div>
 
+      <!-- TARJETAS DE SALAS VIRTUALES -->
       <div id="rooms-grid" class="grid gap-4 sm:gap-6 md:grid-cols-2">
         <!-- Renderizado dinámicamente desde data.js -->
       </div>
@@ -271,7 +286,7 @@
     <span class="hidden sm:inline">WhatsApp Directo</span>
   </a>
 
-  <!-- MODAL TRANSMISIÓN DE CÁMARA EN VIVO -->
+  <!-- MODAL TRANSMISIÓN DE CÁMARA EN VIVO CON CAPACIDAD ESCALABLE -->
   <div id="live-room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
     <div class="bg-slate rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-dew/30 relative text-white flex flex-col">
       <div class="p-4 bg-creosote border-b border-dew/20 flex justify-between items-center">
@@ -288,6 +303,21 @@
         <div class="absolute top-4 left-4 bg-creosote/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-dew/30 text-xs font-mono">
           TRANSMISIÓN EN VIVO | <strong id="live-access-code" class="text-dew">WELL-8942-X</strong>
         </div>
+
+        <!-- CONTROL DE ESCALABILIDAD EN TIEMPO REAL (>20 USUARIOS) -->
+        <div class="absolute bottom-4 left-4 right-4 bg-creosote/90 backdrop-blur-md p-3 rounded-2xl border border-dew/30 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-amber-400">👥 Asistentes en la Sala:</span>
+            <select id="simul-asistentes" onchange="escalarCapacidadSala(this.value)" class="bg-slate text-white p-1 rounded-lg border border-dew/30 text-xs font-bold outline-none">
+              <option value="6">6 personas (Normal)</option>
+              <option value="15">15 personas (Normal)</option>
+              <option value="25">25 personas (🚀 Expansión Automática)</option>
+              <option value="50">50 personas (🚀 Sala Multitudinaria)</option>
+              <option value="100">100+ personas (🚀 Magna Sala)</option>
+            </select>
+          </div>
+          <span id="estado-sala-expansion" class="text-[11px] font-semibold text-dew">Capacidad estándar activa.</span>
+        </div>
       </div>
 
       <div class="p-4 bg-creosote border-t border-dew/20 flex justify-center items-center gap-4">
@@ -298,13 +328,13 @@
     </div>
   </div>
 
-  <!-- MODAL EDITAR VIDEO -->
+  <!-- MODAL EDITAR VIDEO (RESTRINGIDO A MODO ADMIN) -->
   <div id="edit-video-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeEditModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
       <div class="flex items-center gap-2">
-        <span class="text-xs font-bold text-amber-600 uppercase">✏️ Edición de Contenido</span>
+        <span class="text-xs font-bold text-amber-600 uppercase">✏️ Edición de Contenido (Modo Admin)</span>
       </div>
       <h3 class="text-xl font-bold text-slate mt-1">Editar o Corregir Video</h3>
       <p class="text-xs text-slate/70 mt-1">Cambia el título, el nombre del autor o la dirección de YouTube si el video no carga.</p>
@@ -469,7 +499,7 @@
     Natural Wellness · Sabiduría Ancestral & Salud Integrativa
   </footer>
 
-  <!-- SCRIPT LÓGICO COMPLETO DE FUNCIONALIDADES -->
+  <!-- SCRIPT LÓGICO COMPLETO -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
@@ -510,13 +540,19 @@
       filterPlaylist('Todas');
     });
 
-    // RENDERIZAR SALAS
-    function renderRoomsFromData() {
+    // RENDERIZAR SALAS VIRTUALES
+    function renderRoomsFromData(filtroSalaId = 'todas') {
       const grid = document.getElementById('rooms-grid');
       if (!grid || typeof CATALOGO_WELLNESS === 'undefined' || !CATALOGO_WELLNESS.salas) return;
 
       grid.innerHTML = '';
-      CATALOGO_WELLNESS.salas.forEach(room => {
+      
+      let salasAMostrar = CATALOGO_WELLNESS.salas;
+      if (filtroSalaId !== 'todas' && filtroSalaId !== 'sala-multitudinaria') {
+        salasAMostrar = CATALOGO_WELLNESS.salas.filter(s => s.id === filtroSalaId);
+      }
+
+      salasAMostrar.forEach(room => {
         const nombre = room.nombre || room.name || 'Sala Virtual';
         const capacidad = room.capacidad || room.capacity || 'Capacidad libre';
         const etiqueta = room.etiqueta || room.tag || 'Salud';
@@ -524,9 +560,11 @@
         const precio = (room.precioHora !== undefined ? room.precioHora : room.priceHr) || 15000;
         const esDesplegable = room.esDesplegable !== undefined ? room.esDesplegable : room.isDropdown;
 
+        const deleteBtnHTML = isAdminActive ? `<button onclick="deleteRoom('${room.id}')" class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">🗑️ Eliminar</button>` : '';
+
         const roomHTML = `
           <div class="bg-white rounded-3xl p-5 border border-rain/20 shadow-sm flex flex-col justify-between relative">
-            ${isAdminActive ? `<button onclick="deleteRoom('\${room.id}')" class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">🗑️ Eliminar</button>` : ''}
+            ${deleteBtnHTML}
             <div>
               <div class="flex justify-between items-start">
                 <div>
@@ -544,7 +582,7 @@
                   <span class="text-sm font-bold text-slate block">$${Number(precio).toLocaleString('es-CL')} / hr</span>
                   <span class="text-[10px] text-rain">Valor base x hora</span>
                 </div>
-                <button onclick="testLiveRoom('${nombre}', '${capacidad}')" class="bg-currant text-white text-xs font-bold px-4 py-2 rounded-full shadow">🎥 Transmisión</button>
+                <button onclick="testLiveRoom('${nombre}', '${capacidad}')" class="bg-currant text-white text-xs font-bold px-4 py-2 rounded-full shadow">🎥 Entrar a Transmisión</button>
               </div>
               ${esDesplegable ? `<a href="#reproductor-seccion" class="w-full mt-1.5 text-center bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl">📂 Desplegar Videoteca (Recetas + Ejercicios) ↓</a>` : ''}
             </div>
@@ -552,6 +590,47 @@
         `;
         grid.insertAdjacentHTML('beforeend', roomHTML);
       });
+
+      // SI SE SELECCIONA SALA MULTITUDINARIA (>20 PERSONAS)
+      if (filtroSalaId === 'sala-multitudinaria') {
+        const roomMultitudinariaHTML = `
+          <div class="col-span-1 md:col-span-2 bg-gradient-to-r from-currant to-slate text-white rounded-3xl p-6 shadow-xl relative border-2 border-dew/40">
+            <span class="bg-amber-400 text-slate font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider">🚀 Capacidad Escalable Activa</span>
+            <h3 class="text-xl font-bold mt-2">Sala Gran Evento & Multitudinaria</h3>
+            <p class="text-xs text-dew/90 mt-1">Capacidad inicial: 20 personas. Se expande automáticamente a 30, 50, 100+ según la demanda de usuarios.</p>
+            <div class="mt-4 pt-3 border-t border-dew/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <div>
+                <span class="text-lg font-bold text-amber-300 block">Capacidad: > 20 a 100+ personas</span>
+                <span class="text-[10px] text-dew">Servidor de alta transmisión con salas virtuales ilimitadas</span>
+              </div>
+              <button onclick="testLiveRoom('Sala Multitudinaria (Gran Evento)', '⭐ Capacidad: 100+ personas (Escalable)')" class="bg-amber-400 text-slate text-xs font-bold px-5 py-2.5 rounded-full shadow hover:bg-amber-300 transition">
+                🚀 Abrir Transmisión Multitudinaria
+              </button>
+            </div>
+          </div>
+        `;
+        grid.insertAdjacentHTML('afterbegin', roomMultitudinariaHTML);
+      }
+    }
+
+    // FILTRAR O ESCALAR SALA DESDE EL DESPLEGABLE
+    function filtrarOEscalarSala(valor) {
+      renderRoomsFromData(valor);
+    }
+
+    // ESCALAR CAPACIDAD DENTRO DE LA SALA EN VIVO (>20 PERSONAS)
+    function escalarCapacidadSala(cantidad) {
+      const num = parseInt(cantidad);
+      const estadoSpan = document.getElementById('estado-sala-expansion');
+      const capacityBadge = document.getElementById('live-room-capacity');
+
+      if (num > 20) {
+        estadoSpan.innerHTML = `<span class="text-amber-400 font-bold">🚀 Sala expandida automáticamente para ${num} usuarios.</span>`;
+        if (capacityBadge) capacityBadge.innerText = `⭐ Capacidad: ${num} personas (Sala Expandida)`;
+      } else {
+        estadoSpan.innerText = 'Capacidad estándar activa.';
+        if (capacityBadge) capacityBadge.innerText = `⭐ Capacidad: ${num} personas`;
+      }
     }
 
     // RENDERIZAR CATÁLOGO RECOMENDADO
@@ -580,6 +659,7 @@
 
       videosFiltrados.forEach(video => {
         const thumbUrl = obtenerYoutubeThumbnail(video.youtubeUrl);
+        const adminBtn = isAdminActive ? `<button onclick="abrirModalEditarEspecifico('${video.id}', '${video.catKey}')" title="Editar video (Admin)" class="p-2 text-amber-600 hover:bg-amber-100 rounded-xl transition text-xs font-bold">✏️</button>` : '';
 
         const itemHTML = `
           <div class="flex items-center gap-2 p-2 rounded-2xl hover:bg-lightbg transition border border-transparent hover:border-rain/20 group">
@@ -596,10 +676,7 @@
                 <span class="text-[10px] text-slate/70 mt-1">${video.profesional}</span>
               </div>
             </div>
-            
-            <button onclick="abrirModalEditarEspecifico('${video.id}', '${video.catKey}')" title="Editar video" class="p-2 text-amber-600 hover:bg-amber-100 rounded-xl transition text-xs font-bold">
-              ✏️
-            </button>
+            ${adminBtn}
           </div>
         `;
         playlistContainer.insertAdjacentHTML('beforeend', itemHTML);
@@ -619,8 +696,13 @@
       document.getElementById('reproductor-seccion').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // EDITAR VIDEO ACTUAL EN EL REPRODUCTOR
+    // EDITAR VIDEO ACTUAL EN MODO ADMIN
     function editarVideoActual() {
+      if (!isAdminActive) {
+        alert("La edición de videos está reservada para administradores. Ingresa con la clave en '⚙️ Admin'.");
+        openAdminModal();
+        return;
+      }
       document.getElementById('edit-video-id').value = videoActualData.id;
       document.getElementById('edit-video-category-origin').value = videoActualData.categoria;
       document.getElementById('edit-type').value = videoActualData.categoria || 'ejercicios';
@@ -632,8 +714,10 @@
       document.getElementById('edit-video-modal').classList.add('flex');
     }
 
-    // EDITAR CUALQUIER VIDEO ESPECÍFICO DE LA LISTA
+    // EDITAR VIDEO ESPECÍFICO DE LA LISTA
     function abrirModalEditarEspecifico(id, catKey) {
+      if (!isAdminActive) return;
+
       let itemEncontrado = null;
       if (CATALOGO_WELLNESS[catKey]) {
         itemEncontrado = CATALOGO_WELLNESS[catKey].find(v => v.id === id);
@@ -698,7 +782,7 @@
       cambiarVideoPrincipal(updatedItem.id, embedUrl, newTitle, newName, newType === 'recetas' ? '🥗 Recetas Milenarias' : newType === 'meditaciones' ? '🧘 Sabiduría Ancestral' : '🏃 Movimientos Ancestrales', newType);
 
       closeEditModal();
-      alert('✨ ¡Video corregido y actualizado exitosamente!');
+      alert('✨ ¡Video corregido y actualizado por Administrador!');
     }
 
     // ELIMINAR VIDEO
@@ -853,6 +937,10 @@
         isAdminActive = true;
         closeAdminModal();
         document.getElementById('admin-banner').classList.remove('hidden');
+        
+        // MOSTRAR ELEMENTOS DE EDICIÓN EXCLUSIVOS PARA ADMIN
+        document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
+        
         renderRoomsFromData();
         filterPlaylist('Todas');
       } else {
@@ -863,6 +951,7 @@
     function closeAdminMode() {
       isAdminActive = false;
       document.getElementById('admin-banner').classList.add('hidden');
+      document.querySelectorAll('.admin-only').forEach(el => el.classList.add('hidden'));
       renderRoomsFromData();
       filterPlaylist('Todas');
     }
