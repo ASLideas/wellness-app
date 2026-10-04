@@ -115,7 +115,7 @@
           </div>
           <h3 class="text-xl sm:text-2xl font-bold text-dew leading-tight">Espacios Virtuales Diseñados para Médicos, Terapeutas & Entrenadores</h3>
           <p class="text-xs sm:text-sm text-white/80 mt-2 leading-relaxed">
-            Reserva tu sala mediante pago seguro exclusivo con **Webpay** (Débito y Crédito) y genera automáticamente tu clave de acceso única para transmitir a tus alumnos o pacientes.
+            Reserva tu sala mediante pago seguro exclusivo con Webpay (Débito y Crédito) y genera automáticamente tu clave de acceso única para transmitir a tus alumnos o pacientes.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
@@ -641,7 +641,6 @@
     let supabaseClient = null;
     try {
       if (window.supabase && typeof window.supabase.createClient === 'function') {
-        // Inicializa usando tus variables de entorno o cliente global
         const supabaseUrl = window.SUPABASE_URL || 'https://tu-proyecto.supabase.co';
         const supabaseKey = window.SUPABASE_ANON_KEY || 'tu-anon-key';
         supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -678,7 +677,7 @@
       if (!url) return '';
       const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
       const match = url.match(regExp);
-      return (match && match) ? match : '';
+      return (match && match[1]) ? match[1] : '';
     }
 
     function obtenerYoutubeThumbnail(url) {
