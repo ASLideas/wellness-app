@@ -30,19 +30,20 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col justify-between">
 
-  <!-- PANTALLA DE CARGA (SPLASH SCREEN MÁS GRANDE) -->
+  <!-- PANTALLA DE CARGA (SPLASH SCREEN MÁS GRANDE CON AMBOS LOGOS) -->
   <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-lightbg transition-opacity duration-700">
     <div class="relative flex items-center justify-center">
-      <!-- Spinner exterior amplio -->
       <div class="w-36 h-36 rounded-full border-4 border-dew/30 border-t-rain animate-spin absolute"></div>
-      <!-- Logo circular más grande -->
       <img src="LOGO WELLNESS.jpg" alt="Natural Wellness Logo" class="w-28 h-28 rounded-full object-cover shadow-xl z-10 border-2 border-white" onerror="this.src='wellnes app.jpg'">
     </div>
-    <h2 class="mt-6 text-2xl font-bold text-slate tracking-wide">Natural Wellness</h2>
+    <div class="flex items-center gap-2 mt-6">
+      <h2 class="text-2xl font-bold text-slate tracking-wide">Natural Wellness</h2>
+      <img src="lawenmoll_logo.jpg" alt="LAWENMOLL" class="w-6 h-6 rounded-full border border-rain/30 object-cover" onerror="this.style.display='none'">
+    </div>
     <p class="text-xs text-rain mt-1 font-semibold animate-pulse">Cargando Ecosistema LAWENMOLL...</p>
   </div>
 
-  <!-- HEADER CON LOGOS Y NAVEGACIÓN -->
+  <!-- HEADER CON LOGOS INTEGRADOS -->
   <header class="border-b border-rain/20 bg-white/90 p-4 sticky top-0 z-40 backdrop-blur-md shadow-sm">
     <div class="max-w-6xl mx-auto flex justify-between items-center w-full">
       <div class="flex items-center gap-3">
@@ -51,7 +52,9 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-lg font-bold text-slate leading-tight">Natural Wellness</h1>
-            <span class="bg-dew/20 text-slate text-[10px] font-bold px-2 py-0.5 rounded-full border border-dew/40">by LAWENMOLL</span>
+            <span class="bg-dew/20 text-slate text-[10px] font-bold px-2 py-0.5 rounded-full border border-dew/40 flex items-center gap-1">
+              <img src="lawenmoll_logo.jpg" class="w-3 h-3 rounded-full object-cover inline" onerror="this.style.display='none'"> by LAWENMOLL
+            </span>
           </div>
           <p class="text-xs text-rain">Sabiduría Ancestral & Salud Integrativa</p>
         </div>
@@ -61,7 +64,8 @@
           <span>➕</span> <span class="hidden sm:inline">Dejar mi Clase</span>
         </button>
         <a href="https://lawenmoll.vercel.app" target="_blank" class="rounded-full border border-rain/30 bg-lightbg px-3 py-1.5 text-xs font-semibold text-slate hover:bg-dew/20 transition flex items-center gap-1">
-          <span>🌐</span> <span class="hidden md:inline">Ecosistema</span> LAWENMOLL
+          <img src="lawenmoll_logo.jpg" class="w-4 h-4 rounded-full object-cover" onerror="this.style.display='none'">
+          <span class="hidden md:inline">Ecosistema</span> LAWENMOLL
         </a>
       </div>
     </div>
@@ -69,7 +73,7 @@
 
   <main class="max-w-6xl mx-auto p-4 w-full">
 
-    <!-- HERO BANNER CON DESTACADO DE LAWENMOLL Y OPCIÓN DE SUBIR CLASE -->
+    <!-- HERO BANNER Y CONEXIÓN LAWENMOLL -->
     <section class="rounded-3xl bg-gradient-to-br from-dew/25 via-white to-rain/15 p-6 md:p-8 my-6 border border-rain/20 shadow-sm">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div class="max-w-2xl">
@@ -82,11 +86,14 @@
             Accede a sesiones gratuitas de cocina saludable, rutinas adaptadas y meditaciones ancestrales guiadas recomendadas por la red de profesionales de LAWENMOLL.
           </p>
           
-          <!-- Card informativa de LAWENMOLL -->
+          <!-- Card informativa con logo oficial de LAWENMOLL -->
           <div class="mt-4 p-4 rounded-2xl bg-white/90 border border-rain/20 shadow-sm text-xs text-slate/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div>
-              <strong class="text-rain font-bold text-sm block">🌿 Conexión con LAWENMOLL</strong>
-              <p class="mt-0.5">Ecosistema clínico que une fichas médicas metabólicas con el autocuidado práctico diario de Natural Wellness.</p>
+            <div class="flex items-center gap-3">
+              <img src="lawenmoll_logo.jpg" alt="Logo Lawenmoll" class="w-10 h-10 rounded-full object-cover border border-rain/30 shrink-0" onerror="this.src='wellnes app.jpg'">
+              <div>
+                <strong class="text-rain font-bold text-sm block">🌿 Conexión con LAWENMOLL</strong>
+                <p class="mt-0.5">Ecosistema clínico que une fichas médicas metabólicas con el autocuidado práctico diario de Natural Wellness.</p>
+              </div>
             </div>
             <a href="https://lawenmoll.vercel.app" target="_blank" class="shrink-0 bg-rain text-white px-3 py-1.5 rounded-xl font-semibold hover:bg-slate transition text-[11px]">Ver Plataforma Médica →</a>
           </div>
@@ -117,7 +124,7 @@
       </div>
     </section>
 
-    <!-- VIDEOTECA EXPANDIDA Y DINÁMICA -->
+    <!-- VIDEOTECA EXPANDIDA -->
     <section id="videoteca" class="pb-16">
       <div class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
@@ -195,74 +202,14 @@
           </div>
         </div>
 
-        <!-- Card 4: Meditación -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between">
-          <div>
-            <div class="relative aspect-video bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Meditación guiada 10 minutos para calmar la mente', 'Meditación', 'https://youtube.com')">
-              <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Meditacion" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-dew text-slate text-[10px] font-bold px-2 py-1 rounded-full">Mindfulness</span>
-              <div class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition">
-                <span class="w-12 h-12 rounded-full bg-white/90 text-slate flex items-center justify-center shadow-lg text-lg font-bold">▶</span>
-              </div>
-            </div>
-            <div class="p-4">
-              <span class="text-[11px] font-bold text-rain uppercase">Paz Interior</span>
-              <h4 class="font-bold text-slate text-base mt-1">Meditación guiada 10 minutos para calmar el estrés</h4>
-            </div>
-          </div>
-          <div class="p-4 pt-0">
-            <button onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Meditación guiada 10 min', 'Mindfulness', 'https://youtube.com')" class="w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir en la App</button>
-          </div>
-        </div>
-
-        <!-- Card 5: Breathwork -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between">
-          <div>
-            <div class="relative aspect-video bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Técnica de respiración 4-7-8 para dormir profundo', 'Breathwork', 'https://youtube.com')">
-              <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" alt="Respiracion" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-dew text-slate text-[10px] font-bold px-2 py-1 rounded-full">Respiración</span>
-              <div class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition">
-                <span class="w-12 h-12 rounded-full bg-white/90 text-slate flex items-center justify-center shadow-lg text-lg font-bold">▶</span>
-              </div>
-            </div>
-            <div class="p-4">
-              <span class="text-[11px] font-bold text-rain uppercase">Sueño Reparador</span>
-              <h4 class="font-bold text-slate text-base mt-1">Respiración 4-7-8 para conciliar el sueño profundo</h4>
-            </div>
-          </div>
-          <div class="p-4 pt-0">
-            <button onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Respiración 4-7-8', 'Respiración', 'https://youtube.com')" class="w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir en la App</button>
-          </div>
-        </div>
-
-        <!-- Card 6: HIIT Suave -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between">
-          <div>
-            <div class="relative aspect-video bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'HIIT de bajo impacto 20 minutos sin saltos', 'HIIT', 'https://youtube.com')">
-              <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80" alt="HIIT" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-currant text-white text-[10px] font-bold px-2 py-1 rounded-full">Ejercicio</span>
-              <div class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition">
-                <span class="w-12 h-12 rounded-full bg-white/90 text-slate flex items-center justify-center shadow-lg text-lg font-bold">▶</span>
-              </div>
-            </div>
-            <div class="p-4">
-              <span class="text-[11px] font-bold text-rain uppercase">Bajo Impacto</span>
-              <h4 class="font-bold text-slate text-base mt-1">HIIT suave de 20 minutos especial para articulaciones</h4>
-            </div>
-          </div>
-          <div class="p-4 pt-0">
-            <button onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'HIIT Bajo Impacto', 'Ejercicio', 'https://youtube.com')" class="w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir en la App</button>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- SALAS VIRTUALES Y FORMAS DE PAGO -->
+    <!-- SALAS VIRTUALES Y MEDIOS DE PAGO COMPLETOS -->
     <section id="salas" class="py-12 border-t border-rain/20">
       <div class="mb-6">
         <h2 class="text-2xl font-bold text-slate">Salas Virtuales por Hora o Semana</h2>
-        <p class="text-sm text-rain mt-1">Arriendo por hora <strong class="text-slate">$15.000 CLP</strong> o por semana <strong class="text-slate">\$80.000 CLP</strong>.</p>
+        <p class="text-sm text-rain mt-1">Arriendo por hora <strong class="text-slate">\$15.000 CLP</strong> o por semana <strong class="text-slate">\$80.000 CLP</strong>.</p>
       </div>
 
       <div class="grid gap-6 md:grid-cols-2">
@@ -291,21 +238,27 @@
         </div>
       </div>
 
-      <!-- FORMAS DE PAGO -->
+      <!-- MEDIOS DE PAGO OFICIALES (SIN MERCADO PAGO) -->
       <div class="mt-10 bg-white rounded-3xl p-6 border border-rain/20 shadow-sm">
-        <h4 class="font-bold text-slate text-base mb-3">💳 Formas de Pago Aceptadas</h4>
-        <div class="grid gap-4 sm:grid-cols-3 text-xs text-slate/80">
-          <div class="p-3 rounded-2xl bg-lightbg border border-rain/15">
-            <strong class="block text-slate font-bold mb-1">🏦 Transferencia Bancaria Directa</strong>
-            BancoEstado / Khipu. Confirmación inmediata vía comprobante.
+        <h4 class="font-bold text-slate text-base mb-3 flex items-center gap-2">
+          <span>💳</span> Medios de Pago Disponibles
+        </h4>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-xs text-slate/80">
+          <div class="p-3.5 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="block text-slate font-bold mb-1">🏦 Transferencia Bancaria</strong>
+            BancoEstado / CuentaRUT, Banco de Chile y Khipu. Confirmación inmediata.
           </div>
-          <div class="p-3 rounded-2xl bg-lightbg border border-rain/15">
-            <strong class="block text-slate font-bold mb-1">💳 Webpay / Mercado Pago</strong>
-            Acepta Tarjetas de Débito y Crédito en cuotas sin interés.
+          <div class="p-3.5 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="block text-slate font-bold mb-1">💳 Webpay Plus (Transbank)</strong>
+            Acepta todas las tarjetas de Débito (Redcompra) y Crédito en cuotas.
           </div>
-          <div class="p-3 rounded-2xl bg-lightbg border border-rain/15">
-            <strong class="block text-slate font-bold mb-1">📲 Pago Directo por WhatsApp</strong>
-            Atención personalizada para coordinar tu horario y recibir tu link de pago.
+          <div class="p-3.5 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="block text-slate font-bold mb-1">📱 Billeteras Digitales</strong>
+            Acepta pagos veloces desde Mach, Chek, Klap y Fpay.
+          </div>
+          <div class="p-3.5 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="block text-slate font-bold mb-1">📲 Coordinación WhatsApp</strong>
+            Recibe tu orden de reserva y link de pago directo 100% verificado.
           </div>
         </div>
       </div>
@@ -313,7 +266,7 @@
 
   </main>
 
-  <!-- MODAL PARA REPRODUCIR VIDEO -->
+  <!-- MODAL REPRODUCTOR VIDEO -->
   <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-rain/20 relative">
       <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-slate text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain transition">&times;</button>
@@ -333,7 +286,7 @@
     </div>
   </div>
 
-  <!-- MODAL PARA PUBLICAR / DEJAR MI CLASE -->
+  <!-- MODAL PUBLICAR CLASE -->
   <div id="submit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeSubmitModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
@@ -358,18 +311,12 @@
             <option value="Movilidad">Ejercicio: Movilidad Adaptada</option>
             <option value="HIIT">Ejercicio: HIIT Bajo Impacto</option>
             <option value="Meditación">Mindfulness: Meditación Guiada</option>
-            <option value="Respiración">Mindfulness: Respiración</option>
           </select>
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate mb-1">Enlace de YouTube (URL o Embed)</label>
+          <label class="block text-xs font-bold text-slate mb-1">Enlace de YouTube</label>
           <input type="url" id="new-url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs focus:ring-2 focus:ring-dew outline-none">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">URL Imagen de Portada (Opcional)</label>
-          <input type="url" id="new-img" placeholder="https://images.unsplash.com/..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs focus:ring-2 focus:ring-dew outline-none">
         </div>
 
         <div class="pt-2 flex justify-end gap-2">
@@ -385,7 +332,6 @@
   </footer>
 
   <script>
-    // Remover Splash Screen
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         const splash = document.getElementById('splash-screen');
@@ -394,7 +340,6 @@
       }, 800);
     });
 
-    // Abrir modal de reproductor
     function openModal(embedUrl, title, category, authorUrl) {
       document.getElementById('modal-iframe').src = embedUrl;
       document.getElementById('modal-title').innerText = title;
@@ -404,14 +349,12 @@
       document.getElementById('video-modal').classList.add('flex');
     }
 
-    // Cerrar modal de reproductor
     function closeModal() {
       document.getElementById('modal-iframe').src = '';
       document.getElementById('video-modal').classList.add('hidden');
       document.getElementById('video-modal').classList.remove('flex');
     }
 
-    // Modal de agregar clase
     function openSubmitModal() {
       document.getElementById('submit-modal').classList.remove('hidden');
       document.getElementById('submit-modal').classList.add('flex');
@@ -422,15 +365,12 @@
       document.getElementById('submit-modal').classList.remove('flex');
     }
 
-    // Manejar publicación de nueva clase dinámicamente
     function handleNewVideo(e) {
       e.preventDefault();
       const title = document.getElementById('new-title').value;
       const category = document.getElementById('new-category').value;
       let url = document.getElementById('new-url').value;
-      let img = document.getElementById('new-img').value || 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80';
 
-      // Convertir URL de YouTube a Embed si es necesario
       if (url.includes('watch?v=')) {
         const id = url.split('v=')[1].split('&')[0];
         url = 'https://www.youtube.com/embed/' + id;
@@ -442,7 +382,7 @@
       newCard.innerHTML = `
         <div>
           <div class="relative aspect-video bg-slate/10 cursor-pointer">
-            <img src="${img}" alt="${title}" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="${title}" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-currant text-white text-[10px] font-bold px-2 py-1 rounded-full">Nueva Clase</span>
             <div class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition">
               <span class="w-12 h-12 rounded-full bg-white/90 text-slate flex items-center justify-center shadow-lg text-lg font-bold">▶</span>
@@ -459,15 +399,13 @@
       `;
 
       newCard.querySelector('button').onclick = () => openModal(url, title, category, 'https://youtube.com');
-      newCard.querySelector('.cursor-pointer').onclick = () => openModal(url, title, category, 'https://youtube.com');
-
       grid.prepend(newCard);
       closeSubmitModal();
       alert('¡Excelente! Tu clase se ha añadido a la Videoteca.');
     }
 
     function filterCategory(cat) {
-      alert("Filtrando videoteca por: " + cat);
+      alert("Filtrando por: " + cat);
     }
   </script>
 </body>
