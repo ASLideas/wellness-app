@@ -30,7 +30,7 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col justify-between">
 
-  <!-- PANTALLA DE CARGA (SPLASH SCREEN CON LOGOS) -->
+  <!-- PANTALLA DE CARGA (SPLASH SCREEN) -->
   <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-lightbg transition-opacity duration-700">
     <div class="relative flex items-center justify-center">
       <div class="w-36 h-36 rounded-full border-4 border-dew/30 border-t-rain animate-spin absolute"></div>
@@ -43,7 +43,7 @@
     <p class="text-xs text-rain mt-1 font-semibold animate-pulse">Cargando Ecosistema LAWENMOLL...</p>
   </div>
 
-  <!-- HEADER -->
+  <!-- HEADER CON LOGOS Y NAVEGACIÓN -->
   <header class="border-b border-rain/20 bg-white/90 p-4 sticky top-0 z-40 backdrop-blur-md shadow-sm">
     <div class="max-w-6xl mx-auto flex justify-between items-center w-full">
       <div class="flex items-center gap-3">
@@ -66,6 +66,9 @@
           <option value="pt">🌐 PT</option>
           <option value="map">🌿 Mapudungun</option>
         </select>
+        <button onclick="openSubmitModal()" class="rounded-full bg-currant text-white px-3 py-1.5 text-xs font-semibold hover:bg-slate transition shadow-sm hidden sm:flex items-center gap-1">
+          <span>➕</span> Dejar mi Clase
+        </button>
         <a href="https://lawenmoll.vercel.app" target="_blank" class="rounded-full border border-rain/30 bg-lightbg px-3 py-1.5 text-xs font-semibold text-slate hover:bg-dew/20 transition flex items-center gap-1">
           <img src="lawenmoll_logo.jpg" class="w-4 h-4 rounded-full object-cover" onerror="this.style.display='none'">
           <span class="hidden md:inline">Ecosistema</span> LAWENMOLL
@@ -103,51 +106,49 @@
 
         <div class="flex flex-col gap-3 w-full md:w-auto">
           <button onclick="openSubmitModal()" class="text-center rounded-2xl bg-currant text-white px-6 py-3 text-xs font-bold hover:bg-slate transition shadow-md flex items-center justify-center gap-2">
-            <span>➕</span> Publicar una Clase
+            <span>➕</span> Dejar una Clase en la Videoteca
           </button>
-          <a href="#videoteca" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Explorar Clases</a>
+          <a href="#videoteca" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Explorar Clases Gratuitas</a>
         </div>
       </div>
     </section>
 
-    <!-- DEMO EN VIVO: EXPERIENCIA DE SALA VIRTUAL -->
+    <!-- DEMO EN VIVO: SALA VIRTUAL -->
     <section class="mb-12 bg-white rounded-3xl p-6 border border-rain/20 shadow-sm">
       <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
         <div>
           <span class="bg-red-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full animate-pulse">● EN VIVO AHORA</span>
           <h3 class="text-xl font-bold text-slate mt-1">Sala Lotus — Sesión de Meditación & Breathwork</h3>
         </div>
-        <!-- Controles de pantalla e idioma de la sala -->
         <div class="flex items-center gap-2">
           <button onclick="toggleAspect('half')" class="bg-lightbg text-slate text-xs font-semibold px-3 py-1.5 rounded-xl border border-rain/20 hover:bg-dew/30">📱 Media Pantalla</button>
           <button onclick="toggleAspect('full')" class="bg-slate text-white text-xs font-semibold px-3 py-1.5 rounded-xl hover:bg-rain">🖥️ Pantalla Completa</button>
         </div>
       </div>
 
-      <!-- Contenedor del video interactivo de la sala -->
       <div id="room-player-container" class="aspect-video w-full rounded-2xl overflow-hidden bg-black relative border border-rain/30 shadow-inner transition-all duration-300">
         <iframe id="live-room-iframe" class="w-full h-full" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
-      <!-- Ficha del Profesor a cargo de la Sala -->
+      <!-- Ficha del Profesor a cargo -->
       <div class="mt-4 p-4 rounded-2xl bg-lightbg border border-rain/15 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div class="flex items-center gap-3">
           <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Profesor" class="w-12 h-12 rounded-full object-cover border-2 border-rain">
           <div>
             <h4 class="font-bold text-slate text-sm">Dra. Amanda Silva (Instructora LAWENMOLL)</h4>
-            <p class="text-xs text-rain">Especialista en Mindfulness & Medicina Integrativa · ⭐ 4.9 (128 reseñas)</p>
+            <p class="text-xs text-rain">Mindfulness & Medicina Integrativa · ⭐ 4.9 (128 reseñas)</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-xs font-semibold text-slate/70">Redes Sociales:</span>
-          <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-xs shadow-sm hover:bg-dew/30">📷</a>
-          <a href="https://wa.me/" target="_blank" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-xs shadow-sm hover:bg-dew/30">💬</a>
-          <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-xs shadow-sm hover:bg-dew/30">▶</a>
+          <span class="text-xs font-bold text-slate/80">Seguir al Profe:</span>
+          <a href="https://instagram.com" target="_blank" title="Instagram" class="px-3 py-1.5 rounded-xl bg-white border border-rain/20 text-xs font-semibold text-slate hover:bg-dew/30 flex items-center gap-1">📷 Instagram</a>
+          <a href="https://wa.me/" target="_blank" title="WhatsApp" class="px-3 py-1.5 rounded-xl bg-white border border-rain/20 text-xs font-semibold text-slate hover:bg-dew/30 flex items-center gap-1">💬 WhatsApp</a>
+          <a href="https://youtube.com" target="_blank" title="YouTube" class="px-3 py-1.5 rounded-xl bg-white border border-rain/20 text-xs font-semibold text-slate hover:bg-dew/30 flex items-center gap-1">▶ Canal</a>
         </div>
       </div>
     </section>
 
-    <!-- VIDEOTECA DE CLASES -->
+    <!-- VIDEOTECA CON FICHA Y REDES DE PROFESORES -->
     <section id="videoteca" class="pb-16">
       <div class="mb-6 flex justify-between items-end">
         <div>
@@ -162,13 +163,13 @@
         <!-- Clase 1 -->
         <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4">
           <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Cocina Saludable', 'Dra. Amanda Silva', '@amanda_wellness')">
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Cocina Saludable', 'Chef Camila Ríos', '@camila_nutri', 'https://instagram.com', 'https://youtube.com')">
               <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/5qap5aO4i9A?controls=0" frameborder="0"></iframe>
             </div>
             <span class="text-[10px] font-bold text-rain uppercase block mt-3">Cocina · Bajo IG</span>
             <h4 class="font-bold text-slate text-base">Bowl de avena y canela de bajo índice glicémico</h4>
             
-            <!-- Profesor -->
+            <!-- Redes del Profesor -->
             <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
@@ -177,23 +178,25 @@
                   <span class="block text-[10px] text-rain">Nutrición Ancestral</span>
                 </div>
               </div>
-              <a href="https://instagram.com" target="_blank" class="text-xs text-rain hover:underline">📷 Instagram</a>
+              <div class="flex gap-1">
+                <a href="https://instagram.com" target="_blank" title="Instagram" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+                <a href="https://youtube.com" target="_blank" title="YouTube" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">▶</a>
+              </div>
             </div>
           </div>
 
-          <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela', 'Cocina', 'Chef Camila Ríos', '@camila_nutri')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir Clase</button>
+          <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela', 'Cocina', 'Chef Camila Ríos', '@camila_nutri', 'https://instagram.com', 'https://youtube.com')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir Clase</button>
         </div>
 
         <!-- Clase 2 -->
         <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4">
           <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Movilidad adaptada en silla', 'Ejercicio', 'Prof. Mateo Silva', '@mateo_fit')">
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Movilidad adaptada en silla', 'Ejercicio', 'Prof. Mateo Silva', '@mateo_fit', 'https://instagram.com', 'https://youtube.com')">
               <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/inpok4MKVLM?controls=0" frameborder="0"></iframe>
             </div>
             <span class="text-[10px] font-bold text-rain uppercase block mt-3">Movilidad · Adulto Mayor</span>
             <h4 class="font-bold text-slate text-base">Movilidad adaptada en silla para columna y cuello</h4>
             
-            <!-- Profesor -->
             <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
@@ -202,23 +205,25 @@
                   <span class="block text-[10px] text-rain">Kinesiología Adaptada</span>
                 </div>
               </div>
-              <a href="https://instagram.com" target="_blank" class="text-xs text-rain hover:underline">📷 Instagram</a>
+              <div class="flex gap-1">
+                <a href="https://instagram.com" target="_blank" title="Instagram" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+                <a href="https://wa.me/" target="_blank" title="WhatsApp" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">💬</a>
+              </div>
             </div>
           </div>
 
-          <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Movilidad adaptada en silla', 'Ejercicio', 'Prof. Mateo Silva', '@mateo_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir Clase</button>
+          <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Movilidad adaptada en silla', 'Ejercicio', 'Prof. Mateo Silva', '@mateo_fit', 'https://instagram.com', 'https://youtube.com')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir Clase</button>
         </div>
 
         <!-- Clase 3 -->
         <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4">
           <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Meditación guiada 10 min', 'Mindfulness', 'Dra. Amanda Silva', '@amanda_mind')">
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Meditación guiada 10 min', 'Mindfulness', 'Dra. Amanda Silva', '@amanda_mind', 'https://instagram.com', 'https://youtube.com')">
               <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/L_LUpnjgPso?controls=0" frameborder="0"></iframe>
             </div>
             <span class="text-[10px] font-bold text-rain uppercase block mt-3">Mindfulness · Meditación</span>
             <h4 class="font-bold text-slate text-base">Meditación guiada 10 minutos para calmar el estrés</h4>
             
-            <!-- Profesor -->
             <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
@@ -227,28 +232,30 @@
                   <span class="block text-[10px] text-rain">Medicina Integrativa</span>
                 </div>
               </div>
-              <a href="https://instagram.com" target="_blank" class="text-xs text-rain hover:underline">📷 Instagram</a>
+              <div class="flex gap-1">
+                <a href="https://instagram.com" target="_blank" title="Instagram" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+                <a href="https://youtube.com" target="_blank" title="YouTube" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">▶</a>
+              </div>
             </div>
           </div>
 
-          <button onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Meditación guiada 10 min', 'Mindfulness', 'Dra. Amanda Silva', '@amanda_mind')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir Clase</button>
+          <button onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Meditación guiada 10 min', 'Mindfulness', 'Dra. Amanda Silva', '@amanda_mind', 'https://instagram.com', 'https://youtube.com')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir Clase</button>
         </div>
 
       </div>
     </section>
 
-    <!-- SALAS VIRTUALES CON RESERVA & CLAVE POR CORREO -->
+    <!-- SALAS VIRTUALES -->
     <section id="salas" class="py-12 border-t border-rain/20">
       <div class="mb-6">
         <h2 class="text-2xl font-bold text-slate">Salas Virtuales por Hora o Semana</h2>
         <p class="text-sm text-rain mt-1">
-          Arriendo por hora <strong class="text-slate">$15.000 CLP</strong> o semana <strong class="text-slate">$80.000 CLP</strong>. Recibes tu código de acceso por correo y WhatsApp.
+          Arriendo por hora <strong class="text-slate">$15.000 CLP</strong> o semana <strong class="text-slate">$80.000 CLP</strong>. Recibes el desglose del total y tu clave por correo.
         </p>
       </div>
 
       <div class="grid gap-6 md:grid-cols-2">
-        <!-- Sala Lotus con Sugerencia Híbrida -->
-        <div class="bg-white rounded-3xl p-6 border border-rain/20 shadow-sm flex flex-col justify-between relative overflow-hidden">
+        <div class="bg-white rounded-3xl p-6 border border-rain/20 shadow-sm flex flex-col justify-between">
           <div>
             <div class="flex justify-between items-start">
               <div>
@@ -257,25 +264,18 @@
               </div>
               <span class="bg-dew/20 text-slate text-[10px] font-bold px-2.5 py-1 rounded-full border border-dew/40">Híbrida Live</span>
             </div>
-            
-            <p class="text-xs text-slate/80 mt-2">Espacio íntimo diseñado para meditación, breathwork y círculos de palabra.</p>
-            
-            <!-- Sugerencia Híbrida -->
-            <div class="mt-3 p-3 rounded-2xl bg-lightbg border border-rain/15 text-[11px] text-slate/90">
-              💡 <strong>Formato Híbrido:</strong> 6 cupos interactivos en cámara + Transmisión ilimitada en directo para audiencia general.
-            </div>
+            <p class="text-xs text-slate/80 mt-2">Espacio íntimo para meditación, breathwork y círculos de palabra.</p>
           </div>
 
           <div class="mt-6 pt-4 border-t border-rain/15 flex justify-between items-center">
             <div>
-              <span class="text-sm font-bold text-slate block">\$15.000 / hr</span>
-              <span class="text-[10px] text-rain">Horarios: 09:00, 11:00, 16:00, 19:00</span>
+              <span class="text-sm font-bold text-slate block">$15.000 / hr</span>
+              <span class="text-[10px] text-rain">Valor base x hora</span>
             </div>
-            <button onclick="openBookingModal('Sala Lotus', '\$15.000 CLP/hr')" class="bg-rain text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">Reservar & Obtener Clave</button>
+            <button onclick="openBookingModal('Sala Lotus', 15000)" class="bg-rain text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">Reservar & Ver Total</button>
           </div>
         </div>
 
-        <!-- Sala Bosque -->
         <div class="bg-white rounded-3xl p-6 border border-rain/20 shadow-sm flex flex-col justify-between">
           <div>
             <div class="flex justify-between items-start">
@@ -283,18 +283,38 @@
                 <span class="text-xs font-bold text-rain">⭐ 4.8 (95 reseñas) · Capacidad: 10 personas</span>
                 <h3 class="text-xl font-bold text-slate mt-0.5">Sala Bosque</h3>
               </div>
-              <span class="bg-dew/20 text-slate text-[10px] font-bold px-2.5 py-1 rounded-full border border-dew/40">Movimiento</span>
+              <span class="bg-dew/20 text-slate text-[10px] font-bold px-2.5 py-1 rounded-full border border-dew/40">Movilidad</span>
             </div>
-            
-            <p class="text-xs text-slate/80 mt-2">Equipada para movilidad en silla, fortalecimiento de core y HIIT de bajo impacto.</p>
+            <p class="text-xs text-slate/80 mt-2">Equipada para movilidad en silla, core y HIIT de bajo impacto.</p>
           </div>
 
           <div class="mt-6 pt-4 border-t border-rain/15 flex justify-between items-center">
             <div>
-              <span class="text-sm font-bold text-slate block">\$15.000 / hr</span>
-              <span class="text-[10px] text-rain">Horarios: 08:00, 10:00, 15:00, 18:00</span>
+              <span class="text-sm font-bold text-slate block">$15.000 / hr</span>
+              <span class="text-[10px] text-rain">Valor base x hora</span>
             </div>
-            <button onclick="openBookingModal('Sala Bosque', '\$15.000 CLP/hr')" class="bg-rain text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">Reservar & Obtener Clave</button>
+            <button onclick="openBookingModal('Sala Bosque', 15000)" class="bg-rain text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">Reservar & Ver Total</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEDIOS DE PAGO CHILENOS -->
+      <div class="mt-8 bg-white rounded-3xl p-6 border border-rain/20 shadow-sm">
+        <h4 class="font-bold text-slate text-base mb-3 flex items-center gap-2">
+          <span>💳</span> Plataformas y Medios de Pago Aceptados
+        </h4>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 text-xs text-slate/80">
+          <div class="p-4 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="text-slate font-bold block mb-1">💳 Webpay.cl (Transbank)</strong>
+            Acepta Tarjetas de Débito (Redcompra) y Crédito en cuotas sin interés.
+          </div>
+          <div class="p-4 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="text-slate font-bold block mb-1">📱 Tarjetas Prepago Digitales</strong>
+            Paga directo usando tu saldo de MACH, Tenpo, Mercado Pago o Chek.
+          </div>
+          <div class="p-4 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="text-slate font-bold block mb-1">🏦 Transferencia Bancaria</strong>
+            Verificación automática con BancoEstado (CuentaRUT), Chile, Santander y Khipu.
           </div>
         </div>
       </div>
@@ -302,14 +322,13 @@
 
   </main>
 
-  <!-- MODAL DE RESERVA CON CÓDIGO POR CORREO -->
+  <!-- MODAL DE RESERVA CON CÁLCULO DE TOTAL Y CÓDIGO -->
   <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeBookingModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
       <span class="text-xs font-bold text-rain uppercase">📅 Reserva de Sala Virtual</span>
       <h3 id="booking-room-name" class="text-xl font-bold text-slate mt-1"></h3>
-      <p id="booking-room-price" class="text-xs text-rain font-semibold"></p>
 
       <form id="booking-form" onsubmit="processBooking(event)" class="mt-4 space-y-3">
         <div class="grid grid-cols-2 gap-3">
@@ -318,12 +337,12 @@
             <input type="date" required class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate mb-1">Horario Disponible</label>
-            <select required class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-              <option value="09:00">09:00 - 10:00 hrs</option>
-              <option value="11:00">11:00 - 12:00 hrs</option>
-              <option value="16:00">16:00 - 17:00 hrs</option>
-              <option value="19:00">19:00 - 20:00 hrs</option>
+            <label class="block text-xs font-bold text-slate mb-1">Duración / Plan</label>
+            <select id="booking-duration" onchange="updateTotal()" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none font-bold">
+              <option value="1">1 Hora ($15.000 CLP)</option>
+              <option value="2">2 Horas ($30.000 CLP)</option>
+              <option value="3">3 Horas ($45.000 CLP)</option>
+              <option value="week">1 Semana Completa ($80.000 CLP)</option>
             </select>
           </div>
         </div>
@@ -334,37 +353,44 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate mb-1">Correo Electrónico (Para recibir tu clave de acceso)</label>
+          <label class="block text-xs font-bold text-slate mb-1">Correo Electrónico (Para enviar tu clave)</label>
           <input type="email" id="user-email" required placeholder="tu-correo@gmail.com" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate mb-1">Medio de Pago</label>
-          <select required class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+          <select id="booking-payment-method" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+            <option value="webpay">💳 Webpay.cl / Transbank (Débito y Crédito)</option>
+            <option value="prepago">📱 Prepago (MACH / Tenpo / Chek)</option>
             <option value="transf">🏦 Transferencia Bancaria Directa</option>
-            <option value="webpay">💳 Webpay Plus (Débito/Crédito)</option>
-            <option value="wallet">📱 Billeteras Digitales (Mach, Chek, Klap)</option>
-            <option value="wa">📲 Coordinar y pagar por WhatsApp</option>
+            <option value="wa">📲 Link de pago por WhatsApp</option>
           </select>
         </div>
 
-        <button type="submit" class="w-full mt-2 bg-currant text-white text-xs font-bold py-3 rounded-xl hover:bg-slate transition shadow">Confirmar Reserva & Generar Clave</button>
+        <!-- MUESTRA DEL TOTAL A PAGAR -->
+        <div class="p-3.5 rounded-2xl bg-dew/20 border border-dew/50 flex justify-between items-center my-2">
+          <span class="text-xs font-bold text-slate">TOTAL A PAGAR:</span>
+          <span id="booking-total-display" class="text-base font-extrabold text-slate">$15.000 CLP</span>
+        </div>
+
+        <button type="submit" class="w-full bg-currant text-white text-xs font-bold py-3 rounded-xl hover:bg-slate transition shadow">Pagar & Generar Clave de Acceso</button>
       </form>
 
-      <!-- Confirmación de clave simulada -->
+      <!-- Confirmación de clave enviada -->
       <div id="booking-success" class="hidden mt-4 p-4 rounded-2xl bg-dew/20 border border-dew/50 text-center">
         <span class="text-2xl">🎉</span>
         <h4 class="font-bold text-slate text-sm mt-1">¡Reserva Confirmada!</h4>
-        <p class="text-xs text-slate/80 mt-1">Hemos enviado tus códigos de acceso a tu correo electrónico:</p>
+        <p class="text-xs text-slate/80 mt-1">Hemos enviado el detalle del pago y clave a tu correo:</p>
         <div class="my-3 p-3 bg-white rounded-xl border border-rain/20 font-mono font-bold text-slate text-sm">
           CLAVE UNICA: <span id="access-code" class="text-rain">WELL-8942-X</span>
         </div>
-        <a id="wa-confirm-link" href="#" target="_blank" class="inline-block bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-green-700 transition">💬 Confirmar por WhatsApp</a>
+        <p id="total-confirmed-text" class="text-xs font-bold text-slate mb-3"></p>
+        <a id="wa-confirm-link" href="#" target="_blank" class="inline-block bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-green-700 transition">💬 Confirmar y solicitar Link por WhatsApp</a>
       </div>
     </div>
   </div>
 
-  <!-- MODAL DE REPRODUCTOR VIDEO -->
+  <!-- MODAL DE REPRODUCTOR DE VIDEO Y REDES DEL PROFESOR -->
   <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-rain/20 relative">
       <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-slate text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain transition">&times;</button>
@@ -374,12 +400,55 @@
       <div class="p-6">
         <span id="modal-category" class="text-xs font-bold text-rain uppercase"></span>
         <h3 id="modal-title" class="text-xl font-bold text-slate mt-1"></h3>
-        <p id="modal-prof" class="text-xs text-slate/80 mt-1"></p>
-        <div class="mt-4 flex flex-wrap justify-between items-center border-t border-rain/15 pt-4">
-          <a id="modal-author-link" href="#" target="_blank" class="text-xs font-semibold text-rain hover:underline">🔗 Canal del Creador en YouTube</a>
-          <button onclick="closeModal()" class="bg-slate text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-rain transition">Cerrar Video</button>
+        
+        <!-- Ficha de profesor dentro del reproductor -->
+        <div class="mt-4 pt-4 border-t border-rain/15 flex flex-wrap justify-between items-center gap-3">
+          <div>
+            <span class="text-xs text-rain block">Profesor(a) a cargo:</span>
+            <strong id="modal-prof-name" class="text-sm text-slate font-bold"></strong>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-slate/80">Seguir:</span>
+            <a id="modal-prof-ig" href="#" target="_blank" class="px-3 py-1.5 rounded-xl bg-lightbg border border-rain/20 text-xs font-bold text-slate hover:bg-dew/30 flex items-center gap-1">📷 Instagram</a>
+            <a id="modal-prof-yt" href="#" target="_blank" class="px-3 py-1.5 rounded-xl bg-lightbg border border-rain/20 text-xs font-bold text-slate hover:bg-dew/30 flex items-center gap-1">▶ YouTube</a>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL PUBLICAR CLASE -->
+  <div id="submit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
+      <button onclick="closeSubmitModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
+      
+      <span class="text-xs font-bold text-rain uppercase">➕ Publicar mi Clase</span>
+      <h3 class="text-xl font-bold text-slate mt-1">Dejar una Clase en la Videoteca</h3>
+
+      <form onsubmit="handleNewVideo(event)" class="mt-4 space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Título de la Clase / Receta</label>
+          <input type="text" id="new-title" required placeholder="Ej. Tarta de zapallo italiano bajo IG" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Nombre del Profesor & Instagram</label>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="text" id="new-prof-name" required placeholder="Ej. Prof. Andrea" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+            <input type="text" id="new-prof-ig" placeholder="@andrea_fit" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Enlace de YouTube</label>
+          <input type="url" id="new-url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeSubmitModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate bg-lightbg">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-currant hover:bg-slate shadow">Publicar Clase</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -388,6 +457,8 @@
   </footer>
 
   <script>
+    let currentRoomPrice = 15000;
+
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         const splash = document.getElementById('splash-screen');
@@ -408,14 +479,28 @@
       }
     }
 
-    // Modal de reserva
+    // Modal de reserva y cálculo de total
     function openBookingModal(roomName, price) {
+      currentRoomPrice = price;
       document.getElementById('booking-room-name').innerText = roomName;
-      document.getElementById('booking-room-price').innerText = price;
+      document.getElementById('booking-duration').value = "1";
+      updateTotal();
+
       document.getElementById('booking-form').classList.remove('hidden');
       document.getElementById('booking-success').classList.add('hidden');
       document.getElementById('booking-modal').classList.remove('hidden');
       document.getElementById('booking-modal').classList.add('flex');
+    }
+
+    function updateTotal() {
+      const duration = document.getElementById('booking-duration').value;
+      let total = 0;
+      if (duration === 'week') {
+        total = 80000;
+      } else {
+        total = currentRoomPrice * parseInt(duration);
+      }
+      document.getElementById('booking-total-display').innerText = '$' + total.toLocaleString('es-CL') + ' CLP';
     }
 
     function closeBookingModal() {
@@ -428,21 +513,25 @@
       const code = 'WELL-' + Math.floor(1000 + Math.random() * 9000) + '-X';
       const name = document.getElementById('user-name').value;
       const room = document.getElementById('booking-room-name').innerText;
+      const total = document.getElementById('booking-total-display').innerText;
 
       document.getElementById('access-code').innerText = code;
+      document.getElementById('total-confirmed-text').innerText = 'Total Reservado: ' + total;
       document.getElementById('booking-form').classList.add('hidden');
       document.getElementById('booking-success').classList.remove('hidden');
 
-      const waText = encodeURIComponent(`Hola, soy ${name}. Reservé la ${room}. Mi código de acceso enviado a mi correo es: ${code}`);
+      const waText = encodeURIComponent(`Hola, soy ${name}. Reservé la ${room} por un total de ${total}. Mi clave de acceso es: ${code}`);
       document.getElementById('wa-confirm-link').href = `https://wa.me/?text=${waText}`;
     }
 
-    // Modal reproductor
-    function openModal(embedUrl, title, category, profName, profIg) {
+    // Modal reproductor y redes del profesor
+    function openModal(embedUrl, title, category, profName, profIg, igUrl, ytUrl) {
       document.getElementById('modal-iframe').src = embedUrl;
       document.getElementById('modal-title').innerText = title;
       document.getElementById('modal-category').innerText = category;
-      document.getElementById('modal-prof').innerText = 'Profesor a cargo: ' + profName + ' (' + profIg + ')';
+      document.getElementById('modal-prof-name').innerText = profName + ' (' + profIg + ')';
+      document.getElementById('modal-prof-ig').href = igUrl || 'https://instagram.com';
+      document.getElementById('modal-prof-yt').href = ytUrl || 'https://youtube.com';
       document.getElementById('video-modal').classList.remove('hidden');
       document.getElementById('video-modal').classList.add('flex');
     }
@@ -453,7 +542,22 @@
       document.getElementById('video-modal').classList.remove('flex');
     }
 
-    // Cambio de idioma de interfaz
+    function openSubmitModal() {
+      document.getElementById('submit-modal').classList.remove('hidden');
+      document.getElementById('submit-modal').classList.add('flex');
+    }
+
+    function closeSubmitModal() {
+      document.getElementById('submit-modal').classList.add('hidden');
+      document.getElementById('submit-modal').classList.remove('flex');
+    }
+
+    function handleNewVideo(e) {
+      e.preventDefault();
+      alert('¡Excelente! Tu clase ha sido enviada e incorporada a la Videoteca.');
+      closeSubmitModal();
+    }
+
     function changeLanguage(lang) {
       if (lang === 'en') {
         document.getElementById('hero-title').innerText = "Nutrition, Movement and Mind in Harmony";
