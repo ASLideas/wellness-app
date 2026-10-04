@@ -65,8 +65,8 @@
       </div>
 
       <div class="flex gap-1.5 items-center">
-        <button onclick="openProModal()" class="rounded-full bg-currant text-white px-3 py-1.5 text-xs font-bold hover:bg-slate transition shadow-sm hidden md:flex items-center gap-1">
-          👩‍⚕️ Publicar Clase
+        <button onclick="openProModal()" class="rounded-full bg-currant text-white px-3 py-1.5 text-xs font-bold hover:bg-slate transition shadow-sm flex items-center gap-1">
+          👩‍⚕️ Publicar Clase / Video
         </button>
         <button onclick="openContactModal()" class="rounded-full bg-lightbg border border-rain/30 text-slate px-2.5 py-1.5 text-xs font-bold hover:bg-dew/30 transition">
           📞 Contacto
@@ -275,7 +275,7 @@
     </div>
   </div>
 
-  <!-- MODAL PUBLICAR CLASE / RECETA CON IA -->
+  <!-- MODAL PUBLICAR CLASE / RECETA CON CONVERSIÓN DE YOUTUBE MEJORADA -->
   <div id="pro-submit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeProModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
@@ -305,7 +305,7 @@
 
         <div>
           <label class="block text-xs font-bold text-slate mb-1">Enlace de YouTube</label>
-          <input type="url" id="pro-url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+          <input type="url" id="pro-url" required placeholder="https://www.youtube.com/watch?v=... o https://youtu.be/..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
         </div>
 
         <button type="submit" class="w-full py-3 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow">
@@ -395,8 +395,27 @@
     let isAdminActive = false;
     let localStream = null;
 
+    // CONVERTIDOR ROBUSTO DE ENLACES DE YOUTUBE
+    function formatearYoutubeEmbed(url) {
+      if (!url) return 'https://www.youtube.com/embed/5qap5aO4i9A';
+      if (url.includes('embed/')) return url;
+      
+      try {
+        if (url.includes('watch?v=')) {
+          const videoId = url.split('v=')[1].split('&')[0];
+          return 'https://www.youtube.com/embed/' + videoId;
+        }
+        if (url.includes('youtu.be/')) {
+          const videoId = url.split('youtu.be/')[1].split('?')[0];
+          return 'https://www.youtube.com/embed/' + videoId;
+        }
+      } catch (e) {
+        console.error("Error al formatear URL:", e);
+      }
+      return url;
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
-      // Ocultar splash screen rápidamente
       setTimeout(() => {
         const splash = document.getElementById('splash-screen');
         if (splash) {
@@ -484,12 +503,43 @@
 
     // CAMBIAR VIDEO PRINCIPAL
     function cambiarVideoPrincipal(embedUrl, titulo, autor, categoria) {
-      document.getElementById('main-player-iframe').src = embedUrl + '?autoplay=1';
+      const formattedUrl = formatearYoutubeEmbed(embedUrl);
+      document.getElementById('main-player-iframe').src = formattedUrl + '?autoplay=1';
       document.getElementById('main-player-title').innerText = titulo;
       document.getElementById('main-player-author').innerText = 'Instructor(a) / Autor: ' + autor;
       document.getElementById('main-player-category').innerText = categoria || '🎥 Clase Interactiva';
       
       document.getElementById('reproductor-seccion').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // PUBLICAR NUEVO VIDEO/RECETA
+    function handleProSubmit(e) {
+      e.preventDefault();
+      const type = document.getElementById('pro-type').value;
+      const name = document.getElementById('pro-name').value;
+      const title = document.getElementById('pro-title').value;
+      const rawUrl = document.getElementById('pro-url').value;
+
+      const embedUrl = formatearYoutubeEmbed(rawUrl);
+
+      const newItem = {
+        id: "item-" + Date.now(),
+        titulo: title,
+        profesional: name,
+        categoria: type,
+        etiquetas: ["🤖 Nuevo Contenido"],
+        youtubeUrl: embedUrl,
+        duracion: "20 minutos"
+      };
+
+      if (typeof CATALOGO_WELLNESS !== 'undefined' && CATALOGO_WELLNESS[type]) {
+        CATALOGO_WELLNESS[type].unshift(newItem);
+        filterPlaylist('Todas');
+        cambiarVideoPrincipal(embedUrl, title, name, '✨ Nuevo Video Publicado');
+      }
+
+      closeProModal();
+      alert('🤖 ¡Video publicado y procesado con éxito!');
     }
 
     // COMPARTIR
@@ -527,14 +577,14 @@
     }
 
     function toggleMic() {
-      if (localStream && localStream.getAudioTracks()) {
-        localStream.getAudioTracks().enabled = !localStream.getAudioTracks().enabled;
+      if (localStream && localStream.getAudioTracks()[0]) {
+        localStream.getAudioTracks()[0].enabled = !localStream.getAudioTracks()[0].enabled;
       }
     }
 
     function toggleCamera() {
-      if (localStream && localStream.getVideoTracks()) {
-        localStream.getVideoTracks().enabled = !localStream.getVideoTracks().enabled;
+      if (localStream && localStream.getVideoTracks()[0]) {
+        localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0].enabled;
       }
     }
 
@@ -550,36 +600,6 @@
     // MODALES Y FORMULARIOS
     function openProModal() { document.getElementById('pro-submit-modal').classList.remove('hidden'); document.getElementById('pro-submit-modal').classList.add('flex'); }
     function closeProModal() { document.getElementById('pro-submit-modal').classList.add('hidden'); document.getElementById('pro-submit-modal').classList.remove('flex'); }
-
-    function handleProSubmit(e) {
-      e.preventDefault();
-      const type = document.getElementById('pro-type').value;
-      const name = document.getElementById('pro-name').value;
-      const title = document.getElementById('pro-title').value;
-      let url = document.getElementById('pro-url').value;
-
-      if (url.includes('watch?v=')) {
-        url = 'https://www.youtube.com/embed/' + url.split('v=').split('&');
-      }
-
-      const newItem = {
-        id: "item-" + Date.now(),
-        titulo: title,
-        profesional: name,
-        categoria: type,
-        etiquetas: ["🤖 Nuevo Contenido"],
-        youtubeUrl: url,
-        duracion: "20 minutos"
-      };
-
-      if (typeof CATALOGO_WELLNESS !== 'undefined' && CATALOGO_WELLNESS[type]) {
-        CATALOGO_WELLNESS[type].unshift(newItem);
-        filterPlaylist('Todas');
-      }
-
-      closeProModal();
-      alert('🤖 ¡Contenido publicado exitosamente!');
-    }
 
     function openEvaluationModal() { document.getElementById('evaluation-modal').classList.remove('hidden'); document.getElementById('evaluation-modal').classList.add('flex'); }
     function closeEvaluationModal() { document.getElementById('evaluation-modal').classList.add('hidden'); document.getElementById('evaluation-modal').classList.remove('flex'); }
