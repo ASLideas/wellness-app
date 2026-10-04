@@ -43,7 +43,7 @@
     <p class="text-xs text-rain mt-1 font-semibold animate-pulse">Cargando Ecosistema LAWENMOLL...</p>
   </div>
 
-  <!-- HEADER CON LOGOS Y NAVEGACIÓN -->
+  <!-- HEADER -->
   <header class="border-b border-rain/20 bg-white/90 p-4 sticky top-0 z-40 backdrop-blur-md shadow-sm">
     <div class="max-w-6xl mx-auto flex justify-between items-center w-full">
       <div class="flex items-center gap-3">
@@ -51,21 +51,24 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-lg font-bold text-slate leading-tight">Natural Wellness</h1>
-            <span class="bg-dew/20 text-slate text-[10px] font-bold px-2 py-0.5 rounded-full border border-dew/40 flex items-center gap-1">
-              <img src="lawenmoll_logo.jpg" class="w-3 h-3 rounded-full object-cover inline" onerror="this.style.display='none'"> by LAWENMOLL
+            <span class="bg-dew/20 text-slate text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-dew/40 flex items-center gap-1">
+              <img src="lawenmoll_logo.jpg" class="w-3.5 h-3.5 rounded-full object-cover inline" onerror="this.style.display='none'"> LAWENMOLL
             </span>
           </div>
           <p class="text-xs text-rain">Sabiduría Ancestral & Salud Integrativa</p>
         </div>
       </div>
       <div class="flex gap-2 items-center">
-        <!-- Selector de idioma -->
-        <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-lightbg text-slate border border-rain/30 text-xs font-semibold px-2 py-1.5 rounded-full outline-none">
-          <option value="es">🌐 ES</option>
-          <option value="en">🌐 EN</option>
-          <option value="pt">🌐 PT</option>
-          <option value="map">🌿 Mapudungun</option>
-        </select>
+        <!-- Selector de Idiomas -->
+        <div class="flex items-center gap-1 bg-lightbg border border-rain/30 rounded-full px-2.5 py-1">
+          <span class="text-xs font-bold text-slate">🌐 Idiomas:</span>
+          <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-transparent text-slate text-xs font-bold outline-none cursor-pointer">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+            <option value="pt">Português</option>
+            <option value="map">Mapudungun</option>
+          </select>
+        </div>
         <button onclick="openSubmitModal()" class="rounded-full bg-currant text-white px-3 py-1.5 text-xs font-semibold hover:bg-slate transition shadow-sm hidden sm:flex items-center gap-1">
           <span>➕</span> Dejar mi Clase / Receta
         </button>
@@ -89,14 +92,14 @@
           </div>
           <h2 id="hero-title" class="text-3xl md:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-sm text-slate/80 mt-2">
-            Recetas terapéuticas etiquetadas por condición médica (gluten free, sin lactosa, bajo IG, APLV, vegano) y rutinas adaptadas de la red LAWENMOLL.
+            Recetas terapéuticas etiquetadas por condición médica y rutinas adaptadas de la red LAWENMOLL.
           </p>
           
           <div class="mt-4 p-4 rounded-2xl bg-white/90 border border-rain/20 shadow-sm text-xs text-slate/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div class="flex items-center gap-3">
               <img src="lawenmoll_logo.jpg" alt="Logo Lawenmoll" class="w-10 h-10 rounded-full object-cover border border-rain/30 shrink-0" onerror="this.src='wellnes app.jpg'">
               <div>
-                <strong class="text-rain font-bold text-sm block">🌿 Conexión con LAWENMOLL</strong>
+                <strong class="text-rain font-bold text-sm block">Conexión con LAWENMOLL</strong>
                 <p class="mt-0.5">Evaluación médica integrativa unida a la nutrición clínica y movimiento consciente.</p>
               </div>
             </div>
@@ -113,27 +116,23 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 1: RECETAS POR CONDICIÓN MÉDICA Y RESTRICCIÓN -->
+    <!-- RECETAS POR CONDICIÓN MÉDICA -->
     <section id="recetas" class="pb-10">
       <div class="mb-4">
         <h3 class="text-xl font-bold text-slate">🥗 Nutrición Clínica & Recetas Terapéuticas</h3>
         <p class="text-xs text-rain">Selecciona según tus condiciones metabólicas, alergias o estilo alimentario regulado</p>
       </div>
 
-      <!-- Filtro por Condición Médica -->
       <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
         <button onclick="filterRecipe('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-1.5 text-xs font-bold transition shrink-0">✨ Todas las Recetas</button>
-        <button onclick="filterRecipe('Gluten')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-4 py-1.5 text-xs font-bold hover:bg-amber-100 transition shrink-0">🌾 Sin Gluten / Celíacos (Espiga Tachada)</button>
+        <button onclick="filterRecipe('Gluten')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-4 py-1.5 text-xs font-bold hover:bg-amber-100 transition shrink-0">🌾 Sin Gluten / Celíacos</button>
         <button onclick="filterRecipe('Lactosa')" class="rounded-full border border-blue-300 bg-blue-50 text-blue-900 px-4 py-1.5 text-xs font-bold hover:bg-blue-100 transition shrink-0">🥛 Sin Lactosa / Deslactosado</button>
-        <button onclick="filterRecipe('BajoIG')" class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 px-4 py-1.5 text-xs font-bold hover:bg-emerald-100 transition shrink-0">🩺 Bajo IG / Diabetes (Sin Azúcar Añadida)</button>
+        <button onclick="filterRecipe('BajoIG')" class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 px-4 py-1.5 text-xs font-bold hover:bg-emerald-100 transition shrink-0">🩺 Bajo IG / Diabetes</button>
         <button onclick="filterRecipe('Alergenos')" class="rounded-full border border-purple-300 bg-purple-50 text-purple-900 px-4 py-1.5 text-xs font-bold hover:bg-purple-100 transition shrink-0">⚠️ Libre de Alérgenos / APLV</button>
-        <button onclick="filterRecipe('Vegano')" class="rounded-full border border-green-300 bg-green-50 text-green-900 px-4 py-1.5 text-xs font-bold hover:bg-green-100 transition shrink-0">🌱 Vegano / Plant Based (V-Label)</button>
+        <button onclick="filterRecipe('Vegano')" class="rounded-full border border-green-300 bg-green-50 text-green-900 px-4 py-1.5 text-xs font-bold hover:bg-green-100 transition shrink-0">🌱 Vegano / Plant Based</button>
       </div>
 
-      <!-- CATÁLOGO DE RECETAS SALUDABLES -->
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-4">
-
-        <!-- Receta 1: Bajo IG & Sin Gluten -->
         <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-tag="Gluten BajoIG Vegano">
           <div>
             <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta Médica', 'Chef Camila Ríos', '@camila_nutri')">
@@ -141,7 +140,6 @@
               <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🩺 Bajo IG / Sin Azúcar</span>
             </div>
 
-            <!-- Badges regulados -->
             <div class="flex flex-wrap gap-1 mt-3">
               <span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌾 Sin Gluten</span>
               <span class="bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🩺 Certificado Bajo IG</span>
@@ -149,7 +147,7 @@
             </div>
 
             <h4 class="font-bold text-slate text-base mt-2">Bowl de avena, chía y canela de bajo índice glicémico</h4>
-            <p class="text-xs text-slate/70 mt-1">Apto para personas con diabetes, resistencia a la insulina o celiaquía. Endulzado naturalmente con canela y alulosa.</p>
+            <p class="text-xs text-slate/70 mt-1">Apto para personas con diabetes, resistencia a la insulina o celiaquía.</p>
             
             <div class="mt-3 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
               <span class="font-bold text-rain block mb-0.5">⏱ Preparación: 10 min | 🌾 100% Libre de Gluten</span>
@@ -169,214 +167,15 @@
 
           <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta', 'Chef Camila Ríos', '@camila_nutri')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video de la Receta</button>
         </div>
-
-        <!-- Receta 2: Sin Lactosa & Libre de Alérgenos APLV -->
-        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-tag="Lactosa Alergenos Gluten">
-          <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Crema de zapallo antiinflamatoria APLV', 'Receta Médica', 'Dra. Amanda Silva', '@amanda_nutri')">
-              <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80" alt="Crema Zapallo" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-purple-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">⚠️ Libre de APLV & Alérgenos</span>
-            </div>
-
-            <div class="flex flex-wrap gap-1 mt-3">
-              <span class="bg-blue-100 text-blue-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🥛 Sin Lactosa</span>
-              <span class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2 py-0.5 rounded-full">⚠️ APLV Safe</span>
-              <span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌾 Sin Gluten</span>
-            </div>
-
-            <h4 class="font-bold text-slate text-base mt-2">Crema dorada de zapallo, jengibre y leche de coco</h4>
-            <p class="text-xs text-slate/70 mt-1">Libre de proteína de leche de vaca (APLV), sin lactosa y altamente digestiva para sensibilidades intestinales.</p>
-            
-            <div class="mt-3 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
-              <span class="font-bold text-rain block mb-0.5">⏱ Preparación: 20 min | 🥛 100% Deslactosado</span>
-            </div>
-
-            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
-                <div>
-                  <span class="block text-xs font-bold text-slate">Dra. Amanda Silva</span>
-                  <span class="block text-[10px] text-rain">Inmunología & Nutrición</span>
-                </div>
-              </div>
-              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
-            </div>
-          </div>
-
-          <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Crema dorada APLV', 'Receta', 'Dra. Amanda Silva', '@amanda_nutri')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video de la Receta</button>
-        </div>
-
-        <!-- Receta 3: Vegano / Plant Based & Sin Azúcar Añadida -->
-        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-tag="Vegano BajoIG Gluten">
-          <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Garbanzos crujientes al horno con cúrcuma', 'Receta Médica', 'Prof. Carlos Vega', '@carlos_nutri')">
-              <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" alt="Garbanzos" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-green-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🌱 Plant Based / V-Label</span>
-            </div>
-
-            <div class="flex flex-wrap gap-1 mt-3">
-              <span class="bg-green-100 text-green-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌱 100% Vegano</span>
-              <span class="bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🩺 Sin Azúcar Añadida</span>
-              <span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌾 Sin Gluten</span>
-            </div>
-
-            <h4 class="font-bold text-slate text-base mt-2">Garbanzos crujientes al horno con cúrcuma y limón</h4>
-            <p class="text-xs text-slate/70 mt-1">Snack de proteína vegetal rica en fibra, ideal para el control glicémico y saciedad prolongada.</p>
-            
-            <div class="mt-3 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
-              <span class="font-bold text-rain block mb-0.5">⏱ Preparación: 25 min | 🌱 Sello Plant Based</span>
-            </div>
-
-            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
-                <div>
-                  <span class="block text-xs font-bold text-slate">Prof. Carlos Vega</span>
-                  <span class="block text-[10px] text-rain">Nutrición Vegetariana</span>
-                </div>
-              </div>
-              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
-            </div>
-          </div>
-
-          <button onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Garbanzos crujientes V-Label', 'Receta', 'Prof. Carlos Vega', '@carlos_nutri')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video de la Receta</button>
-        </div>
-
       </div>
     </section>
 
-    <!-- SECCIÓN 2: RUTINAS DE EJERCICIOS Y MOVILIDAD -->
-    <section id="rutinas" class="py-10 border-t border-rain/20">
-      <div class="mb-4">
-        <h3 class="text-xl font-bold text-slate">🏋️‍♀️ Entrenamiento Consciente & Movilidad</h3>
-        <p class="text-xs text-rain">Filtra por zona corporal e intensidad adaptada a tu salud física</p>
-      </div>
-
-      <!-- Filtro por Intensidad -->
-      <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
-        <span class="text-xs font-bold text-slate flex items-center shrink-0 pr-2">Nivel:</span>
-        <button onclick="filterIntensity('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-1.5 text-xs font-bold transition">✨ Todos los Niveles</button>
-        <button onclick="filterIntensity('Básico')" class="rounded-full border border-green-300 bg-green-50 text-green-800 px-4 py-1.5 text-xs font-bold hover:bg-green-100 transition">🟢 Básico (Principiantes)</button>
-        <button onclick="filterIntensity('Medio')" class="rounded-full border border-yellow-300 bg-yellow-50 text-yellow-800 px-4 py-1.5 text-xs font-bold hover:bg-yellow-100 transition">🟡 Medio (Intermedio)</button>
-        <button onclick="filterIntensity('Alta Intensidad')" class="rounded-full border border-red-300 bg-red-50 text-red-800 px-4 py-1.5 text-xs font-bold hover:bg-red-100 transition">🔴 Alta Intensidad (Avanzado)</button>
-      </div>
-
-      <!-- Filtro por Zona Muscular -->
-      <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar mt-2">
-        <span class="text-xs font-bold text-slate flex items-center shrink-0 pr-2">Zona:</span>
-        <button onclick="filterCategory('Todas')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">Todas las Zonas</button>
-        <button onclick="filterCategory('Full Body')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">💪 Cuerpo Completo (Full Body)</button>
-        <button onclick="filterCategory('Tren Inferior')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🦵 Tren Inferior (Piernas y Glúteos)</button>
-        <button onclick="filterCategory('Tren Superior')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">👕 Tren Superior (Brazos, Pecho y Espalda)</button>
-        <button onclick="filterCategory('Abdominales')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🧘 Abdominales y Core</button>
-        <button onclick="filterCategory('Cardio')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🔥 Cardio y HIIT</button>
-        <button onclick="filterCategory('Movilidad')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🍃 Movilidad y Yoga</button>
-      </div>
-
-      <div id="video-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-4">
-
-        <!-- Rutina Full Body -->
-        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Full Body" data-intensity="Medio">
-          <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Cuerpo Completo (Full Body)', 'Full Body', 'Prof. Mateo Silva', '@mateo_fit')">
-              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/5qap5aO4i9A?controls=0" frameborder="0"></iframe>
-              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🟡 Nivel Medio</span>
-            </div>
-            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Full Body · 30 min</span>
-            <h4 class="font-bold text-slate text-base mt-0.5">Cuerpo Completo (Full Body)</h4>
-            <p class="text-xs text-slate/70 mt-1">Trabaja todos los músculos principales para quemar calorías y ganar condición física.</p>
-            
-            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
-              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
-              Sentadillas, flexiones de pecho y puente de glúteos.
-            </div>
-
-            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
-                <div>
-                  <span class="block text-xs font-bold text-slate">Prof. Mateo Silva</span>
-                  <span class="block text-[10px] text-rain">Kinesiología Deportiva</span>
-                </div>
-              </div>
-              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
-            </div>
-          </div>
-
-          <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Cuerpo Completo (Full Body)', 'Full Body', 'Prof. Mateo Silva', '@mateo_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Rutina Full Body</button>
-        </div>
-
-        <!-- Rutina Tren Inferior -->
-        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Tren Inferior" data-intensity="Medio">
-          <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Tren Inferior (Piernas y Glúteos)', 'Tren Inferior', 'Dra. Amanda Silva', '@amanda_fit')">
-              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/inpok4MKVLM?controls=0" frameborder="0"></iframe>
-              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🟡 Nivel Medio</span>
-            </div>
-            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Tren Inferior · 25 min</span>
-            <h4 class="font-bold text-slate text-base mt-0.5">Tren Inferior (Piernas y Glúteos)</h4>
-            <p class="text-xs text-slate/70 mt-1">Enfocada en la parte baja mediante ejercicios guiados.</p>
-            
-            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
-              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
-              Zancadas, sentadillas sumo, peso muerto y elevaciones de talones.
-            </div>
-
-            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
-                <div>
-                  <span class="block text-xs font-bold text-slate">Dra. Amanda Silva</span>
-                  <span class="block text-[10px] text-rain">Medicina Integrativa</span>
-                </div>
-              </div>
-              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
-            </div>
-          </div>
-
-          <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Tren Inferior', 'Tren Inferior', 'Dra. Amanda Silva', '@amanda_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Rutina Tren Inferior</button>
-        </div>
-
-        <!-- Rutina Cardio HIIT -->
-        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Cardio" data-intensity="Alta Intensidad">
-          <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Cardio & HIIT quema grasa', 'Cardio', 'Prof. Mateo Silva', '@mateo_fit')">
-              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/L_LUpnjgPso?controls=0" frameborder="0"></iframe>
-              <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🔴 Alta Intensidad</span>
-            </div>
-            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Cardio & HIIT · 20 min</span>
-            <h4 class="font-bold text-slate text-base mt-0.5">Cardio y HIIT Quema Grasa</h4>
-            <p class="text-xs text-slate/70 mt-1">Movimientos dinámicos e intensos para potenciar la quema de calorías.</p>
-            
-            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
-              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
-              Jumping jacks, rodillas al pecho (skipping) y burpees.
-            </div>
-
-            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
-                <div>
-                  <span class="block text-xs font-bold text-slate">Prof. Mateo Silva</span>
-                  <span class="block text-[10px] text-rain">Preparador Físico</span>
-                </div>
-              </div>
-              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
-            </div>
-          </div>
-
-          <button onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Cardio y HIIT', 'Cardio', 'Prof. Mateo Silva', '@mateo_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Cardio HIIT</button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SALAS VIRTUALES Y RESERVAS -->
+    <!-- SALAS VIRTUALES -->
     <section id="salas" class="py-12 border-t border-rain/20">
       <div class="mb-6">
         <h2 class="text-2xl font-bold text-slate">Salas Virtuales por Hora o Semana</h2>
         <p class="text-sm text-rain mt-1">
-          Arriendo por hora <strong class="text-slate">$15.000 CLP</strong> o semana <strong class="text-slate">$80.000 CLP</strong>. Recibes el desglose del total y tu clave por correo.
+          Arriendo por hora <strong class="text-slate">$15.000 CLP</strong> o semana <strong class="text-slate">$80.000 CLP</strong>.
         </p>
       </div>
 
@@ -423,32 +222,11 @@
           </div>
         </div>
       </div>
-
-      <!-- MEDIOS DE PAGO CHILENOS -->
-      <div class="mt-8 bg-white rounded-3xl p-6 border border-rain/20 shadow-sm">
-        <h4 class="font-bold text-slate text-base mb-3 flex items-center gap-2">
-          <span>💳</span> Plataformas y Medios de Pago Aceptados
-        </h4>
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 text-xs text-slate/80">
-          <div class="p-4 rounded-2xl bg-lightbg border border-rain/15">
-            <strong class="text-slate font-bold block mb-1">💳 Webpay.cl (Transbank)</strong>
-            Acepta Tarjetas de Débito (Redcompra) y Crédito en cuotas sin interés.
-          </div>
-          <div class="p-4 rounded-2xl bg-lightbg border border-rain/15">
-            <strong class="text-slate font-bold block mb-1">📱 Tarjetas Prepago Digitales</strong>
-            Paga directo usando tu saldo de MACH, Tenpo, Mercado Pago o Chek.
-          </div>
-          <div class="p-4 rounded-2xl bg-lightbg border border-rain/15">
-            <strong class="text-slate font-bold block mb-1">🏦 Transferencia Bancaria</strong>
-            Verificación automática con BancoEstado (CuentaRUT), Chile, Santander y Khipu.
-          </div>
-        </div>
-      </div>
     </section>
 
   </main>
 
-  <!-- MODAL DE RESERVA -->
+  <!-- MODAL DE RESERVA DE SALA VIRTUAL -->
   <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeBookingModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
@@ -489,7 +267,6 @@
             <option value="webpay">💳 Webpay.cl / Transbank (Débito y Crédito)</option>
             <option value="prepago">📱 Prepago (MACH / Tenpo / Chek)</option>
             <option value="transf">🏦 Transferencia Bancaria Directa</option>
-            <option value="wa">📲 Link de pago por WhatsApp</option>
           </select>
         </div>
 
@@ -498,18 +275,40 @@
           <span id="booking-total-display" class="text-base font-extrabold text-slate">$15.000 CLP</span>
         </div>
 
+        <!-- REDES SOCIALES EN EL FORMULARIO DE RESERVA -->
+        <div class="p-3 rounded-2xl bg-lightbg border border-rain/20 text-center">
+          <span class="text-[11px] font-bold text-slate block mb-1.5">📲 Síguenos y contáctanos en nuestras redes sociales:</span>
+          <div class="flex justify-center items-center gap-2">
+            <a href="https://instagram.com" target="_blank" class="px-3 py-1 rounded-full bg-white border border-rain/30 text-[11px] font-bold text-slate hover:bg-dew/30 flex items-center gap-1">📷 Instagram</a>
+            <a href="https://wa.me/" target="_blank" class="px-3 py-1 rounded-full bg-white border border-rain/30 text-[11px] font-bold text-slate hover:bg-dew/30 flex items-center gap-1">💬 WhatsApp</a>
+            <a href="https://youtube.com" target="_blank" class="px-3 py-1 rounded-full bg-white border border-rain/30 text-[11px] font-bold text-slate hover:bg-dew/30 flex items-center gap-1">▶ YouTube</a>
+          </div>
+        </div>
+
         <button type="submit" class="w-full bg-currant text-white text-xs font-bold py-3 rounded-xl hover:bg-slate transition shadow">Pagar & Generar Clave de Acceso</button>
       </form>
 
+      <!-- PANTALLA DE CONFIRMACIÓN CON CLAVE Y REDES SOCIALES -->
       <div id="booking-success" class="hidden mt-4 p-4 rounded-2xl bg-dew/20 border border-dew/50 text-center">
         <span class="text-2xl">🎉</span>
         <h4 class="font-bold text-slate text-sm mt-1">¡Reserva Confirmada!</h4>
-        <p class="text-xs text-slate/80 mt-1">Hemos enviado el detalle del pago y clave a tu correo:</p>
+        <p class="text-xs text-slate/80 mt-1">Hemos enviado el detalle del pago y tu clave de acceso a tu correo electrónico.</p>
         <div class="my-3 p-3 bg-white rounded-xl border border-rain/20 font-mono font-bold text-slate text-sm">
-          CLAVE UNICA: <span id="access-code" class="text-rain">WELL-8942-X</span>
+          CLAVE ÚNICA: <span id="access-code" class="text-rain">WELL-8942-X</span>
         </div>
-        <p id="total-confirmed-text" class="text-xs font-bold text-slate mb-3"></p>
-        <a id="wa-confirm-link" href="#" target="_blank" class="inline-block bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-green-700 transition">💬 Confirmar y solicitar Link por WhatsApp</a>
+        <p id="total-confirmed-text" class="text-xs font-bold text-slate mb-2"></p>
+
+        <!-- Redes sociales en confirmación -->
+        <div class="my-3 p-2.5 rounded-xl bg-white border border-rain/20">
+          <span class="text-[11px] font-bold text-slate block mb-1">📢 Sigue a la comunidad de Natural Wellness:</span>
+          <div class="flex justify-center gap-3">
+            <a href="https://instagram.com" target="_blank" class="text-xs font-bold text-rain hover:underline">📷 Instagram</a>
+            <span class="text-xs text-slate/40">•</span>
+            <a href="https://youtube.com" target="_blank" class="text-xs font-bold text-rain hover:underline">▶ YouTube</a>
+            <span class="text-xs text-slate/40">•</span>
+            <a href="https://wa.me/" target="_blank" class="text-xs font-bold text-rain hover:underline">💬 WhatsApp</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -571,8 +370,6 @@
 
   <script>
     let currentRoomPrice = 15000;
-    let selectedIntensity = 'Todas';
-    let selectedCategory = 'Todas';
 
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
@@ -582,7 +379,6 @@
       }, 800);
     });
 
-    // Filtros de Recetas por Condición Médica
     function filterRecipe(tag) {
       const cards = document.querySelectorAll('.recipe-card');
       cards.forEach(card => {
@@ -595,35 +391,6 @@
       });
     }
 
-    // Filtros de Ejercicios por Intensidad y Zona
-    function filterIntensity(level) {
-      selectedIntensity = level;
-      applyFilters();
-    }
-
-    function filterCategory(cat) {
-      selectedCategory = cat;
-      applyFilters();
-    }
-
-    function applyFilters() {
-      const cards = document.querySelectorAll('.workout-card');
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        const intensity = card.getAttribute('data-intensity');
-
-        const matchCat = (selectedCategory === 'Todas' || cat === selectedCategory);
-        const matchInt = (selectedIntensity === 'Todas' || intensity === selectedIntensity);
-
-        if (matchCat && matchInt) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    // Modal de reserva y cálculo de total
     function openBookingModal(roomName, price) {
       currentRoomPrice = price;
       document.getElementById('booking-room-name').innerText = roomName;
@@ -663,12 +430,8 @@
       document.getElementById('total-confirmed-text').innerText = 'Total Reservado: ' + total;
       document.getElementById('booking-form').classList.add('hidden');
       document.getElementById('booking-success').classList.remove('hidden');
-
-      const waText = encodeURIComponent(`Hola, soy ${name}. Reservé la ${room} por un total de ${total}. Mi clave de acceso es: ${code}`);
-      document.getElementById('wa-confirm-link').href = `https://wa.me/?text=${waText}`;
     }
 
-    // Modal reproductor
     function openModal(embedUrl, title, category, profName, profIg) {
       document.getElementById('modal-iframe').src = embedUrl;
       document.getElementById('modal-title').innerText = title;
@@ -713,7 +476,7 @@
         document.getElementById('hero-desc').innerText = "Lawenmoll kimün: kom che küme mongen tañi poyeel.";
       } else {
         document.getElementById('hero-title').innerText = "Nutrición, Movimiento y Mente en Armonía";
-        document.getElementById('hero-desc').innerText = "Recetas terapéuticas etiquetadas por condición médica (gluten free, sin lactosa, bajo IG, APLV, vegano) y rutinas adaptadas de la red LAWENMOLL.";
+        document.getElementById('hero-desc').innerText = "Recetas terapéuticas etiquetadas por condición médica y rutinas adaptadas de la red LAWENMOLL.";
       }
     }
   </script>
