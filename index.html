@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Natural Wellness — Sabiduría Ancestral & Salud Integrativa</title>
+  <title>Natural Wellness — Salud Integrativa</title>
 
   <!-- CONFIGURACIÓN PWA MÓVIL (ANDROID & IOS) -->
   <meta name="theme-color" content="#2B4251">
@@ -14,7 +14,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- BASE DE DATOS LOCAL Y CATEGORÍAS MILENARIAS -->
+  <!-- BASE DE DATOS LOCAL -->
   <script src="data.js"></script>
 
   <script>
@@ -50,7 +50,7 @@
     <div class="flex items-center gap-2 mt-6">
       <h2 class="text-2xl font-bold text-slate tracking-wide">Natural Wellness</h2>
     </div>
-    <p class="text-xs text-rain mt-1 font-semibold animate-pulse">Cargando Sabiduría Ancestral & Salud...</p>
+    <p class="text-xs text-rain mt-1 font-semibold animate-pulse">Cargando Salud Integrativa...</p>
   </div>
 
   <!-- HEADER DE NAVEGACIÓN -->
@@ -60,7 +60,7 @@
         <img src="LOGO WELLNESS.jpg" alt="Logo Wellness" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-rain shadow-sm" onerror="this.src='wellnes app.jpg'">
         <div>
           <h1 class="text-base sm:text-lg font-bold text-slate leading-tight">Natural Wellness</h1>
-          <p class="text-[10px] sm:text-xs text-rain">Sabiduría Ancestral & Salud Integrativa</p>
+          <p class="text-[10px] sm:text-xs text-rain">Salud Integrativa</p>
         </div>
       </div>
 
@@ -90,7 +90,7 @@
           </div>
           <h2 id="hero-title" class="text-2xl sm:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-xs sm:text-sm text-slate/80 mt-2">
-            Salas virtuales con cámara en vivo, recetas milenarias, movimientos ancestrales y autoayuda.
+            Salas virtuales con cámara en vivo, recetas de salud integrativa, movimientos corporales y autoayuda.
           </p>
         </div>
 
@@ -121,15 +121,14 @@
       </div>
     </div>
 
-    <!-- TRANSMISIÓN DE SABIDURÍA MILENARIA -->
+    <!-- TRANSMISIÓN DE VIDEOS -->
     <section id="reproductor-seccion" class="py-4 border-t border-rain/20">
       <div class="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <div class="flex items-center gap-2 mb-1">
             <span class="rounded-full bg-currant text-white px-3 py-0.5 text-[10px] font-bold">Experiencia Integrativa</span>
-            <span class="rounded-full bg-dew/30 text-slate px-3 py-0.5 text-[10px] font-bold">Sabiduría Ancestral</span>
           </div>
-          <h3 class="text-xl sm:text-2xl font-bold text-slate">📺 Transmisión de Sabiduría Milenaria</h3>
+          <h3 class="text-xl sm:text-2xl font-bold text-slate">📺 Transmisión de Clases & Videoteca</h3>
           <p class="text-xs text-rain mt-0.5">Selecciona una categoría o haz clic en cualquier video de la lista para reproducirlo</p>
         </div>
 
@@ -143,19 +142,19 @@
         </div>
       </div>
 
-      <!-- FILTROS Y NAVEGACIÓN MILENARIA -->
+      <!-- FILTROS Y NAVEGACIÓN -->
       <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar mb-2 items-center">
         <button onclick="filterPlaylist('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-2 text-xs font-bold shrink-0 shadow-sm">
           ✨ Todo el Contenido
         </button>
         <button onclick="filterPlaylist('recetas')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-4 py-2 text-xs font-bold shrink-0 hover:bg-amber-100 transition">
-          🥗 Recetas Milenarias
+          🥗 Recetas Saludables
         </button>
         <button onclick="filterPlaylist('meditaciones')" class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 px-4 py-2 text-xs font-bold shrink-0 hover:bg-emerald-100 transition">
-          🧘 Sabiduría Ancestral & Autoayuda
+          🧘 Bienestar & Autoayuda
         </button>
         <button onclick="filterPlaylist('ejercicios')" class="rounded-full border border-purple-300 bg-purple-50 text-purple-900 px-4 py-2 text-xs font-bold shrink-0 hover:bg-purple-100 transition">
-          🏃 Movimientos Ancestrales
+          🏃 Movimiento & Ejercicio
         </button>
       </div>
 
@@ -169,7 +168,7 @@
           
           <div class="mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
             <div>
-              <span id="main-player-category" class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2.5 py-1 rounded-full">🏃 Movimientos Ancestrales</span>
+              <span id="main-player-category" class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2.5 py-1 rounded-full">🏃 Movimiento & Ejercicio</span>
               <h3 id="main-player-title" class="text-lg font-bold text-slate mt-2">Rutina GAP: Glúteos, Abdomen y Piernas</h3>
               <p id="main-player-author" class="text-xs text-rain mt-0.5">Instructor(a): NatyGlossGym · Sin peso y sin saltos</p>
             </div>
@@ -191,13 +190,13 @@
             </button>
           </div>
           <div id="sidebar-playlist" class="flex flex-col gap-3 max-h-[480px] overflow-y-auto no-scrollbar">
-            <!-- Renderizado dinámicamente desde data.js -->
+            <!-- Renderizado dinámicamente desde data.js / LocalStorage -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN SALAS VIRTUALES CON DESPLEGABLE Y CAPACIDAD DINÁMICA (>20 PERS) -->
+    <!-- SECCIÓN SALAS VIRTUALES -->
     <section id="salas" class="py-6 border-t border-rain/20">
       <div class="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
@@ -221,7 +220,7 @@
 
       <!-- TARJETAS DE SALAS VIRTUALES -->
       <div id="rooms-grid" class="grid gap-4 sm:gap-6 md:grid-cols-2">
-        <!-- Renderizado dinámicamente desde data.js -->
+        <!-- Renderizado dinámicamente -->
       </div>
     </section>
 
@@ -237,7 +236,7 @@
           <button onclick="openEvaluationModal()" class="bg-currant text-white px-3.5 py-2 rounded-full text-xs font-bold hover:bg-slate transition shadow">
             ✍️ Escribir Reseña
           </button>
-          <button onclick="compartirContenido('Natural Wellness', 'Descubre nuestras salas virtuales, recetas milenarias y meditaciones', window.location.href)" class="bg-dew/30 text-slate border border-rain/30 px-3.5 py-2 rounded-full text-xs font-bold hover:bg-dew/50 transition">
+          <button onclick="compartirContenido('Natural Wellness', 'Descubre nuestras salas virtuales, recetas y ejercicios', window.location.href)" class="bg-dew/30 text-slate border border-rain/30 px-3.5 py-2 rounded-full text-xs font-bold hover:bg-dew/50 transition">
             📲 Compartir App
           </button>
         </div>
@@ -251,7 +250,7 @@
               <span class="text-xs font-bold text-slate">Claudia Morales</span>
               <span class="text-amber-500 text-xs">⭐⭐⭐⭐⭐</span>
             </div>
-            <span class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2 py-0.5 rounded-full">Movimientos Ancestrales</span>
+            <span class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2 py-0.5 rounded-full">Movimiento & Ejercicio</span>
             <p class="text-xs text-slate/80 mt-2">"Excelente rutina GAP sin saltos. Perfecta para entrenar sin impactar las articulaciones. ¡100% recomendada!"</p>
           </div>
           <div class="mt-4 pt-2 border-t border-rain/10 flex justify-between items-center text-[10px] text-rain">
@@ -286,7 +285,7 @@
     <span class="hidden sm:inline">WhatsApp Directo</span>
   </a>
 
-  <!-- MODAL TRANSMISIÓN DE CÁMARA EN VIVO CON CAPACIDAD ESCALABLE -->
+  <!-- MODAL TRANSMISIÓN DE CÁMARA EN VIVO -->
   <div id="live-room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
     <div class="bg-slate rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-dew/30 relative text-white flex flex-col">
       <div class="p-4 bg-creosote border-b border-dew/20 flex justify-between items-center">
@@ -304,7 +303,6 @@
           TRANSMISIÓN EN VIVO | <strong id="live-access-code" class="text-dew">WELL-8942-X</strong>
         </div>
 
-        <!-- CONTROL DE ESCALABILIDAD EN TIEMPO REAL (>20 USUARIOS) -->
         <div class="absolute bottom-4 left-4 right-4 bg-creosote/90 backdrop-blur-md p-3 rounded-2xl border border-dew/30 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs">
           <div class="flex items-center gap-2">
             <span class="text-amber-400">👥 Asistentes en la Sala:</span>
@@ -346,9 +344,9 @@
         <div>
           <label class="block text-xs font-bold text-slate mb-1">Categoría del Video</label>
           <select id="edit-type" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs font-bold outline-none bg-white">
-            <option value="ejercicios">🏃 Movimientos Ancestrales</option>
-            <option value="recetas">🥗 Recetas Milenarias</option>
-            <option value="meditaciones">🧘 Sabiduría Ancestral & Autoayuda</option>
+            <option value="ejercicios">🏃 Movimiento & Ejercicio</option>
+            <option value="recetas">🥗 Recetas Saludables</option>
+            <option value="meditaciones">🧘 Bienestar & Autoayuda</option>
           </select>
         </div>
 
@@ -365,12 +363,12 @@
         <div>
           <label class="block text-xs font-bold text-slate mb-1">Enlace de YouTube (Nuevo o Corregido)</label>
           <input type="url" id="edit-url" required placeholder="https://www.youtube.com/watch?v=... o https://youtu.be/..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-          <span class="text-[10px] text-rain mt-0.5 block">Copia la URL completa de YouTube para reparar videos que se vean en negro.</span>
+          <span class="text-[10px] text-rain mt-0.5 block">Copia la URL completa de YouTube.</span>
         </div>
 
         <div class="pt-2 flex gap-2">
           <button type="submit" class="flex-1 py-3 bg-amber-500 text-white text-xs font-bold rounded-xl hover:bg-amber-600 transition shadow flex items-center justify-center gap-1">
-            <span>💾</span> Guardar y Mostrar en Pantalla Principal
+            <span>💾</span> Guardar y Grabar Permanente
           </button>
           <button type="button" onclick="eliminarVideoActual()" class="py-3 px-4 bg-red-100 text-red-700 hover:bg-red-200 text-xs font-bold rounded-xl transition">
             🗑️ Eliminar
@@ -388,16 +386,16 @@
       <div class="flex items-center gap-2">
         <span class="text-xs font-bold text-rain uppercase">👩‍⚕️ Red de Profesionales & Creadores</span>
       </div>
-      <h3 class="text-xl font-bold text-slate mt-1">Publicar Contenido Ancestral</h3>
+      <h3 class="text-xl font-bold text-slate mt-1">Publicar Contenido</h3>
       <p class="text-xs text-slate/70 mt-1">Agrega una receta, rutina o meditación para compartir con la comunidad.</p>
 
       <form id="pro-form" onsubmit="handleProSubmit(event)" class="mt-4 space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate mb-1">Categoría del Video</label>
           <select id="pro-type" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs font-bold outline-none bg-white">
-            <option value="ejercicios">🏃 Movimientos Ancestrales</option>
-            <option value="recetas">🥗 Recetas Milenarias</option>
-            <option value="meditaciones">🧘 Sabiduría Ancestral & Autoayuda</option>
+            <option value="ejercicios">🏃 Movimiento & Ejercicio</option>
+            <option value="recetas">🥗 Recetas Saludables</option>
+            <option value="meditaciones">🧘 Bienestar & Autoayuda</option>
           </select>
         </div>
 
@@ -418,7 +416,7 @@
 
         <div class="pt-2">
           <button type="submit" class="w-full py-3 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow flex items-center justify-center gap-2">
-            <span>🚀</span> Publicar y Ver en Pantalla Principal
+            <span>🚀</span> Publicar y Grabar Permanente
           </button>
         </div>
       </form>
@@ -496,17 +494,41 @@
   </div>
 
   <footer class="border-t border-rain/20 bg-white py-6 text-center text-xs text-slate/70 mb-12 sm:mb-0">
-    Natural Wellness · Sabiduría Ancestral & Salud Integrativa
+    Natural Wellness · Salud Integrativa
   </footer>
 
-  <!-- SCRIPT LÓGICO COMPLETO SIN ERRORES -->
+  <!-- SCRIPT LÓGICO Y PERSISTENCIA -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
     let localStream = null;
     let videoActualData = { id: 'ejercicio-1', url: 'https://www.youtube.com/embed/ItMcmDCxD6A', titulo: 'Rutina GAP: Glúteos, Abdomen y Piernas', autor: 'NatyGlossGym', categoria: 'ejercicios' };
 
-    // OBTENER ID DE YOUTUBE CON REGEX ROBUSTO (ROBUST YOUTUBE PARSER)
+    // --- FUNCIONES DE PERSISTENCIA EN LOCALSTORAGE ---
+    function guardarEnLocalStorage() {
+      try {
+        localStorage.setItem('wellness_catalogo_v1', JSON.stringify(CATALOGO_WELLNESS));
+      } catch (e) {
+        console.error("Error guardando en LocalStorage:", e);
+      }
+    }
+
+    function cargarDesdeLocalStorage() {
+      try {
+        const guardado = localStorage.getItem('wellness_catalogo_v1');
+        if (guardado && typeof CATALOGO_WELLNESS !== 'undefined') {
+          const datosParsed = JSON.parse(guardado);
+          if (datosParsed.ejercicios) CATALOGO_WELLNESS.ejercicios = datosParsed.ejercicios;
+          if (datosParsed.recetas) CATALOGO_WELLNESS.recetas = datosParsed.recetas;
+          if (datosParsed.meditaciones) CATALOGO_WELLNESS.meditaciones = datosParsed.meditaciones;
+          if (datosParsed.salas) CATALOGO_WELLNESS.salas = datosParsed.salas;
+        }
+      } catch (e) {
+        console.error("Error cargando desde LocalStorage:", e);
+      }
+    }
+
+    // OBTENER ID DE YOUTUBE CON REGEX ROBUSTO
     function obtenerYoutubeId(url) {
       if (!url) return '';
       const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -534,6 +556,9 @@
           setTimeout(() => splash.remove(), 500);
         }
       }, 500);
+
+      // Cargar datos persistidos si existen
+      cargarDesdeLocalStorage();
 
       renderRoomsFromData();
       filterPlaylist('Todas');
@@ -590,7 +615,6 @@
         grid.insertAdjacentHTML('beforeend', roomHTML);
       });
 
-      // SI SE SELECCIONA SALA MULTITUDINARIA (>20 PERSONAS)
       if (filtroSalaId === 'sala-multitudinaria') {
         const roomMultitudinariaHTML = `
           <div class="col-span-1 md:col-span-2 bg-gradient-to-r from-currant to-slate text-white rounded-3xl p-6 shadow-xl relative border-2 border-dew/40">
@@ -612,12 +636,10 @@
       }
     }
 
-    // FILTRAR O ESCALAR SALA DESDE EL DESPLEGABLE
     function filtrarOEscalarSala(valor) {
       renderRoomsFromData(valor);
     }
 
-    // ESCALAR CAPACIDAD DENTRO DE LA SALA EN VIVO (>20 PERSONAS)
     function escalarCapacidadSala(cantidad) {
       const num = parseInt(cantidad);
       const estadoSpan = document.getElementById('estado-sala-expansion');
@@ -632,7 +654,7 @@
       }
     }
 
-    // RENDERIZAR CATÁLOGO RECOMENDADO
+    // RENDERIZAR CATÁLOGO
     function filterPlaylist(filtro = 'Todas') {
       const playlistContainer = document.getElementById('sidebar-playlist');
       if (!playlistContainer || typeof CATALOGO_WELLNESS === 'undefined') return;
@@ -642,13 +664,13 @@
       let videosFiltrados = [];
 
       if ((filtro === 'Todas' || filtro === 'ejercicios') && CATALOGO_WELLNESS.ejercicios) {
-        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.ejercicios.map(v => ({ ...v, concepto: '🏃 Movimientos Ancestrales', catKey: 'ejercicios' })));
+        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.ejercicios.map(v => ({ ...v, concepto: '🏃 Movimiento & Ejercicio', catKey: 'ejercicios' })));
       }
       if ((filtro === 'Todas' || filtro === 'recetas') && CATALOGO_WELLNESS.recetas) {
-        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.recetas.map(r => ({ ...r, concepto: '🥗 Recetas Milenarias', catKey: 'recetas' })));
+        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.recetas.map(r => ({ ...r, concepto: '🥗 Recetas Saludables', catKey: 'recetas' })));
       }
       if ((filtro === 'Todas' || filtro === 'meditaciones') && CATALOGO_WELLNESS.meditaciones) {
-        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.meditaciones.map(m => ({ ...m, concepto: '🧘 Sabiduría Ancestral', catKey: 'meditaciones' })));
+        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.meditaciones.map(m => ({ ...m, concepto: '🧘 Bienestar & Autoayuda', catKey: 'meditaciones' })));
       }
 
       if (videosFiltrados.length === 0) {
@@ -695,7 +717,6 @@
       document.getElementById('reproductor-seccion').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // EDITAR VIDEO ACTUAL EN MODO ADMIN
     function editarVideoActual() {
       if (!isAdminActive) {
         alert("La edición de videos está reservada para administradores. Ingresa con la clave en '⚙️ Admin'.");
@@ -713,7 +734,6 @@
       document.getElementById('edit-video-modal').classList.add('flex');
     }
 
-    // EDITAR VIDEO ESPECÍFICO DE LA LISTA
     function abrirModalEditarEspecifico(id, catKey) {
       if (!isAdminActive) return;
 
@@ -749,7 +769,7 @@
       document.getElementById('edit-video-modal').classList.remove('flex');
     }
 
-    // GUARDAR EDICIÓN DEL VIDEO Y ACTUALIZAR LA PÁGINA PRINCIPAL
+    // GUARDAR EDICIÓN Y GUARDAR EN LOCALSTORAGE
     function handleEditSubmit(e) {
       e.preventDefault();
       const id = document.getElementById('edit-video-id').value;
@@ -761,7 +781,6 @@
 
       const embedUrl = formatearYoutubeEmbed(newUrl);
 
-      // Eliminar de la categoría de origen
       if (catOrigin && CATALOGO_WELLNESS[catOrigin]) {
         CATALOGO_WELLNESS[catOrigin] = CATALOGO_WELLNESS[catOrigin].filter(v => v.id !== id);
       }
@@ -778,18 +797,20 @@
       if (!CATALOGO_WELLNESS[newType]) CATALOGO_WELLNESS[newType] = [];
       CATALOGO_WELLNESS[newType].unshift(updatedItem);
 
+      // Guardar en almacenamiento permanente del navegador
+      guardarEnLocalStorage();
+
       filterPlaylist('Todas');
       
-      const conceptoTexto = newType === 'recetas' ? '🥗 Recetas Milenarias' : newType === 'meditaciones' ? '🧘 Sabiduría Ancestral' : '🏃 Movimientos Ancestrales';
+      const conceptoTexto = newType === 'recetas' ? '🥗 Recetas Saludables' : newType === 'meditaciones' ? '🧘 Bienestar & Autoayuda' : '🏃 Movimiento & Ejercicio';
       
-      // MOSTRAR INMEDIATAMENTE EN EL REPRODUCTOR DE LA PÁGINA PRINCIPAL
       cambiarVideoPrincipal(updatedItem.id, embedUrl, newTitle, newName, conceptoTexto, newType);
 
       closeEditModal();
-      alert('✨ ¡Video guardado! Ahora se está reproduciendo en la pantalla principal.');
+      alert('✨ ¡Video guardado y grabado permanentemente en la pantalla principal!');
     }
 
-    // ELIMINAR VIDEO
+    // ELIMINAR VIDEO Y GUARDAR CAMBIOS
     function eliminarVideoActual() {
       const id = document.getElementById('edit-video-id').value;
       if (confirm('¿Estás seguro de que deseas eliminar este video?')) {
@@ -798,13 +819,14 @@
             CATALOGO_WELLNESS[key] = CATALOGO_WELLNESS[key].filter(v => v.id !== id);
           }
         });
+        guardarEnLocalStorage();
         filterPlaylist('Todas');
         closeEditModal();
         alert('🗑️ Video eliminado.');
       }
     }
 
-    // PUBLICAR NUEVO VIDEO Y CARGARLO EN LA PÁGINA PRINCIPAL
+    // PUBLICAR NUEVO VIDEO Y GUARDAR EN LOCALSTORAGE
     function handleProSubmit(e) {
       e.preventDefault();
       const type = document.getElementById('pro-type').value;
@@ -819,25 +841,26 @@
         titulo: title,
         profesional: name,
         categoria: type,
-        etiquetas: ["🤖 Nuevo Contenido"],
         youtubeUrl: embedUrl,
         duracion: "20 minutos"
       };
 
       if (typeof CATALOGO_WELLNESS !== 'undefined' && CATALOGO_WELLNESS[type]) {
         CATALOGO_WELLNESS[type].unshift(newItem);
+        
+        // Guardar en almacenamiento permanente del navegador
+        guardarEnLocalStorage();
+
         filterPlaylist('Todas');
 
-        const conceptoTexto = type === 'recetas' ? '🥗 Recetas Milenarias' : type === 'meditaciones' ? '🧘 Sabiduría Ancestral' : '🏃 Movimientos Ancestrales';
+        const conceptoTexto = type === 'recetas' ? '🥗 Recetas Saludables' : type === 'meditaciones' ? '🧘 Bienestar & Autoayuda' : '🏃 Movimiento & Ejercicio';
         
-        // Cargar inmediatamente en la pantalla principal
         cambiarVideoPrincipal(newItem.id, embedUrl, title, name, conceptoTexto, type);
       }
 
-      // Resetear el formulario y cerrar el modal limpiamente
       document.getElementById('pro-form').reset();
       closeProModal();
-      alert('🚀 ¡Video publicado exitosamente! Ya se está reproduciendo en la pantalla principal.');
+      alert('🚀 ¡Video publicado y grabado permanentemente!');
     }
 
     // COMPARTIR
@@ -947,10 +970,7 @@
         isAdminActive = true;
         closeAdminModal();
         document.getElementById('admin-banner').classList.remove('hidden');
-        
-        // MOSTRAR ELEMENTOS DE EDICIÓN EXCLUSIVOS PARA ADMIN
         document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
-        
         renderRoomsFromData();
         filterPlaylist('Todas');
       } else {
