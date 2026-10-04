@@ -70,7 +70,6 @@
           </select>
         </div>
 
-        <!-- Botón de Panel Admin / Profesor -->
         <button id="admin-toggle-btn" onclick="openAdminModal()" class="rounded-full bg-slate text-white px-3 py-1.5 text-xs font-bold hover:bg-rain transition shadow-sm flex items-center gap-1">
           ⚙️ Panel Admin
         </button>
@@ -95,7 +94,7 @@
           </div>
           <h2 id="hero-title" class="text-3xl md:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-sm text-slate/80 mt-2">
-            Salas virtuales con videollamada en vivo, recetas descargables en PDF y videotecas de ejercicios adaptadas.
+            Salas virtuales con transmisión de cámara en vivo, recetas descargables en PDF y videotecas de ejercicios adaptadas.
           </p>
         </div>
 
@@ -103,7 +102,7 @@
           <button onclick="openAdminModal()" class="text-center rounded-2xl bg-currant text-white px-6 py-3 text-xs font-bold hover:bg-slate transition shadow-md flex items-center justify-center gap-2">
             <span>⚙️</span> Entrar como Profesor(a) (PIN: 1234)
           </button>
-          <a href="#salas" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Probar Salas Virtuales (4)</a>
+          <a href="#salas" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Probar Cámara en Salas (4)</a>
         </div>
       </div>
     </section>
@@ -112,7 +111,7 @@
     <div id="admin-banner" class="hidden mb-6 p-4 rounded-2xl bg-amber-50 border-2 border-amber-400 text-amber-900 flex justify-between items-center text-xs font-bold shadow-sm">
       <div class="flex items-center gap-2">
         <span class="text-lg">🔓</span>
-        <span>MODO PROFESOR / ADMIN ACTIVO: Puedes agregar infinitas salas nuevas, ajustar capacidades y transmitir clases.</span>
+        <span>MODO PROFESOR / ADMIN ACTIVO: Puedes transmitir en vivo con tu cámara, crear salas y gestionar contenidos.</span>
       </div>
       <button onclick="closeAdminMode()" class="bg-amber-800 text-white px-3 py-1 rounded-xl text-[11px] hover:bg-amber-900">Bloquear y Salir</button>
     </div>
@@ -121,9 +120,9 @@
     <section id="salas" class="py-8 border-t border-rain/20">
       <div class="mb-6 flex justify-between items-end">
         <div>
-          <h2 class="text-2xl font-bold text-slate">Salas Virtuales Interactivas</h2>
+          <h2 class="text-2xl font-bold text-slate">Salas Virtuales con Cámara en Vivo</h2>
           <p class="text-sm text-rain mt-1">
-            Espacios adaptados para transmisión en vivo, consultas 1:1, talleres de cocina y meditaciones.
+            Prueba la videollamada real utilizando la cámara y micrófono de tu dispositivo.
           </p>
         </div>
         <button onclick="openAdminModal()" class="hidden admin-delete-btn bg-currant text-white text-xs font-bold px-3 py-1.5 rounded-xl hover:bg-slate transition">➕ Crear Nueva Sala (Admin)</button>
@@ -131,13 +130,13 @@
 
       <!-- GRID DINÁMICO DE SALAS VIRTUALES -->
       <div id="rooms-grid" class="grid gap-6 md:grid-cols-2">
-        <!-- Se renderizan automáticamente vía JS (Lotus, Bosque, Cielo y Raíz) -->
+        <!-- Renderizado dinámicamente vía JS -->
       </div>
     </section>
 
   </main>
 
-  <!-- MODAL REPRODUCTOR / SIMULADOR DE VIDEOLLAMADA DE SALA VIRTUAL EN VIVO -->
+  <!-- MODAL DE VIDEOLLAMADA EN VIVO CON CÁMARA REAL DEL DISPOSITIVO -->
   <div id="live-room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
     <div class="bg-slate rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-dew/30 relative text-white flex flex-col">
       <!-- Header de la Videollamada -->
@@ -150,31 +149,35 @@
         <button onclick="closeLiveRoomModal()" class="bg-dew/20 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-red-600 transition">&times;</button>
       </div>
 
-      <!-- Pantalla Principal de la Transmisión / Videollamada -->
-      <div class="relative aspect-video bg-black flex items-center justify-center">
-        <!-- Simulación de Cámara del Profesor -->
-        <div class="text-center p-6">
-          <div class="w-24 h-24 mx-auto rounded-full bg-dew/20 border-2 border-dew flex items-center justify-center text-4xl mb-3 shadow-lg">
-            👩‍🏫
-          </div>
-          <h4 class="text-lg font-bold text-dew">Transmisión Activa del Profesor(a)</h4>
-          <p class="text-xs text-rain mt-1">Sala conectada vía WebRTC / Enlace seguro de videollamada</p>
-          <span class="inline-block mt-3 bg-emerald-800 text-emerald-200 text-xs px-3 py-1 rounded-full font-mono">CLAVE ACTIVA: <strong id="live-access-code">WELL-8942-X</strong></span>
+      <!-- Transmisión de Cámara Real -->
+      <div class="relative aspect-video bg-black flex items-center justify-center overflow-hidden">
+        <!-- Reproductor de la Cámara Web Real -->
+        <video id="webcam-video" autoplay playsinline muted class="w-full h-full object-cover rounded-2xl border border-dew/30 bg-black"></video>
+
+        <!-- Indicador de Estado y Clave Única -->
+        <div class="absolute top-4 left-4 bg-creosote/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-dew/30 text-xs font-mono flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>TRANSMISIÓN EN VIVO | <strong id="live-access-code" class="text-dew">WELL-8942-X</strong></span>
         </div>
 
-        <!-- Mosaico de Alumnos / Participantes de la Sala -->
+        <!-- Mosaico de Alumnos en la Sala -->
         <div class="absolute bottom-4 right-4 flex gap-2">
-          <div class="w-16 h-12 bg-creosote/90 border border-dew/40 rounded-xl flex items-center justify-center text-xs">👤 Alumno 1</div>
-          <div class="w-16 h-12 bg-creosote/90 border border-dew/40 rounded-xl flex items-center justify-center text-xs">👤 Alumno 2</div>
+          <div class="w-20 h-14 bg-creosote/90 border border-dew/40 rounded-xl flex items-center justify-center text-[11px] shadow">👤 Alumno 1</div>
+          <div class="w-20 h-14 bg-creosote/90 border border-dew/40 rounded-xl flex items-center justify-center text-[11px] shadow">👤 Alumno 2</div>
         </div>
       </div>
 
-      <!-- Barra de Controles para el Profesor (Micrófono, Cámara, Pantalla) -->
+      <!-- Barra de Controles para la Transmisión (Micrófono, Cámara y Salir) -->
       <div class="p-4 bg-creosote border-t border-dew/20 flex justify-center items-center gap-4">
-        <button onclick="alert('Micrófono activado/desactivado')" class="p-3 rounded-full bg-dew/20 hover:bg-dew/40 transition text-sm">🎙️ Micrófono</button>
-        <button onclick="alert('Cámara activada/desactivada')" class="p-3 rounded-full bg-dew/20 hover:bg-dew/40 transition text-sm">📹 Cámara</button>
-        <button onclick="alert('Compartiendo pantalla con los alumnos')" class="p-3 rounded-full bg-dew/20 hover:bg-dew/40 transition text-sm">🖥️ Compartir Pantalla</button>
-        <button onclick="closeLiveRoomModal()" class="px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 transition text-xs font-bold">🔴 Salir de la Sala</button>
+        <button onclick="toggleMic()" class="px-4 py-2.5 rounded-full bg-dew/20 hover:bg-dew/40 transition text-xs font-bold flex items-center gap-1.5">
+          🎙️ <span id="mic-label">Silenciar Micrófono</span>
+        </button>
+        <button onclick="toggleCamera()" class="px-4 py-2.5 rounded-full bg-dew/20 hover:bg-dew/40 transition text-xs font-bold flex items-center gap-1.5">
+          📹 <span id="cam-label">Apagar Cámara</span>
+        </button>
+        <button onclick="closeLiveRoomModal()" class="px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 transition text-xs font-bold shadow">
+          🔴 Salir de la Sala
+        </button>
       </div>
     </div>
   </div>
@@ -195,7 +198,7 @@
     </div>
   </div>
 
-  <!-- MODAL CREAR NUEVAS SALAS ILIMITADAS -->
+  <!-- MODAL CREAR NUEVAS SALAS -->
   <div id="add-content-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeAddContentModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
@@ -241,8 +244,9 @@
 
   <script>
     let isAdminActive = false;
+    let localStream = null;
 
-    // LAS 4 SALAS VIRTUALES OFICIALES CARGADAS
+    // LAS 4 SALAS VIRTUALES OFICIALES
     let virtualRooms = [
       {
         id: 'room-1',
@@ -287,7 +291,6 @@
       }, 800);
     });
 
-    // RENDERIZADO DINÁMICO DE LAS SALAS
     function renderRooms() {
       const grid = document.getElementById('rooms-grid');
       grid.innerHTML = '';
@@ -320,16 +323,57 @@
       });
     }
 
-    function testLiveRoom(name, capacity) {
+    // ACTIVACIÓN DE LA CÁMARA REAL VÍA getUserMedia
+    async function testLiveRoom(name, capacity) {
       const code = 'WELL-' + Math.floor(1000 + Math.random() * 9000) + '-X';
       document.getElementById('live-room-title').innerText = name + ' (En Vivo)';
       document.getElementById('live-room-capacity').innerText = capacity;
       document.getElementById('live-access-code').innerText = code;
+      
       document.getElementById('live-room-modal').classList.remove('hidden');
       document.getElementById('live-room-modal').classList.add('flex');
+
+      await startCamera();
+    }
+
+    async function startCamera() {
+      try {
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        const videoElement = document.getElementById('webcam-video');
+        if (videoElement) {
+          videoElement.srcObject = localStream;
+        }
+      } catch (err) {
+        console.error("Error al acceder a la cámara:", err);
+        alert("⚠️ Por favor permite el acceso a tu cámara y micrófono en la ventana emergente de tu navegador para poder transmitir.");
+      }
+    }
+
+    function toggleMic() {
+      if (localStream) {
+        const audioTrack = localStream.getAudioTracks()[0];
+        if (audioTrack) {
+          audioTrack.enabled = !audioTrack.enabled;
+          document.getElementById('mic-label').innerText = audioTrack.enabled ? "Silenciar Micrófono" : "Activar Micrófono";
+        }
+      }
+    }
+
+    function toggleCamera() {
+      if (localStream) {
+        const videoTrack = localStream.getVideoTracks()[0];
+        if (videoTrack) {
+          videoTrack.enabled = !videoTrack.enabled;
+          document.getElementById('cam-label').innerText = videoTrack.enabled ? "Apagar Cámara" : "Encender Cámara";
+        }
+      }
     }
 
     function closeLiveRoomModal() {
+      if (localStream) {
+        localStream.getTracks().forEach(track => track.stop());
+        localStream = null;
+      }
       document.getElementById('live-room-modal').classList.add('hidden');
       document.getElementById('live-room-modal').classList.remove('flex');
     }
