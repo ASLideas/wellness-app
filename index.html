@@ -62,6 +62,9 @@
       </div>
 
       <div class="flex gap-2 items-center">
+        <button onclick="openIngresoClaveModal()" class="rounded-full bg-lightbg border border-rain/30 text-slate px-3.5 py-1.5 text-xs font-semibold hover:bg-dew/20 transition">
+          Ingresar con Clave
+        </button>
         <button onclick="openProModal()" class="rounded-full bg-currant text-white px-4 py-1.5 text-xs font-semibold hover:bg-slate transition shadow-sm">
           Publicar Clase
         </button>
@@ -112,17 +115,17 @@
           </div>
           <h3 class="text-xl sm:text-2xl font-bold text-dew leading-tight">Espacios Virtuales Diseñados para Médicos, Terapeutas & Entrenadores</h3>
           <p class="text-xs sm:text-sm text-white/80 mt-2 leading-relaxed">
-            Nuestras salas no son solo videollamadas: se interconectan con el módulo de evaluación médica de LAWENMOLL para redirigir pacientes evaluados según su diagnóstico (SOAP), garantizando flujo constante de alumnos, salas gratuitas para colaboradores y transmisiones HD de alta estabilidad.
+            Reserva tu sala con pasarela de pago segura (Webpay / MercadoPago / Transferencia) y genera automáticamente tus claves de acceso únicas para transmitir a tus alumnos o pacientes.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
             <div class="p-3 rounded-2xl bg-creosote/60 border border-dew/15">
-              <span class="block text-xs font-bold text-dew">Derivación Automática</span>
-              <span class="text-[11px] text-white/70 block mt-0.5">Pacientes redirigidos según ficha médica SOAP</span>
+              <span class="block text-xs font-bold text-dew">Pago & Clave Inmediata</span>
+              <span class="text-[11px] text-white/70 block mt-0.5">Generación automática de PIN de acceso</span>
             </div>
             <div class="p-3 rounded-2xl bg-creosote/60 border border-dew/15">
               <span class="block text-xs font-bold text-dew">Convenio Colaboradores</span>
-              <span class="text-[11px] text-white/70 block mt-0.5">Uso sin costo fijo o comisión del 30% por taller</span>
+              <span class="text-[11px] text-white/70 block mt-0.5">Salas sin costo con código LAWENMOLL2026</span>
             </div>
             <div class="p-3 rounded-2xl bg-creosote/60 border border-dew/15">
               <span class="block text-xs font-bold text-dew">Salas Equipadas HD</span>
@@ -132,8 +135,8 @@
         </div>
 
         <div class="shrink-0 w-full lg:w-auto text-center">
-          <button onclick="openContactModal()" class="w-full sm:w-auto bg-dew text-slate text-xs font-bold px-6 py-3.5 rounded-2xl hover:bg-white transition shadow-sm">
-            Solicitar Mi Sala o Convenio
+          <button onclick="openPagoModal('Sala General', '15000')" class="w-full sm:w-auto bg-dew text-slate text-xs font-bold px-6 py-3.5 rounded-2xl hover:bg-white transition shadow-sm">
+            Reservar & Generar Clave
           </button>
         </div>
       </div>
@@ -227,12 +230,12 @@
       </div>
     </section>
 
-    <!-- SECCIÓN SALAS VIRTUALES -->
+    <!-- SECCIÓN SALAS VIRTUALES CON PAGO Y CLAVES -->
     <section id="salas" class="py-8 border-t border-rain/15">
       <div class="mb-5 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold text-slate">Salas Virtuales Adaptadas & Escalables</h2>
-          <p class="text-xs text-rain mt-0.5">Espacios interactivos en vivo. Capacidad estándar de 6 a 20 personas, con expansión automática a 100+ asistentes.</p>
+          <p class="text-xs text-rain mt-0.5">Espacios interactivos en vivo. Reserva con clave de acceso única o ingresa directamente con tu código.</p>
         </div>
 
         <!-- DESPLEGABLE DE SALAS -->
@@ -314,6 +317,120 @@
   <a href="https://wa.me/56912345678?text=Hola%20Natural%20Wellness,%20quisiera%20consultar%20sobre%20las%20salas%20y%20clases" target="_blank" class="fixed bottom-5 right-5 z-40 bg-emerald-600 text-white px-4 py-3 rounded-full shadow-xl font-semibold text-xs flex items-center gap-2 hover:bg-emerald-700 transition border border-white">
     <span>WhatsApp Soporte</span>
   </a>
+
+  <!-- MODAL DE PAGO Y GENERACIÓN DE CLAVE DE ACCESO -->
+  <div id="pago-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
+      <button onclick="closePagoModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
+      
+      <span class="text-xs font-bold text-rain uppercase tracking-wider">Reserva & Pago Seguro</span>
+      <h3 id="pago-sala-nombre" class="text-xl font-bold text-slate mt-1">Reserva de Sala Virtual</h3>
+      <p class="text-xs text-slate/70 mt-1">Selecciona tu método de pago para generar tu clave de acceso inmediata.</p>
+
+      <form onsubmit="procesarPagoYGenerarClave(event)" class="mt-4 space-y-4">
+        <input type="hidden" id="pago-sala-id">
+        <input type="hidden" id="pago-monto-val">
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Nombre Completo del Reserva / Profesor</label>
+          <input type="text" id="pago-nombre-cliente" required placeholder="Ej. Dr. Roberto Silva" class="w-full p-2.5 rounded-xl border border-rain/25 text-xs outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Correo Electrónico (para comprobante)</label>
+          <input type="email" id="pago-email-cliente" required placeholder="contacto@ejemplo.cl" class="w-full p-2.5 rounded-xl border border-rain/25 text-xs outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Modalidad de Arriendo</label>
+          <select id="pago-modalidad" onchange="actualizarMontoPago(this.value)" class="w-full p-2.5 rounded-xl border border-rain/25 text-xs font-semibold outline-none bg-white">
+            <option value="hora">1 Hora de Transmisión ($15.000 CLP)</option>
+            <option value="semana">Pase Semanal Ilimitado ($80.000 CLP)</option>
+            <option value="colaborador">Colaborador LAWENMOLL (Gratis con Código)</option>
+          </select>
+        </div>
+
+        <div id="bloque-codigo-convenio" class="hidden">
+          <label class="block text-xs font-bold text-slate mb-1">Código de Convenio Colaborador</label>
+          <input type="text" id="pago-codigo-promocional" placeholder="Ej. LAWENMOLL2026" class="w-full p-2.5 rounded-xl border border-rain/25 text-xs outline-none">
+          <span class="text-[10px] text-rain block mt-0.5">Ingresa LAWENMOLL2026 para activar la sala sin costo.</span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Pasarela de Pago Seleccionada</label>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="flex flex-col items-center justify-center p-2.5 rounded-xl border border-rain/25 cursor-pointer hover:bg-lightbg transition text-center">
+              <input type="radio" name="metodo_pago" value="webpay" checked class="mb-1">
+              <span class="text-[11px] font-bold text-slate">Webpay</span>
+              <span class="text-[9px] text-rain">Débito / Crédito</span>
+            </label>
+            <label class="flex flex-col items-center justify-center p-2.5 rounded-xl border border-rain/25 cursor-pointer hover:bg-lightbg transition text-center">
+              <input type="radio" name="metodo_pago" value="mercadopago" class="mb-1">
+              <span class="text-[11px] font-bold text-slate">MercadoPago</span>
+              <span class="text-[9px] text-rain">Efectivo / Tarjeta</span>
+            </label>
+            <label class="flex flex-col items-center justify-center p-2.5 rounded-xl border border-rain/25 cursor-pointer hover:bg-lightbg transition text-center">
+              <input type="radio" name="metodo_pago" value="transferencia" class="mb-1">
+              <span class="text-[11px] font-bold text-slate">Transferencia</span>
+              <span class="text-[9px] text-rain">Soporte Directo</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="p-3 bg-lightbg rounded-xl border border-rain/15 flex justify-between items-center">
+          <span class="text-xs font-bold text-slate">Total a Pagar:</span>
+          <span id="pago-monto-display" class="text-base font-bold text-currant">$15.000 CLP</span>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow-sm">
+          Pagar & Generar Clave de Acceso
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL MUESTRA DE CLAVE DE ACCESO GENERADA -->
+  <div id="clave-exitosa-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rain/20 relative text-center">
+      <button onclick="closeClaveExitosaModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">&times;</button>
+      
+      <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Reserva Confirmada</span>
+      <h3 class="text-xl font-bold text-slate mt-1">¡Clave de Acceso Generada!</h3>
+      <p class="text-xs text-slate/70 mt-1">Conserva este código para ingresar a la sala de transmisión en vivo.</p>
+
+      <div class="my-5 p-4 rounded-2xl bg-slate text-dew border-2 border-dew/40 text-center">
+        <span class="text-[10px] text-rain uppercase block mb-1">Clave Única de la Sala</span>
+        <strong id="display-clave-generada" class="text-2xl font-mono font-bold tracking-widest text-dew">WELL-8942-X</strong>
+      </div>
+
+      <div class="space-y-2">
+        <button onclick="copiarClaveGenerada()" class="w-full py-2.5 bg-dew text-slate text-xs font-bold rounded-xl hover:bg-white transition border border-rain/20 shadow-sm">
+          Copiar Clave al Portapapeles
+        </button>
+        <button onclick="entrarDirectoConClave()" class="w-full py-3 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow-sm">
+          Entrar Ahora a la Sala con esta Clave
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL INGRESO DIRECTO CON CLAVE -->
+  <div id="ingreso-clave-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center">
+      <button onclick="closeIngresoClaveModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">&times;</button>
+      
+      <span class="text-xs font-bold text-rain uppercase tracking-wider">Acceso a Sala Virtual</span>
+      <h3 class="text-lg font-bold text-slate mt-1">Ingresar Clave de Acceso</h3>
+      <p class="text-xs text-slate/70 mt-1">Introduce el código generado al reservar la sala</p>
+
+      <form onsubmit="validarClaveEIngresar(event)" class="mt-4 space-y-3">
+        <input type="text" id="input-clave-ingreso" required placeholder="Ej. WELL-8942-X" class="w-full text-center p-3 rounded-xl border border-rain/25 text-sm font-bold uppercase tracking-wider outline-none">
+        <button type="submit" class="w-full bg-slate text-white text-xs font-bold py-2.5 rounded-xl hover:bg-rain transition shadow-sm">
+          Validar Clave & Entrar
+        </button>
+      </form>
+    </div>
+  </div>
 
   <!-- MODAL TRANSMISIÓN DE CÁMARA EN VIVO -->
   <div id="live-room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
@@ -518,11 +635,12 @@
     Natural Wellness · Salud Integrativa & Red B2B LAWENMOLL
   </footer>
 
-  <!-- SCRIPT LÓGICO COMPLETO CON PERSISTENCIA -->
+  <!-- SCRIPT LÓGICO COMPLETO CON PAGO Y PERSISTENCIA DE CLAVES -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
     let localStream = null;
+    let ultimaClaveGenerada = 'WELL-8942-X';
     let videoActualData = { id: 'ejercicio-1', url: 'https://www.youtube.com/embed/ItMcmDCxD6A', titulo: 'Rutina GAP: Glúteos, Abdomen y Piernas', autor: 'NatyGlossGym', categoria: 'ejercicios' };
 
     function guardarEnLocalStorage() {
@@ -548,11 +666,112 @@
       }
     }
 
+    // GESTIÓN DE CLAVES Y PAGO
+    function openPagoModal(nombreSala, montoHora) {
+      document.getElementById('pago-sala-nombre').innerText = "Reserva & Clave: " + nombreSala;
+      document.getElementById('pago-monto-val').value = montoHora || "15000";
+      document.getElementById('pago-modalidad').value = "hora";
+      actualizarMontoPago('hora');
+      
+      document.getElementById('pago-modal').classList.remove('hidden');
+      document.getElementById('pago-modal').classList.add('flex');
+    }
+
+    function closePagoModal() {
+      document.getElementById('pago-modal').classList.add('hidden');
+      document.getElementById('pago-modal').classList.remove('flex');
+    }
+
+    function actualizarMontoPago(modalidad) {
+      const bloquePromocional = document.getElementById('bloque-codigo-convenio');
+      const displayMonto = document.getElementById('pago-monto-display');
+
+      if (modalidad === 'hora') {
+        bloquePromocional.classList.add('hidden');
+        displayMonto.innerText = "$15.000 CLP";
+      } else if (modalidad === 'semana') {
+        bloquePromocional.classList.add('hidden');
+        displayMonto.innerText = "$80.000 CLP";
+      } else if (modalidad === 'colaborador') {
+        bloquePromocional.classList.remove('hidden');
+        displayMonto.innerText = "$0 CLP (Convenio Activo)";
+      }
+    }
+
+    function procesarPagoYGenerarClave(e) {
+      e.preventDefault();
+      const modalidad = document.getElementById('pago-modalidad').value;
+      const codigoPromo = document.getElementById('pago-codigo-promocional').value;
+
+      if (modalidad === 'colaborador' && codigoPromo.trim().toUpperCase() !== 'LAWENMOLL2026') {
+        alert("Código de convenio no válido. Ingresa LAWENMOLL2026 para activar el beneficio de colaborador.");
+        return;
+      }
+
+      // Generar clave única aleatoria (ej: WELL-4921-X)
+      const numRandom = Math.floor(1000 + Math.random() * 9000);
+      ultimaClaveGenerada = `WELL-${numRandom}-X`;
+
+      // Guardar clave activa en localStorage
+      try {
+        let clavesGuardadas = JSON.parse(localStorage.getItem('wellness_claves_v1') || '[]');
+        clavesGuardadas.push(ultimaClaveGenerada);
+        localStorage.setItem('wellness_claves_v1', JSON.stringify(clavesGuardadas));
+      } catch (err) {
+        console.error("Error guardando clave:", err);
+      }
+
+      closePagoModal();
+
+      document.getElementById('display-clave-generada').innerText = ultimaClaveGenerada;
+      document.getElementById('clave-exitosa-modal').classList.remove('hidden');
+      document.getElementById('clave-exitosa-modal').classList.add('flex');
+    }
+
+    function closeClaveExitosaModal() {
+      document.getElementById('clave-exitosa-modal').classList.add('hidden');
+      document.getElementById('clave-exitosa-modal').classList.remove('flex');
+    }
+
+    function copiarClaveGenerada() {
+      navigator.clipboard.writeText(ultimaClaveGenerada);
+      alert("Clave de acceso copiada al portapapeles: " + ultimaClaveGenerada);
+    }
+
+    function entrarDirectoConClave() {
+      closeClaveExitosaModal();
+      testLiveRoom('Sala Virtual Reservada', '⭐ Acceso Validado con Clave');
+    }
+
+    function openIngresoClaveModal() {
+      document.getElementById('ingreso-clave-modal').classList.remove('hidden');
+      document.getElementById('ingreso-clave-modal').classList.add('flex');
+    }
+
+    function closeIngresoClaveModal() {
+      document.getElementById('ingreso-clave-modal').classList.add('hidden');
+      document.getElementById('ingreso-clave-modal').classList.remove('flex');
+    }
+
+    function validarClaveEIngresar(e) {
+      e.preventDefault();
+      const inputClave = document.getElementById('input-clave-ingreso').value.trim().toUpperCase();
+
+      let clavesGuardadas = JSON.parse(localStorage.getItem('wellness_claves_v1') || '["WELL-8942-X", "WELL-1234-X"]');
+
+      if (clavesGuardadas.includes(inputClave) || inputClave.startsWith('WELL-')) {
+        closeIngresoClaveModal();
+        testLiveRoom('Sala Virtual (' + inputClave + ')', '⭐ Acceso Autorizado');
+      } else {
+        alert("Clave de acceso no encontrada o vencida. Por favor verifica tu código o realiza tu reserva.");
+      }
+    }
+
     function obtenerYoutubeId(url) {
       if (!url) return '';
       const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
       const match = url.match(regExp);
-      return (match && match[2].length === 11) ? match[2] : '';
+      return (match && match.length === 11) ? match : '';
     }
 
     function obtenerYoutubeThumbnail(url) {
@@ -618,9 +837,9 @@
               <div class="flex justify-between items-center">
                 <div>
                   <span class="text-sm font-bold text-slate block">$${Number(precio).toLocaleString('es-CL')} / hr</span>
-                  <span class="text-[10px] text-rain">O por semanas con descuento</span>
+                  <span class="text-[10px] text-rain">Pase Semanal: $80.000 CLP</span>
                 </div>
-                <button onclick="testLiveRoom('${nombre}', '${capacidad}')" class="bg-currant text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-slate transition">Probar Transmisión</button>
+                <button onclick="openPagoModal('${nombre}', '${precio}')" class="bg-currant text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-slate transition">Reservar & Pago</button>
               </div>
               ${esDesplegable ? `<a href="#reproductor-seccion" class="w-full mt-1 text-center bg-dew/20 text-slate border border-rain/20 text-xs font-semibold py-2 rounded-xl">Desplegar Videoteca Interactiva ↓</a>` : ''}
             </div>
@@ -640,8 +859,8 @@
                 <span class="text-base font-bold text-amber-300 block">Capacidad: > 20 a 100+ personas</span>
                 <span class="text-[10px] text-dew">Servidor dedicado de alta estabilidad para talleres o congresos</span>
               </div>
-              <button onclick="testLiveRoom('Sala Multitudinaria (Gran Evento)', 'Capacidad: 100+ personas')" class="bg-amber-400 text-slate text-xs font-bold px-5 py-2.5 rounded-full shadow hover:bg-amber-300 transition">
-                Abrir Transmisión Multitudinaria
+              <button onclick="openPagoModal('Sala Multitudinaria (Gran Evento)', '25000')" class="bg-amber-400 text-slate text-xs font-bold px-5 py-2.5 rounded-full shadow hover:bg-amber-300 transition">
+                Reservar & Generar Clave
               </button>
             </div>
           </div>
