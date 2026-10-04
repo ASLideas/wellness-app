@@ -89,7 +89,7 @@
           </div>
           <h2 id="hero-title" class="text-3xl md:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-sm text-slate/80 mt-2">
-            Accede a clases con profesores guiados, rutinas adaptadas y meditación integrativa de la red LAWENMOLL.
+            Accede a clases con profesores guiados, rutinas por grupo muscular, niveles de intensidad y meditación de la red LAWENMOLL.
           </p>
           
           <div class="mt-4 p-4 rounded-2xl bg-white/90 border border-rain/20 shadow-sm text-xs text-slate/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
@@ -97,7 +97,7 @@
               <img src="lawenmoll_logo.jpg" alt="Logo Lawenmoll" class="w-10 h-10 rounded-full object-cover border border-rain/30 shrink-0" onerror="this.src='wellnes app.jpg'">
               <div>
                 <strong class="text-rain font-bold text-sm block">🌿 Conexión con LAWENMOLL</strong>
-                <p class="mt-0.5">Evaluación médica integrativa unida al autocuidado de Natural Wellness.</p>
+                <p class="mt-0.5">Evaluación médica integrativa unida al entrenamiento consciente de Natural Wellness.</p>
               </div>
             </div>
             <a href="https://lawenmoll.vercel.app" target="_blank" class="shrink-0 bg-rain text-white px-3 py-1.5 rounded-xl font-semibold hover:bg-slate transition text-[11px]">Ver Plataforma Médica →</a>
@@ -108,122 +108,100 @@
           <button onclick="openSubmitModal()" class="text-center rounded-2xl bg-currant text-white px-6 py-3 text-xs font-bold hover:bg-slate transition shadow-md flex items-center justify-center gap-2">
             <span>➕</span> Dejar una Clase en la Videoteca
           </button>
-          <a href="#videoteca" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Explorar Clases Gratuitas</a>
+          <a href="#rutinas" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Explorar Rutinas</a>
         </div>
       </div>
     </section>
 
-    <!-- DEMO EN VIVO: SALA VIRTUAL -->
-    <section class="mb-12 bg-white rounded-3xl p-6 border border-rain/20 shadow-sm">
-      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
-        <div>
-          <span class="bg-red-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full animate-pulse">● EN VIVO AHORA</span>
-          <h3 class="text-xl font-bold text-slate mt-1">Sala Lotus — Sesión de Meditación & Breathwork</h3>
-        </div>
-        <div class="flex items-center gap-2">
-          <button onclick="toggleAspect('half')" class="bg-lightbg text-slate text-xs font-semibold px-3 py-1.5 rounded-xl border border-rain/20 hover:bg-dew/30">📱 Media Pantalla</button>
-          <button onclick="toggleAspect('full')" class="bg-slate text-white text-xs font-semibold px-3 py-1.5 rounded-xl hover:bg-rain">🖥️ Pantalla Completa</button>
-        </div>
+    <!-- FILTROS POR NIVELES DE INTENSIDAD Y ZONAS DEL CUERPO -->
+    <section id="rutinas" class="pb-6">
+      <div class="mb-4">
+        <h3 class="text-lg font-bold text-slate">Selecciona tu Nivel e Intensidad</h3>
+        <p class="text-xs text-rain">Filtra la videoteca según tus objetivos físicos y tu condición actual</p>
       </div>
 
-      <div id="room-player-container" class="aspect-video w-full rounded-2xl overflow-hidden bg-black relative border border-rain/30 shadow-inner transition-all duration-300">
-        <iframe id="live-room-iframe" class="w-full h-full" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <!-- Filtro por Intensidad -->
+      <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
+        <span class="text-xs font-bold text-slate flex items-center shrink-0 pr-2">Nivel:</span>
+        <button onclick="filterIntensity('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-1.5 text-xs font-bold transition">✨ Todos los Niveles</button>
+        <button onclick="filterIntensity('Básico')" class="rounded-full border border-green-300 bg-green-50 text-green-800 px-4 py-1.5 text-xs font-bold hover:bg-green-100 transition">🟢 Básico (Principiantes)</button>
+        <button onclick="filterIntensity('Medio')" class="rounded-full border border-yellow-300 bg-yellow-50 text-yellow-800 px-4 py-1.5 text-xs font-bold hover:bg-yellow-100 transition">🟡 Medio (Intermedio)</button>
+        <button onclick="filterIntensity('Alta Intensidad')" class="rounded-full border border-red-300 bg-red-50 text-red-800 px-4 py-1.5 text-xs font-bold hover:bg-red-100 transition">🔴 Alta Intensidad (Avanzado)</button>
       </div>
 
-      <!-- Ficha del Profesor a cargo -->
-      <div class="mt-4 p-4 rounded-2xl bg-lightbg border border-rain/15 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div class="flex items-center gap-3">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Profesor" class="w-12 h-12 rounded-full object-cover border-2 border-rain">
-          <div>
-            <h4 class="font-bold text-slate text-sm">Dra. Amanda Silva (Instructora LAWENMOLL)</h4>
-            <p class="text-xs text-rain">Mindfulness & Medicina Integrativa · ⭐ 4.9 (128 reseñas)</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-bold text-slate/80">Seguir al Profe:</span>
-          <a href="https://instagram.com" target="_blank" title="Instagram" class="px-3 py-1.5 rounded-xl bg-white border border-rain/20 text-xs font-semibold text-slate hover:bg-dew/30 flex items-center gap-1">📷 Instagram</a>
-          <a href="https://wa.me/" target="_blank" title="WhatsApp" class="px-3 py-1.5 rounded-xl bg-white border border-rain/20 text-xs font-semibold text-slate hover:bg-dew/30 flex items-center gap-1">💬 WhatsApp</a>
-          <a href="https://youtube.com" target="_blank" title="YouTube" class="px-3 py-1.5 rounded-xl bg-white border border-rain/20 text-xs font-semibold text-slate hover:bg-dew/30 flex items-center gap-1">▶ Canal</a>
-        </div>
+      <!-- Filtro por Zona Muscular / Tipo -->
+      <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar mt-2">
+        <span class="text-xs font-bold text-slate flex items-center shrink-0 pr-2">Zona:</span>
+        <button onclick="filterCategory('Todas')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">Todas las Zonas</button>
+        <button onclick="filterCategory('Full Body')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">💪 Cuerpo Completo (Full Body)</button>
+        <button onclick="filterCategory('Tren Inferior')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🦵 Tren Inferior (Piernas y Glúteos)</button>
+        <button onclick="filterCategory('Tren Superior')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">👕 Tren Superior (Brazos, Pecho y Espalda)</button>
+        <button onclick="filterCategory('Abdominales')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🧘 Abdominales y Core</button>
+        <button onclick="filterCategory('Cardio')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🔥 Cardio y HIIT</button>
+        <button onclick="filterCategory('Movilidad')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🍃 Movilidad y Yoga</button>
       </div>
     </section>
 
-    <!-- VIDEOTECA CON FICHA Y REDES DE PROFESORES -->
-    <section id="videoteca" class="pb-16">
+    <!-- VIDEOTECA Y RUTINAS ORGANIZADAS -->
+    <section class="pb-16">
       <div class="mb-6 flex justify-between items-end">
         <div>
-          <h2 class="text-2xl font-bold text-slate">Videoteca Gratuita</h2>
-          <p class="text-xs text-rain">Aprende con nuestros profesores y recetas seleccionadas</p>
+          <h2 class="text-2xl font-bold text-slate">Catálogo de Rutinas Dirigidas</h2>
+          <p class="text-xs text-rain">Clases guiadas por kinesiólogos y entrenadores integrativos</p>
         </div>
         <span class="text-xs font-semibold bg-dew/20 text-slate px-3 py-1 rounded-full border border-dew/40">100% Gratis</span>
       </div>
 
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div id="video-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-        <!-- Clase 1 -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4">
+        <!-- Rutina 1: Cuerpo Completo (Full Body) -->
+        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Full Body" data-intensity="Medio">
           <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Cocina Saludable', 'Chef Camila Ríos', '@camila_nutri', 'https://instagram.com', 'https://youtube.com')">
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Cuerpo Completo (Full Body)', 'Full Body', 'Prof. Mateo Silva', '@mateo_fit')">
               <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/5qap5aO4i9A?controls=0" frameborder="0"></iframe>
+              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🟡 Nivel Medio</span>
             </div>
-            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Cocina · Bajo IG</span>
-            <h4 class="font-bold text-slate text-base">Bowl de avena y canela de bajo índice glicémico</h4>
+            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Full Body · 30 min</span>
+            <h4 class="font-bold text-slate text-base mt-0.5">Cuerpo Completo (Full Body)</h4>
+            <p class="text-xs text-slate/70 mt-1">Trabaja todos los músculos principales para quemar calorías y ganar condición física.</p>
             
-            <!-- Redes del Profesor -->
-            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
-                <div>
-                  <span class="block text-xs font-bold text-slate">Chef Camila Ríos</span>
-                  <span class="block text-[10px] text-rain">Nutrición Ancestral</span>
-                </div>
-              </div>
-              <div class="flex gap-1">
-                <a href="https://instagram.com" target="_blank" title="Instagram" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
-                <a href="https://youtube.com" target="_blank" title="YouTube" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">▶</a>
-              </div>
+            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
+              Sentadillas, flexiones de pecho y puente de glúteos.
             </div>
-          </div>
 
-          <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela', 'Cocina', 'Chef Camila Ríos', '@camila_nutri', 'https://instagram.com', 'https://youtube.com')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir Clase</button>
-        </div>
-
-        <!-- Clase 2 -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4">
-          <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Movilidad adaptada en silla', 'Ejercicio', 'Prof. Mateo Silva', '@mateo_fit', 'https://instagram.com', 'https://youtube.com')">
-              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/inpok4MKVLM?controls=0" frameborder="0"></iframe>
-            </div>
-            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Movilidad · Adulto Mayor</span>
-            <h4 class="font-bold text-slate text-base">Movilidad adaptada en silla para columna y cuello</h4>
-            
+            <!-- Profesor -->
             <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
                 <div>
                   <span class="block text-xs font-bold text-slate">Prof. Mateo Silva</span>
-                  <span class="block text-[10px] text-rain">Kinesiología Adaptada</span>
+                  <span class="block text-[10px] text-rain">Kinesiología Deportiva</span>
                 </div>
               </div>
-              <div class="flex gap-1">
-                <a href="https://instagram.com" target="_blank" title="Instagram" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
-                <a href="https://wa.me/" target="_blank" title="WhatsApp" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">💬</a>
-              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
             </div>
           </div>
 
-          <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Movilidad adaptada en silla', 'Ejercicio', 'Prof. Mateo Silva', '@mateo_fit', 'https://instagram.com', 'https://youtube.com')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir Clase</button>
+          <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Cuerpo Completo (Full Body)', 'Full Body', 'Prof. Mateo Silva', '@mateo_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Rutina Full Body</button>
         </div>
 
-        <!-- Clase 3 -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4">
+        <!-- Rutina 2: Tren Inferior (Piernas y Glúteos) -->
+        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Tren Inferior" data-intensity="Medio">
           <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Meditación guiada 10 min', 'Mindfulness', 'Dra. Amanda Silva', '@amanda_mind', 'https://instagram.com', 'https://youtube.com')">
-              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/L_LUpnjgPso?controls=0" frameborder="0"></iframe>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Tren Inferior (Piernas y Glúteos)', 'Tren Inferior', 'Dra. Amanda Silva', '@amanda_fit')">
+              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/inpok4MKVLM?controls=0" frameborder="0"></iframe>
+              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🟡 Nivel Medio</span>
             </div>
-            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Mindfulness · Meditación</span>
-            <h4 class="font-bold text-slate text-base">Meditación guiada 10 minutos para calmar el estrés</h4>
+            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Tren Inferior · 25 min</span>
+            <h4 class="font-bold text-slate text-base mt-0.5">Tren Inferior (Piernas y Glúteos)</h4>
+            <p class="text-xs text-slate/70 mt-1">Enfocada en fortalecer y tonificar la parte baja del cuerpo de forma segura.</p>
             
+            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
+              Zancadas, sentadillas sumo, peso muerto rumano y elevaciones de talones.
+            </div>
+
             <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
@@ -232,20 +210,141 @@
                   <span class="block text-[10px] text-rain">Medicina Integrativa</span>
                 </div>
               </div>
-              <div class="flex gap-1">
-                <a href="https://instagram.com" target="_blank" title="Instagram" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
-                <a href="https://youtube.com" target="_blank" title="YouTube" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">▶</a>
-              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
             </div>
           </div>
 
-          <button onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Meditación guiada 10 min', 'Mindfulness', 'Dra. Amanda Silva', '@amanda_mind', 'https://instagram.com', 'https://youtube.com')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir Clase</button>
+          <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Tren Inferior (Piernas y Glúteos)', 'Tren Inferior', 'Dra. Amanda Silva', '@amanda_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Rutina Tren Inferior</button>
+        </div>
+
+        <!-- Rutina 3: Tren Superior (Brazos, Pecho y Espalda) -->
+        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Tren Superior" data-intensity="Básico">
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Tren Superior (Brazos, Pecho y Espalda)', 'Tren Superior', 'Prof. Carlos Vega', '@carlos_kine')">
+              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/L_LUpnjgPso?controls=0" frameborder="0"></iframe>
+              <span class="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🟢 Nivel Básico</span>
+            </div>
+            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Tren Superior · 20 min</span>
+            <h4 class="font-bold text-slate text-base mt-0.5">Tren Superior (Brazos, Pecho y Espalda)</h4>
+            <p class="text-xs text-slate/70 mt-1">Diseñada para mejorar la postura y fuerza en la parte alta del cuerpo.</p>
+            
+            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
+              Flexiones de pecho, fondos en silla (dips) y planchas con toque de hombro.
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                  <span class="block text-xs font-bold text-slate">Prof. Carlos Vega</span>
+                  <span class="block text-[10px] text-rain">Kinesiología Postural</span>
+                </div>
+              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+            </div>
+          </div>
+
+          <button onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Tren Superior', 'Tren Superior', 'Prof. Carlos Vega', '@carlos_kine')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Rutina Tren Superior</button>
+        </div>
+
+        <!-- Rutina 4: Abdominales y Core -->
+        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Abdominales" data-intensity="Medio">
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Abdominales y Core Consciente', 'Abdominales', 'Chef Camila Ríos', '@camila_nutri')">
+              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/5qap5aO4i9A?controls=0" frameborder="0"></iframe>
+              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🟡 Nivel Medio</span>
+            </div>
+            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Core & Zona Media · 15 min</span>
+            <h4 class="font-bold text-slate text-base mt-0.5">Abdominales y Core Consciente</h4>
+            <p class="text-xs text-slate/70 mt-1">Fortalece la estabilidad lumbar, la postura y el centro del cuerpo.</p>
+            
+            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
+              Planchas isométricas, giros rusos y escaladores (mountain climbers).
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                  <span class="block text-xs font-bold text-slate">Chef Camila Ríos</span>
+                  <span class="block text-[10px] text-rain">Fitness & Nutrición</span>
+                </div>
+              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+            </div>
+          </div>
+
+          <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Abdominales y Core', 'Abdominales', 'Chef Camila Ríos', '@camila_nutri')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Rutina Core</button>
+        </div>
+
+        <!-- Rutina 5: Cardio y HIIT (Alta Intensidad) -->
+        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Cardio" data-intensity="Alta Intensidad">
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Cardio & HIIT quema grasa', 'Cardio', 'Prof. Mateo Silva', '@mateo_fit')">
+              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/inpok4MKVLM?controls=0" frameborder="0"></iframe>
+              <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🔴 Alta Intensidad</span>
+            </div>
+            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Cardio & HIIT · 20 min</span>
+            <h4 class="font-bold text-slate text-base mt-0.5">Cardio y HIIT Quema Grasa</h4>
+            <p class="text-xs text-slate/70 mt-1">Combina movimientos rítmicos y veloces para elevar la capacidad cardiovascular.</p>
+            
+            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
+              Jumping jacks, rodillas al pecho (skipping) y burpees.
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                  <span class="block text-xs font-bold text-slate">Prof. Mateo Silva</span>
+                  <span class="block text-[10px] text-rain">Preparador Físico</span>
+                </div>
+              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+            </div>
+          </div>
+
+          <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Cardio y HIIT', 'Cardio', 'Prof. Mateo Silva', '@mateo_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Cardio HIIT</button>
+        </div>
+
+        <!-- Rutina 6: Movilidad y Yoga (Básico) -->
+        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Movilidad" data-intensity="Básico">
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Movilidad Consciente y Yoga', 'Movilidad', 'Dra. Amanda Silva', '@amanda_mind')">
+              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/L_LUpnjgPso?controls=0" frameborder="0"></iframe>
+              <span class="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🟢 Nivel Básico</span>
+            </div>
+            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Movilidad & Yoga · 25 min</span>
+            <h4 class="font-bold text-slate text-base mt-0.5">Movilidad Consciente y Yoga</h4>
+            <p class="text-xs text-slate/70 mt-1">Sesión suave orientada a estirar, mejorar la flexibilidad y relajar musculatura.</p>
+            
+            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
+              Estiramientos asistidos, movilidad articular de cadera/columna y relajación.
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                  <span class="block text-xs font-bold text-slate">Dra. Amanda Silva</span>
+                  <span class="block text-[10px] text-rain">Yoga & Medicina Integrativa</span>
+                </div>
+              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+            </div>
+          </div>
+
+          <button onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Movilidad y Yoga', 'Movilidad', 'Dra. Amanda Silva', '@amanda_mind')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Movilidad & Yoga</button>
         </div>
 
       </div>
     </section>
 
-    <!-- SALAS VIRTUALES -->
+    <!-- SALAS VIRTUALES Y RESERVAS -->
     <section id="salas" class="py-12 border-t border-rain/20">
       <div class="mb-6">
         <h2 class="text-2xl font-bold text-slate">Salas Virtuales por Hora o Semana</h2>
@@ -322,7 +421,7 @@
 
   </main>
 
-  <!-- MODAL DE RESERVA CON CÁLCULO DE TOTAL Y CÓDIGO -->
+  <!-- MODAL DE RESERVA -->
   <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeBookingModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
@@ -367,7 +466,6 @@
           </select>
         </div>
 
-        <!-- MUESTRA DEL TOTAL A PAGAR -->
         <div class="p-3.5 rounded-2xl bg-dew/20 border border-dew/50 flex justify-between items-center my-2">
           <span class="text-xs font-bold text-slate">TOTAL A PAGAR:</span>
           <span id="booking-total-display" class="text-base font-extrabold text-slate">$15.000 CLP</span>
@@ -376,7 +474,6 @@
         <button type="submit" class="w-full bg-currant text-white text-xs font-bold py-3 rounded-xl hover:bg-slate transition shadow">Pagar & Generar Clave de Acceso</button>
       </form>
 
-      <!-- Confirmación de clave enviada -->
       <div id="booking-success" class="hidden mt-4 p-4 rounded-2xl bg-dew/20 border border-dew/50 text-center">
         <span class="text-2xl">🎉</span>
         <h4 class="font-bold text-slate text-sm mt-1">¡Reserva Confirmada!</h4>
@@ -390,7 +487,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE REPRODUCTOR DE VIDEO Y REDES DEL PROFESOR -->
+  <!-- MODAL REPRODUCTOR DE VIDEO -->
   <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-rain/20 relative">
       <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-slate text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain transition">&times;</button>
@@ -401,16 +498,13 @@
         <span id="modal-category" class="text-xs font-bold text-rain uppercase"></span>
         <h3 id="modal-title" class="text-xl font-bold text-slate mt-1"></h3>
         
-        <!-- Ficha de profesor dentro del reproductor -->
         <div class="mt-4 pt-4 border-t border-rain/15 flex flex-wrap justify-between items-center gap-3">
           <div>
             <span class="text-xs text-rain block">Profesor(a) a cargo:</span>
             <strong id="modal-prof-name" class="text-sm text-slate font-bold"></strong>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-xs font-bold text-slate/80">Seguir:</span>
             <a id="modal-prof-ig" href="#" target="_blank" class="px-3 py-1.5 rounded-xl bg-lightbg border border-rain/20 text-xs font-bold text-slate hover:bg-dew/30 flex items-center gap-1">📷 Instagram</a>
-            <a id="modal-prof-yt" href="#" target="_blank" class="px-3 py-1.5 rounded-xl bg-lightbg border border-rain/20 text-xs font-bold text-slate hover:bg-dew/30 flex items-center gap-1">▶ YouTube</a>
           </div>
         </div>
       </div>
@@ -432,14 +526,6 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate mb-1">Nombre del Profesor & Instagram</label>
-          <div class="grid grid-cols-2 gap-2">
-            <input type="text" id="new-prof-name" required placeholder="Ej. Prof. Andrea" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-            <input type="text" id="new-prof-ig" placeholder="@andrea_fit" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-          </div>
-        </div>
-
-        <div>
           <label class="block text-xs font-bold text-slate mb-1">Enlace de YouTube</label>
           <input type="url" id="new-url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
         </div>
@@ -458,6 +544,8 @@
 
   <script>
     let currentRoomPrice = 15000;
+    let selectedIntensity = 'Todas';
+    let selectedCategory = 'Todas';
 
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
@@ -467,16 +555,32 @@
       }, 800);
     });
 
-    // Control de pantalla de la sala
-    function toggleAspect(mode) {
-      const player = document.getElementById('room-player-container');
-      if (mode === 'full') {
-        player.classList.remove('aspect-video');
-        player.classList.add('h-[80vh]');
-      } else {
-        player.classList.add('aspect-video');
-        player.classList.remove('h-[80vh]');
-      }
+    // Filtros combinados de Intensidad y Zona
+    function filterIntensity(level) {
+      selectedIntensity = level;
+      applyFilters();
+    }
+
+    function filterCategory(cat) {
+      selectedCategory = cat;
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const cards = document.querySelectorAll('.workout-card');
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const intensity = card.getAttribute('data-intensity');
+
+        const matchCat = (selectedCategory === 'Todas' || cat === selectedCategory);
+        const matchInt = (selectedIntensity === 'Todas' || intensity === selectedIntensity);
+
+        if (matchCat && matchInt) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     }
 
     // Modal de reserva y cálculo de total
@@ -524,14 +628,13 @@
       document.getElementById('wa-confirm-link').href = `https://wa.me/?text=${waText}`;
     }
 
-    // Modal reproductor y redes del profesor
-    function openModal(embedUrl, title, category, profName, profIg, igUrl, ytUrl) {
+    // Modal reproductor
+    function openModal(embedUrl, title, category, profName, profIg) {
       document.getElementById('modal-iframe').src = embedUrl;
       document.getElementById('modal-title').innerText = title;
       document.getElementById('modal-category').innerText = category;
       document.getElementById('modal-prof-name').innerText = profName + ' (' + profIg + ')';
-      document.getElementById('modal-prof-ig').href = igUrl || 'https://instagram.com';
-      document.getElementById('modal-prof-yt').href = ytUrl || 'https://youtube.com';
+      document.getElementById('modal-prof-ig').href = 'https://instagram.com';
       document.getElementById('video-modal').classList.remove('hidden');
       document.getElementById('video-modal').classList.add('flex');
     }
@@ -554,7 +657,7 @@
 
     function handleNewVideo(e) {
       e.preventDefault();
-      alert('¡Excelente! Tu clase ha sido enviada e incorporada a la Videoteca.');
+      alert('¡Excelente! Tu clase ha sido enviada a la Videoteca.');
       closeSubmitModal();
     }
 
@@ -570,7 +673,7 @@
         document.getElementById('hero-desc').innerText = "Lawenmoll kimün: kom che küme mongen tañi poyeel.";
       } else {
         document.getElementById('hero-title').innerText = "Nutrición, Movimiento y Mente en Armonía";
-        document.getElementById('hero-desc').innerText = "Accede a clases con profesores guiados, rutinas adaptadas y meditación integrativa de la red LAWENMOLL.";
+        document.getElementById('hero-desc').innerText = "Accede a clases con profesores guiados, rutinas por grupo muscular, niveles de intensidad y meditación de la red LAWENMOLL.";
       }
     }
   </script>
