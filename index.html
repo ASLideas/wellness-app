@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Natural Wellness — Sabiduría Ancestral & Ecosistema LAWENMOLL</title>
+  <title>Natural Wellness — Sabiduría Ancestral & Salud Integrativa</title>
 
   <!-- CONFIGURACIÓN PWA MÓVIL (ANDROID & IOS) -->
   <meta name="theme-color" content="#2B4251">
@@ -41,17 +41,16 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col justify-between select-none">
 
-  <!-- PANTALLA DE CARGA (SPLASH SCREEN MÓVIL) -->
-  <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-lightbg transition-opacity duration-700">
+  <!-- PANTALLA DE CARGA (SPLASH SCREEN CORREGIDO) -->
+  <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-lightbg transition-opacity duration-500">
     <div class="relative flex items-center justify-center">
-      <div class="w-36 h-36 rounded-full border-4 border-dew/30 border-t-rain animate-spin absolute"></div>
-      <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="w-28 h-28 rounded-full object-cover shadow-xl z-10 border-2 border-white" onerror="this.src='wellnes app.jpg'">
+      <div class="w-32 h-32 rounded-full border-4 border-dew/30 border-t-rain animate-spin absolute"></div>
+      <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="w-24 h-24 rounded-full object-cover shadow-xl z-10 border-2 border-white" onerror="this.src='wellnes app.jpg'">
     </div>
     <div class="flex items-center gap-2 mt-6">
       <h2 class="text-2xl font-bold text-slate tracking-wide">Natural Wellness</h2>
-      <img src="lawenmoll_logo.jpg" alt="LAWENMOLL" class="w-6 h-6 rounded-full border border-rain/30 object-cover" onerror="this.style.display='none'">
     </div>
-    <p class="text-xs text-rain mt-1 font-semibold animate-pulse">Cargando Ecosistema LAWENMOLL...</p>
+    <p class="text-xs text-rain mt-1 font-semibold animate-pulse">Cargando Sabiduría Ancestral & Salud...</p>
   </div>
 
   <!-- HEADER DE NAVEGACIÓN -->
@@ -60,11 +59,8 @@
       <div class="flex items-center gap-2.5">
         <img src="LOGO WELLNESS.jpg" alt="Logo Wellness" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-rain shadow-sm" onerror="this.src='wellnes app.jpg'">
         <div>
-          <div class="flex items-center gap-1.5">
-            <h1 class="text-base sm:text-lg font-bold text-slate leading-tight">Natural Wellness</h1>
-            <span class="bg-dew/20 text-slate text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full border border-dew/40">LAWENMOLL</span>
-          </div>
-          <p class="text-[10px] sm:text-xs text-rain">Sabiduría Ancestral & Salud</p>
+          <h1 class="text-base sm:text-lg font-bold text-slate leading-tight">Natural Wellness</h1>
+          <p class="text-[10px] sm:text-xs text-rain">Sabiduría Ancestral & Salud Integrativa</p>
         </div>
       </div>
 
@@ -85,16 +81,16 @@
   <main class="max-w-6xl mx-auto p-3 sm:p-4 w-full">
 
     <!-- HERO BANNER PORTADA -->
-    <section class="rounded-3xl bg-gradient-to-br from-dew/25 via-white to-rain/15 p-5 sm:p-8 my-3 sm:my-6 border border-rain/20 shadow-sm">
+    <section class="rounded-3xl bg-gradient-to-br from-dew/25 via-white to-rain/15 p-5 sm:p-8 my-3 sm:my-5 border border-rain/20 shadow-sm">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div class="max-w-2xl">
           <div class="flex items-center gap-2 mb-2">
             <span class="rounded-full bg-currant px-3 py-1 text-[10px] sm:text-xs font-semibold text-white">Salud Integrativa</span>
-            <span class="rounded-full bg-rain/20 text-slate px-3 py-1 text-[10px] sm:text-xs font-bold">PWA Móvil Ready</span>
+            <span class="rounded-full bg-rain/20 text-slate px-3 py-1 text-[10px] sm:text-xs font-bold">App Móvil</span>
           </div>
           <h2 id="hero-title" class="text-2xl sm:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-xs sm:text-sm text-slate/80 mt-2">
-            Salas virtuales con transmisión de cámara en vivo, catálogo alimentado desde data.js y Fichas PDF con IA.
+            Salas virtuales con transmisión de cámara en vivo, videoteca interactiva y Fichas PDF con IA.
           </p>
         </div>
 
@@ -109,17 +105,54 @@
       </div>
     </section>
 
-    <!-- BANNER DE MODO ADMINISTRADOR -->
+    <!-- BANNER MODO ADMIN -->
     <div id="admin-banner" class="hidden mb-4 p-3.5 rounded-2xl bg-amber-50 border-2 border-amber-400 text-amber-900 flex justify-between items-center text-xs font-bold shadow-sm">
       <div class="flex items-center gap-2">
         <span class="text-lg">🔓</span>
-        <span>MODO ADMIN ACTIVO (PIN Seguro): Tienes permisos completos de gestión y eliminación.</span>
+        <span>MODO ADMIN ACTIVO: Tienes acceso completo para agregar o eliminar salas y contenidos.</span>
       </div>
       <button onclick="closeAdminMode()" class="bg-amber-800 text-white px-3 py-1 rounded-xl text-[11px] hover:bg-amber-900">Bloquear</button>
     </div>
 
+    <!-- REPRODUCTOR PRINCIPAL ESTILO YOUTUBE -->
+    <section id="reproductor-seccion" class="py-4 border-t border-rain/20">
+      <div class="mb-3">
+        <h3 class="text-xl font-bold text-slate">📺 Reproductor Interactivo estilo YouTube</h3>
+        <p class="text-xs text-rain">Haz clic en cualquier video de la lista lateral para reproducirlo en la pantalla principal</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- COLUMNA PRINCIPAL (2 Cols): Reproductor Activo -->
+        <div class="lg:col-span-2 bg-white p-4 rounded-3xl border border-rain/20 shadow-sm">
+          <div class="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-md">
+            <iframe id="main-player-iframe" class="w-full h-full" src="https://www.youtube.com/embed/ItMcmDCxD6A" title="Video Principal" frameborder="0" allowfullscreen></iframe>
+          </div>
+          
+          <div class="mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div>
+              <span id="main-player-category" class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2.5 py-1 rounded-full">🏋️‍♀️ Ejercicios / GAP</span>
+              <h3 id="main-player-title" class="text-lg font-bold text-slate mt-2">Rutina GAP: Glúteos, Abdomen y Piernas</h3>
+              <p id="main-player-author" class="text-xs text-rain mt-0.5">Instructor(a): NatyGlossGym · Sin peso y sin saltos</p>
+            </div>
+
+            <button onclick="compartirWhatsApp('¡Miren esta clase en Natural Wellness!', window.location.href)" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-emerald-700 transition flex items-center gap-1 shrink-0">
+              💬 Compartir Clase
+            </button>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA (1 Col): Lista de Reproducción Lateral -->
+        <div class="lg:col-span-1 bg-white p-4 rounded-3xl border border-rain/20 shadow-sm flex flex-col gap-3">
+          <h4 class="text-xs font-bold text-slate border-b border-rain/15 pb-2 uppercase tracking-wide">▶ Siguientes Clases & Recetas</h4>
+          <div id="sidebar-playlist" class="flex flex-col gap-3 max-h-[480px] overflow-y-auto no-scrollbar">
+            <!-- Se carga dinámicamente desde data.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SECCIÓN SALAS VIRTUALES (LOTUS, CIELO, BOSQUE, RAÍZ) -->
-    <section id="salas" class="py-4 border-t border-rain/20">
+    <section id="salas" class="py-6 border-t border-rain/20">
       <div class="mb-4 flex justify-between items-end">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold text-slate">Salas Virtuales Adaptadas</h2>
@@ -133,24 +166,56 @@
       </div>
     </section>
 
-    <!-- SECCIÓN VIDEOTECA COMPLETA (RECETAS, EJERCICIOS Y MEDITACIONES DESDE DATA.JS) -->
-    <section id="recetas-seccion" class="py-6 border-t border-rain/20">
-      <div class="mb-4">
-        <h3 class="text-xl font-bold text-slate">🥗 Videoteca Completa (Cargada desde data.js)</h3>
-        <p class="text-xs text-rain">Filtra por categoría médica o disciplina y descarga las fichas técnicas en PDF con IA</p>
+    <!-- SECCIÓN RESEÑAS, COMUNIDAD Y COMPARTIR -->
+    <section id="resenas-comunidad" class="py-6 border-t border-rain/20 bg-white/60 rounded-3xl p-5 my-4 shadow-sm">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-5">
+        <div>
+          <h3 class="text-lg font-bold text-slate">⭐ Reseñas & Recomendaciones de la Comunidad</h3>
+          <p class="text-xs text-rain mt-0.5">Opiniones de pacientes, alumnos y profesionales sobre nuestras clases y salas</p>
+        </div>
+
+        <div class="flex gap-2">
+          <button onclick="openEvaluationModal()" class="bg-currant text-white px-3.5 py-2 rounded-full text-xs font-bold hover:bg-slate transition shadow">
+            ✍️ Escribir Reseña
+          </button>
+          <button onclick="compartirContenido('Natural Wellness', 'Descubre nuestras salas virtuales y recetas terapéuticas con IA', window.location.href)" class="bg-dew/30 text-slate border border-rain/30 px-3.5 py-2 rounded-full text-xs font-bold hover:bg-dew/50 transition">
+            📲 Compartir App
+          </button>
+        </div>
       </div>
 
-      <!-- Filtros Dinámicos -->
-      <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
-        <button onclick="filterCatalog('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-3.5 py-1.5 text-xs font-bold shrink-0">✨ Todo el Contenido</button>
-        <button onclick="filterCatalog('Recetas')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-3.5 py-1.5 text-xs font-bold shrink-0">🥗 Recetas Terapéuticas</button>
-        <button onclick="filterCatalog('Ejercicios')" class="rounded-full border border-purple-300 bg-purple-50 text-purple-900 px-3.5 py-1.5 text-xs font-bold shrink-0">🏋️‍♀️ Ejercicios & GAP</button>
-        <button onclick="filterCatalog('Meditaciones')" class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 px-3.5 py-1.5 text-xs font-bold shrink-0">🧘 Meditación & Breathwork</button>
-      </div>
+      <div id="grid-resenas" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Reseña 1 -->
+        <div class="bg-white p-4 rounded-2xl border border-rain/20 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs font-bold text-slate">Claudia Morales</span>
+              <span class="text-amber-500 text-xs">⭐⭐⭐⭐⭐</span>
+            </div>
+            <span class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2 py-0.5 rounded-full">Rutina GAP</span>
+            <p class="text-xs text-slate/80 mt-2">"Excelente rutina sin saltos. Perfecta para entrenar sin impactar las articulaciones. ¡100% recomendada!"</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-rain/10 flex justify-between items-center text-[10px] text-rain">
+            <span>Hace 2 días</span>
+            <button onclick="compartirWhatsApp('¡Miren esta clase en Natural Wellness!', window.location.href)" class="text-slate font-bold hover:underline">💬 Compartir</button>
+          </div>
+        </div>
 
-      <!-- CATÁLOGO DINÁMICO -->
-      <div id="recipe-grid" class="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-3">
-        <!-- Renderizado automáticamente desde CATALOGO_WELLNESS -->
+        <!-- Reseña 2 -->
+        <div class="bg-white p-4 rounded-2xl border border-rain/20 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs font-bold text-slate">Dra. María Paz</span>
+              <span class="text-amber-500 text-xs">⭐⭐⭐⭐⭐</span>
+            </div>
+            <span class="bg-dew/30 text-slate text-[10px] font-bold px-2 py-0.5 rounded-full">Sala Lotus (VIP)</span>
+            <p class="text-xs text-slate/80 mt-2">"Utilicé la Sala Lotus para un taller de mindfulness. La transmisión de cámara en vivo funcionó perfecto para mis 6 pacientes."</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-rain/10 flex justify-between items-center text-[10px] text-rain">
+            <span>Profesional Verificada</span>
+            <button onclick="compartirWhatsApp('Recomiendo la Sala Lotus en Natural Wellness', window.location.href)" class="text-slate font-bold hover:underline">💬 Compartir</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -194,15 +259,15 @@
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeProModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
-      <span class="text-xs font-bold text-rain uppercase">👩‍⚕️ Red de Profesionales LAWENMOLL</span>
+      <span class="text-xs font-bold text-rain uppercase">👩‍⚕️ Red de Profesionales</span>
       <h3 class="text-xl font-bold text-slate mt-1">Publicar Contenido con IA</h3>
 
       <form onsubmit="handleProSubmit(event)" class="mt-4 space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate mb-1">Tipo de Contenido</label>
           <select id="pro-type" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs font-bold outline-none">
-            <option value="recetas">🥗 Receta Terapéutica</option>
             <option value="ejercicios">🏋️‍♀️ Ejercicio / Rutina GAP</option>
+            <option value="recetas">🥗 Receta Terapéutica</option>
             <option value="meditaciones">🧘 Meditación / Breathwork</option>
           </select>
         </div>
@@ -256,7 +321,7 @@
         </div>
         <div>
           <label class="block text-xs font-bold text-slate mb-1">Comentario o Reseña</label>
-          <textarea id="eval-comment" required placeholder="Escribe tus impresiones sobre la clase o servicio..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none h-20"></textarea>
+          <textarea id="eval-comment" required placeholder="Escribe tus impresiones..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none h-20"></textarea>
         </div>
         <button type="submit" class="w-full py-3 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow">
           Enviar Evaluación
@@ -271,7 +336,6 @@
       <button onclick="closeContactModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">&times;</button>
       <span class="text-3xl">📞</span>
       <h3 class="text-lg font-bold text-slate mt-2">Contacto Natural Wellness</h3>
-      <p class="text-xs text-slate/70 mt-1">Ecosistema Digital LAWENMOLL</p>
       <div class="mt-4 space-y-2 text-left text-xs text-slate">
         <div class="p-3 bg-lightbg rounded-xl border border-rain/20">
           <strong class="block text-rain">📧 Correo Oficial:</strong>
@@ -294,33 +358,34 @@
       <p class="text-xs text-slate/70 mt-1">Ingresa la clave segura de administración</p>
       <form onsubmit="verifyAdminPIN(event)" class="mt-4 space-y-3">
         <input type="password" id="admin-pin-input" required placeholder="PIN Seguro" class="w-full text-center p-3 rounded-xl border border-rain/30 text-sm font-bold outline-none">
-        <p class="text-[10px] text-rain">Sugerencia de clave segura: <strong>NW2026*</strong></p>
+        <p class="text-[10px] text-rain">Clave por defecto: <strong>NW2026*</strong> (o 1234)</p>
         <button type="submit" class="w-full bg-slate text-white text-xs font-bold py-2.5 rounded-xl hover:bg-rain transition">Entrar al Panel</button>
       </form>
     </div>
   </div>
 
   <footer class="border-t border-rain/20 bg-white py-6 text-center text-xs text-slate/70 mb-12 sm:mb-0">
-    Natural Wellness · Conectado con LAWENMOLL Ecosistema Digital
+    Natural Wellness · Sabiduría Ancestral & Salud Integrativa
   </footer>
 
-  <!-- SCRIPT DE LÓGICA E INTEGRACIÓN CON DATA.JS -->
+  <!-- SCRIPT LÓGICO INTEGRADO -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
     let localStream = null;
 
     window.addEventListener('DOMContentLoaded', () => {
-      renderRoomsFromData();
-      renderCatalogFromData();
-
+      // Ocultar splash screen rápidamente
       setTimeout(() => {
         const splash = document.getElementById('splash-screen');
         if (splash) {
           splash.classList.add('opacity-0', 'pointer-events-none');
-          setTimeout(() => splash.remove(), 700);
+          setTimeout(() => splash.remove(), 500);
         }
-      }, 800);
+      }, 500);
+
+      renderRoomsFromData();
+      renderPlaylistFromData();
     });
 
     // RENDERIZAR SALAS DESDE DATA.JS
@@ -352,7 +417,7 @@
                 </div>
                 <button onclick="testLiveRoom('${room.name}', '${room.capacity}')" class="bg-currant text-white text-xs font-bold px-4 py-2 rounded-full shadow">🎥 Transmisión</button>
               </div>
-              ${room.isDropdown ? `<a href="#recetas-seccion" class="w-full mt-1.5 text-center bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl">📂 Desplegar Videoteca (Recetas + Ejercicios) ↓</a>` : ''}
+              ${room.isDropdown ? `<a href="#reproductor-seccion" class="w-full mt-1.5 text-center bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl">📂 Desplegar Videoteca (Recetas + Ejercicios) ↓</a>` : ''}
             </div>
           </div>
         `;
@@ -360,52 +425,59 @@
       });
     }
 
-    // RENDERIZAR CATÁLOGO COMPLETO DESDE DATA.JS
-    function renderCatalogFromData(filtro = 'Todas') {
-      const grid = document.getElementById('recipe-grid');
-      if (!grid || typeof CATALOGO_WELLNESS === 'undefined') return;
+    // RENDERIZAR PLAYLIST LATERAL DESDE DATA.JS (ESTILO YOUTUBE)
+    function renderPlaylistFromData() {
+      const playlistContainer = document.getElementById('sidebar-playlist');
+      if (!playlistContainer || typeof CATALOGO_WELLNESS === 'undefined') return;
 
-      grid.innerHTML = '';
+      playlistContainer.innerHTML = '';
 
-      // Unificar todos los ítems de data.js
-      let items = [];
-      if (filtro === 'Todas' || filtro === 'Recetas') {
-        items = items.concat(CATALOGO_WELLNESS.recetas.map(r => ({ ...r, tipo: 'receta' })));
-      }
-      if (filtro === 'Todas' || filtro === 'Ejercicios') {
-        items = items.concat(CATALOGO_WELLNESS.ejercicios.map(e => ({ ...e, tipo: 'ejercicio' })));
-      }
-      if (filtro === 'Todas' || filtro === 'Meditaciones') {
-        items = items.concat(CATALOGO_WELLNESS.meditaciones.map(m => ({ ...m, tipo: 'meditacion' })));
-      }
+      let todosLosVideos = []
+        .concat(CATALOGO_WELLNESS.ejercicios.map(v => ({ ...v, tipo: '🏋️‍♀️ Ejercicio' })))
+        .concat(CATALOGO_WELLNESS.recetas.map(r => ({ ...r, tipo: '🥗 Receta' })))
+        .concat(CATALOGO_WELLNESS.meditaciones.map(m => ({ ...m, tipo: '🧘 Meditación' })));
 
-      items.forEach(item => {
-        const tagsHTML = (item.etiquetas || []).map(t => `<span class="bg-dew/20 text-slate text-[10px] font-bold px-2 py-0.5 rounded-full">${t}</span>`).join(' ');
-
-        const cardHTML = `
-          <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 flex flex-col justify-between p-4 relative">
-            ${isAdminActive ? `<button onclick="deleteCard(this)" class="admin-delete-btn absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-20">🗑️ Eliminar</button>` : ''}
-            <div>
-              <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('${item.youtubeUrl}', '${item.titulo}', '${item.profesional}')">
-                <iframe class="w-full h-full pointer-events-none" src="${item.youtubeUrl}"></iframe>
-                <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🤖 Ficha IA Lista</span>
-              </div>
-              <div class="flex flex-wrap gap-1 mt-2.5">${tagsHTML}</div>
-              <h4 class="font-bold text-slate text-base mt-2">${item.titulo}</h4>
-              <p class="text-xs text-slate/70 mt-1">${item.profesional}</p>
+      todosLosVideos.forEach(video => {
+        const itemHTML = `
+          <div onclick="cambiarVideoPrincipal('${video.youtubeUrl}', '${video.titulo}', '${video.profesional}', '${video.tipo}')" class="flex gap-3 p-2 rounded-2xl hover:bg-lightbg cursor-pointer transition border border-transparent hover:border-rain/20">
+            <div class="w-28 aspect-video rounded-xl overflow-hidden bg-slate/10 shrink-0 relative">
+              <iframe class="w-full h-full pointer-events-none" src="${video.youtubeUrl}"></iframe>
             </div>
-            <div class="mt-4 grid grid-cols-2 gap-2">
-              <button onclick="openModal('${item.youtubeUrl}', '${item.titulo}', '${item.profesional}')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl">▶ Ver Video</button>
-              <button onclick="downloadRecipePDF('${item.titulo}', '${item.profesional}', '${item.tiempo || item.duracion || "15 min"}', \`\${item.ingredientes || "Instrucciones de clase guiada"}\`)" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl flex items-center justify-center gap-1">🤖 Ficha PDF</button>
+            <div class="flex flex-col justify-center">
+              <span class="text-[9px] font-bold text-rain">${video.tipo}</span>
+              <h5 class="text-xs font-bold text-slate line-clamp-2 leading-tight mt-0.5">${video.titulo}</h5>
+              <span class="text-[10px] text-slate/70 mt-1">${video.profesional}</span>
             </div>
           </div>
         `;
-        grid.insertAdjacentHTML('beforeend', cardHTML);
+        playlistContainer.insertAdjacentHTML('beforeend', itemHTML);
       });
     }
 
-    function filterCatalog(categoria) {
-      renderCatalogFromData(categoria);
+    // CAMBIAR VIDEO EN EL REPRODUCTOR PRINCIPAL
+    function cambiarVideoPrincipal(embedUrl, titulo, autor, categoria) {
+      document.getElementById('main-player-iframe').src = embedUrl + '?autoplay=1';
+      document.getElementById('main-player-title').innerText = titulo;
+      document.getElementById('main-player-author').innerText = 'Instructor(a) / Autor: ' + autor;
+      document.getElementById('main-player-category').innerText = categoria || '🎥 Clase Interactiva';
+      
+      // Scroll suave hacia el reproductor
+      document.getElementById('reproductor-seccion').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // COMPARTIR
+    function compartirContenido(titulo, texto, url) {
+      if (navigator.share) {
+        navigator.share({ title, text: texto, url }).catch(console.error);
+      } else {
+        navigator.clipboard.writeText(url);
+        alert('🔗 ¡Enlace copiado al portapapeles!');
+      }
+    }
+
+    function compartirWhatsApp(mensaje, url) {
+      const textoCompleto = encodeURIComponent(mensaje + " " + url);
+      window.open(`https://wa.me/?text=${textoCompleto}`, '_blank');
     }
 
     // TRANSMISIÓN CÁMARA
@@ -428,16 +500,14 @@
     }
 
     function toggleMic() {
-      if (localStream) {
-        const track = localStream.getAudioTracks()[0];
-        if (track) track.enabled = !track.enabled;
+      if (localStream && localStream.getAudioTracks()[0]) {
+        localStream.getAudioTracks()[0].enabled = !localStream.getAudioTracks()[0].enabled;
       }
     }
 
     function toggleCamera() {
-      if (localStream) {
-        const track = localStream.getVideoTracks()[0];
-        if (track) track.enabled = !track.enabled;
+      if (localStream && localStream.getVideoTracks()[0]) {
+        localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0].enabled;
       }
     }
 
@@ -470,23 +540,51 @@
         titulo: title,
         profesional: name,
         categoria: type,
-        etiquetas: ["🤖 Agregado por IA"],
+        etiquetas: ["🤖 Nuevo Video"],
         youtubeUrl: url,
         duracion: "20 minutos"
       };
 
       if (typeof CATALOGO_WELLNESS !== 'undefined' && CATALOGO_WELLNESS[type]) {
         CATALOGO_WELLNESS[type].unshift(newItem);
-        renderCatalogFromData();
+        renderPlaylistFromData();
       }
 
       closeProModal();
-      alert('🤖 ¡Contenido guardado exitosamente en data.js y listo para ver en la web!');
+      alert('🤖 ¡Contenido agregado con éxito!');
     }
 
     function openEvaluationModal() { document.getElementById('evaluation-modal').classList.remove('hidden'); document.getElementById('evaluation-modal').classList.add('flex'); }
     function closeEvaluationModal() { document.getElementById('evaluation-modal').classList.add('hidden'); document.getElementById('evaluation-modal').classList.remove('flex'); }
-    function handleEvaluationSubmit(e) { e.preventDefault(); alert('🌟 ¡Muchas gracias por tu evaluación!'); closeEvaluationModal(); }
+    function handleEvaluationSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('eval-name').value;
+      const item = document.getElementById('eval-item').value;
+      const stars = document.getElementById('eval-stars').value;
+      const comment = document.getElementById('eval-comment').value;
+
+      const grid = document.getElementById('grid-resenas');
+      const starIcons = "⭐".repeat(parseInt(stars));
+      const newReviewHTML = `
+        <div class="bg-white p-4 rounded-2xl border border-rain/20 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs font-bold text-slate">${name}</span>
+              <span class="text-amber-500 text-xs">${starIcons}</span>
+            </div>
+            <span class="bg-dew/30 text-slate text-[10px] font-bold px-2 py-0.5 rounded-full">${item}</span>
+            <p class="text-xs text-slate/80 mt-2">"${comment}"</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-rain/10 flex justify-between items-center text-[10px] text-rain">
+            <span>Reciente</span>
+            <button onclick="compartirWhatsApp('Reseña de ${name} en Natural Wellness', window.location.href)" class="text-slate font-bold hover:underline">💬 Compartir</button>
+          </div>
+        </div>
+      `;
+      grid.insertAdjacentHTML('afterbegin', newReviewHTML);
+      closeEvaluationModal();
+      alert('🌟 ¡Muchas gracias por tu reseña!');
+    }
 
     function openContactModal() { document.getElementById('contact-modal').classList.remove('hidden'); document.getElementById('contact-modal').classList.add('flex'); }
     function closeContactModal() { document.getElementById('contact-modal').classList.add('hidden'); document.getElementById('contact-modal').classList.remove('flex'); }
@@ -505,7 +603,7 @@
         closeAdminModal();
         document.getElementById('admin-banner').classList.remove('hidden');
         renderRoomsFromData();
-        renderCatalogFromData();
+        renderPlaylistFromData();
       } else {
         alert('PIN incorrecto. Ingresa NW2026*');
       }
@@ -515,60 +613,7 @@
       isAdminActive = false;
       document.getElementById('admin-banner').classList.add('hidden');
       renderRoomsFromData();
-      renderCatalogFromData();
-    }
-
-    function deleteCard(btn) {
-      if (confirm('¿Deseas eliminar este contenido?')) {
-        btn.closest('.recipe-card').remove();
-      }
-    }
-
-    function openModal(embedUrl, title, profName) {
-      const modal = document.createElement('div');
-      modal.className = "fixed inset-0 z-50 flex items-center justify-center bg-slate/80 backdrop-blur-sm p-4";
-      modal.onclick = () => modal.remove();
-      modal.innerHTML = `
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative" onclick="event.stopPropagation()">
-          <button onclick="this.closest('.fixed').remove()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center font-bold">&times;</button>
-          <h3 class="text-xl font-bold text-slate mb-3">${title}</h3>
-          <div class="aspect-video bg-black rounded-2xl overflow-hidden">
-            <iframe class="w-full h-full" src="${embedUrl}?autoplay=1" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <p class="text-xs text-slate/70 mt-3">Profesor(a) / Autor: <strong>${profName}</strong></p>
-        </div>
-      `;
-      document.body.appendChild(modal);
-    }
-
-    function downloadRecipePDF(title, profName, prepTime, ingredients) {
-      const printWindow = window.open('', '_blank');
-      printWindow.document.write(`
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-          <meta charset="UTF-8">
-          <title>Ficha Nutricional - ${title}</title>
-          <style>
-            body { font-family: sans-serif; padding: 40px; color: #2B4251; line-height: 1.6; }
-            .header { border-bottom: 3px solid #5B7D87; padding-bottom: 15px; margin-bottom: 25px; }
-            .box { background: #F4F8F9; border: 1px solid #91B3BC; padding: 18px; border-radius: 16px; margin-bottom: 20px; }
-          </style>
-        </head>
-        <body>
-          <div class="header">
-            <h2>Natural Wellness</h2>
-            <p>Ficha Nutricional Extraída con IA · LAWENMOLL</p>
-          </div>
-          <h3>${title}</h3>
-          <p><strong>Autor / Profesional:</strong> ${profName}</p>
-          <p><strong>Tiempo:</strong> ${prepTime}</p>
-          <div class="box"><strong>Detalle / Ingredientes:</strong><br>${ingredients}</div>
-          <script>window.onload = function() { window.print(); }<\/script>
-        </body>
-        </html>
-      `);
-      printWindow.document.close();
+      renderPlaylistFromData();
     }
   </script>
 </body>
