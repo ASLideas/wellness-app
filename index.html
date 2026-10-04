@@ -115,13 +115,13 @@
           </div>
           <h3 class="text-xl sm:text-2xl font-bold text-dew leading-tight">Espacios Virtuales Diseñados para Médicos, Terapeutas & Entrenadores</h3>
           <p class="text-xs sm:text-sm text-white/80 mt-2 leading-relaxed">
-            Reserva tu sala con pasarela de pago segura (Webpay / MercadoPago / Transferencia) y genera automáticamente tus claves de acceso únicas para transmitir a tus alumnos o pacientes.
+            Reserva tu sala mediante pago seguro exclusivo con **Webpay** (Débito y Crédito) y genera automáticamente tu clave de acceso única para transmitir a tus alumnos o pacientes.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
             <div class="p-3 rounded-2xl bg-creosote/60 border border-dew/15">
-              <span class="block text-xs font-bold text-dew">Pago & Clave Inmediata</span>
-              <span class="text-[11px] text-white/70 block mt-0.5">Generación automática de PIN de acceso</span>
+              <span class="block text-xs font-bold text-dew">Pago Webpay Inmediato</span>
+              <span class="text-[11px] text-white/70 block mt-0.5">Transbank Débito / Crédito 100% seguro</span>
             </div>
             <div class="p-3 rounded-2xl bg-creosote/60 border border-dew/15">
               <span class="block text-xs font-bold text-dew">Convenio Colaboradores</span>
@@ -136,7 +136,7 @@
 
         <div class="shrink-0 w-full lg:w-auto text-center">
           <button onclick="openPagoModal('Sala General', '15000')" class="w-full sm:w-auto bg-dew text-slate text-xs font-bold px-6 py-3.5 rounded-2xl hover:bg-white transition shadow-sm">
-            Reservar & Generar Clave
+            Reservar con Webpay & Generar Clave
           </button>
         </div>
       </div>
@@ -230,12 +230,12 @@
       </div>
     </section>
 
-    <!-- SECCIÓN SALAS VIRTUALES CON PAGO Y CLAVES -->
+    <!-- SECCIÓN SALAS VIRTUALES CON PAGO WEBPAY Y CLAVES -->
     <section id="salas" class="py-8 border-t border-rain/15">
       <div class="mb-5 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold text-slate">Salas Virtuales Adaptadas & Escalables</h2>
-          <p class="text-xs text-rain mt-0.5">Espacios interactivos en vivo. Reserva con clave de acceso única o ingresa directamente con tu código.</p>
+          <p class="text-xs text-rain mt-0.5">Espacios interactivos en vivo. Reserva con Webpay o ingresa directamente con tu clave.</p>
         </div>
 
         <!-- DESPLEGABLE DE SALAS -->
@@ -318,21 +318,21 @@
     <span>WhatsApp Soporte</span>
   </a>
 
-  <!-- MODAL DE PAGO Y GENERACIÓN DE CLAVE DE ACCESO -->
+  <!-- MODAL DE PAGO EXCLUSIVO WEBPAY & GENERACIÓN DE CLAVE -->
   <div id="pago-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative pointer-events-auto">
       <button onclick="closePagoModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
-      <span class="text-xs font-bold text-rain uppercase tracking-wider">Reserva & Pago Seguro</span>
+      <span class="text-xs font-bold text-rain uppercase tracking-wider">Pago Seguro Webpay</span>
       <h3 id="pago-sala-nombre" class="text-xl font-bold text-slate mt-1">Reserva de Sala Virtual</h3>
-      <p class="text-xs text-slate/70 mt-1">Selecciona tu método de pago para generar tu clave de acceso inmediata.</p>
+      <p class="text-xs text-slate/70 mt-1">Completa tus datos para proceder al pago con Webpay y obtener tu clave única.</p>
 
       <form onsubmit="procesarPagoYGenerarClave(event)" class="mt-4 space-y-4">
         <input type="hidden" id="pago-sala-id">
         <input type="hidden" id="pago-monto-val">
 
         <div>
-          <label class="block text-xs font-bold text-slate mb-1">Nombre Completo del Reserva / Profesor</label>
+          <label class="block text-xs font-bold text-slate mb-1">Nombre Completo del Profesor / Reserva</label>
           <input type="text" id="pago-nombre-cliente" required placeholder="Ej. Dr. Roberto Silva" class="w-full p-2.5 rounded-xl border border-rain/25 text-xs outline-none">
         </div>
 
@@ -356,24 +356,18 @@
           <span class="text-[10px] text-rain block mt-0.5">Ingresa LAWENMOLL2026 para activar la sala sin costo.</span>
         </div>
 
+        <!-- MÉTODOS DE PAGO: ÚNICAMENTE WEBPAY -->
         <div>
-          <label class="block text-xs font-bold text-slate mb-1">Pasarela de Pago Seleccionada</label>
-          <div class="grid grid-cols-3 gap-2">
-            <label class="flex flex-col items-center justify-center p-2.5 rounded-xl border border-rain/25 cursor-pointer hover:bg-lightbg transition text-center">
-              <input type="radio" name="metodo_pago" value="webpay" checked class="mb-1">
-              <span class="text-[11px] font-bold text-slate">Webpay</span>
-              <span class="text-[9px] text-rain">Débito / Crédito</span>
-            </label>
-            <label class="flex flex-col items-center justify-center p-2.5 rounded-xl border border-rain/25 cursor-pointer hover:bg-lightbg transition text-center">
-              <input type="radio" name="metodo_pago" value="mercadopago" class="mb-1">
-              <span class="text-[11px] font-bold text-slate">MercadoPago</span>
-              <span class="text-[9px] text-rain">Efectivo / Tarjeta</span>
-            </label>
-            <label class="flex flex-col items-center justify-center p-2.5 rounded-xl border border-rain/25 cursor-pointer hover:bg-lightbg transition text-center">
-              <input type="radio" name="metodo_pago" value="transferencia" class="mb-1">
-              <span class="text-[11px] font-bold text-slate">Transferencia</span>
-              <span class="text-[9px] text-rain">Soporte Directo</span>
-            </label>
+          <label class="block text-xs font-bold text-slate mb-1">Pasarela de Pago Oficial</label>
+          <div class="p-3 rounded-2xl bg-red-50 border border-red-200 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="bg-red-600 text-white font-black text-xs px-2.5 py-1 rounded-lg tracking-wider">WEBPAY</div>
+              <div>
+                <span class="block text-xs font-bold text-slate">Webpay Plus / Transbank</span>
+                <span class="text-[10px] text-slate/70">Redcompra, Tarjetas de Débito y Crédito</span>
+              </div>
+            </div>
+            <span class="text-xs font-bold text-emerald-600">Oficial</span>
           </div>
         </div>
 
@@ -382,8 +376,8 @@
           <span id="pago-monto-display" class="text-base font-bold text-currant">$15.000 CLP</span>
         </div>
 
-        <button type="submit" class="w-full py-3.5 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow-sm">
-          Pagar & Generar Clave de Acceso
+        <button type="submit" class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl transition shadow-sm flex items-center justify-center gap-2">
+          <span>Pagar con Webpay & Generar Clave</span>
         </button>
       </form>
     </div>
@@ -635,7 +629,7 @@
     Natural Wellness · Salud Integrativa & Red B2B LAWENMOLL
   </footer>
 
-  <!-- SCRIPT LÓGICO COMPLETO OPTIMIZADO -->
+  <!-- SCRIPT LÓGICO COMPLETO WEBPAY -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
@@ -701,9 +695,9 @@
       }
     }
 
-    // GESTIÓN DE CLAVES Y PAGO
+    // GESTIÓN DE CLAVES Y PAGO EXCLUSIVO WEBPAY
     function openPagoModal(nombreSala, montoHora) {
-      document.getElementById('pago-sala-nombre').innerText = "Reserva & Clave: " + nombreSala;
+      document.getElementById('pago-sala-nombre').innerText = "Reserva Webpay: " + nombreSala;
       document.getElementById('pago-monto-val').value = montoHora || "15000";
       document.getElementById('pago-modalidad').value = "hora";
       actualizarMontoPago('hora');
@@ -848,7 +842,7 @@
                   <span class="text-sm font-bold text-slate block">$${Number(precio).toLocaleString('es-CL')} / hr</span>
                   <span class="text-[10px] text-rain">Pase Semanal: $80.000 CLP</span>
                 </div>
-                <button onclick="openPagoModal('${nombre}', '${precio}')" class="bg-currant text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-slate transition">Reservar & Pago</button>
+                <button onclick="openPagoModal('${nombre}', '${precio}')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition">Pagar con Webpay</button>
               </div>
               ${esDesplegable ? `<a href="#reproductor-seccion" class="w-full mt-1 text-center bg-dew/20 text-slate border border-rain/20 text-xs font-semibold py-2 rounded-xl">Desplegar Videoteca Interactiva ↓</a>` : ''}
             </div>
@@ -868,8 +862,8 @@
                 <span class="text-base font-bold text-amber-300 block">Capacidad: > 20 a 100+ personas</span>
                 <span class="text-[10px] text-dew">Servidor dedicado de alta estabilidad para talleres o congresos</span>
               </div>
-              <button onclick="openPagoModal('Sala Multitudinaria (Gran Evento)', '25000')" class="bg-amber-400 text-slate text-xs font-bold px-5 py-2.5 rounded-full shadow hover:bg-amber-300 transition">
-                Reservar & Generar Clave
+              <button onclick="openPagoModal('Sala Multitudinaria (Gran Evento)', '25000')" class="bg-red-600 text-white text-xs font-bold px-5 py-2.5 rounded-full shadow hover:bg-red-700 transition">
+                Pagar con Webpay & Generar Clave
               </button>
             </div>
           </div>
