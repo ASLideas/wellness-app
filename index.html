@@ -70,7 +70,7 @@
           </select>
         </div>
 
-        <!-- Botón para Profesionales de la Red -->
+        <!-- Botón Publicar para Profesionales -->
         <button onclick="openProModal()" class="rounded-full bg-currant text-white px-3 py-1.5 text-xs font-bold hover:bg-slate transition shadow-sm hidden sm:flex items-center gap-1">
           👩‍⚕️ Publicar Clase / Receta
         </button>
@@ -91,19 +91,19 @@
         <div class="max-w-2xl">
           <div class="flex items-center gap-2 mb-2">
             <span class="rounded-full bg-currant px-3 py-1 text-xs font-semibold text-white">Salud Integrativa & Metabolismo</span>
-            <span class="rounded-full bg-rain/20 text-slate px-3 py-1 text-xs font-bold">IA Terapéutica</span>
+            <span class="rounded-full bg-rain/20 text-slate px-3 py-1 text-xs font-bold">Ecosistema LAWENMOLL</span>
           </div>
           <h2 id="hero-title" class="text-3xl md:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-sm text-slate/80 mt-2">
-            Descarga recetas extraídas por IA en formato PDF con logo oficial y accede a salas virtuales en vivo.
+            Salas virtuales organizadas, videoteca desplegable de recetas/ejercicios y descargas de Fichas PDF con IA.
           </p>
         </div>
 
         <div class="flex flex-col gap-3 w-full md:w-auto">
           <button onclick="openProModal()" class="text-center rounded-2xl bg-currant text-white px-6 py-3 text-xs font-bold hover:bg-slate transition shadow-md flex items-center justify-center gap-2">
-            <span>👩‍⚕️</span> Dejar mi Clase en Natural Wellness
+            <span>👩‍⚕️️</span> Dejar mi Clase en Natural Wellness
           </button>
-          <a href="#recetas" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Ver Recetas con IA</a>
+          <a href="#salas" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Ver Salas Virtuales</a>
         </div>
       </div>
     </section>
@@ -117,74 +117,87 @@
       <button onclick="closeAdminMode()" class="bg-amber-800 text-white px-3 py-1 rounded-xl text-[11px] hover:bg-amber-900">Bloquear y Salir</button>
     </div>
 
-    <!-- SECCIÓN 1: RECETAS Y FICHA IA PDF -->
-    <section id="recetas" class="pb-10">
-      <div class="mb-4">
-        <h3 class="text-xl font-bold text-slate">🥗 Nutrición Clínica & Recetas Terapéuticas (IA)</h3>
-        <p class="text-xs text-rain">Haz clic en "Ficha PDF por IA" para descargar el resumen con logo oficial</p>
-      </div>
-
-      <!-- Filtro por Condición Médica -->
-      <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
-        <button onclick="filterRecipe('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-1.5 text-xs font-bold transition shrink-0">✨ Todas las Recetas</button>
-        <button onclick="filterRecipe('Gluten')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-4 py-1.5 text-xs font-bold hover:bg-amber-100 transition shrink-0">🌾 Sin Gluten / Celíacos</button>
-        <button onclick="filterRecipe('Lactosa')" class="rounded-full border border-blue-300 bg-blue-50 text-blue-900 px-4 py-1.5 text-xs font-bold hover:bg-blue-100 transition shrink-0">🥛 Sin Lactosa / Deslactosado</button>
-        <button onclick="filterRecipe('BajoIG')" class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 px-4 py-1.5 text-xs font-bold hover:bg-emerald-100 transition shrink-0">🩺 Bajo IG / Diabetes</button>
-        <button onclick="filterRecipe('Alergenos')" class="rounded-full border border-purple-300 bg-purple-50 text-purple-900 px-4 py-1.5 text-xs font-bold hover:bg-purple-100 transition shrink-0">⚠️️ Libre de Alérgenos / APLV</button>
-      </div>
-
-      <!-- CATÁLOGO DE RECETAS -->
-      <div id="recipe-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-4">
-
-        <!-- Receta 1 -->
-        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4 relative" data-tag="Gluten BajoIG Vegano">
-          <button onclick="deleteCard(this)" class="admin-delete-btn hidden absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow z-20 hover:bg-red-700">🗑️ Eliminar</button>
-
-          <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta Médica', 'Chef Camila Ríos', '@camila_nutri')">
-              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Bowl Avena" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🤖 Ficha IA Lista</span>
-            </div>
-
-            <div class="flex flex-wrap gap-1 mt-3">
-              <span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌾 Sin Gluten</span>
-              <span class="bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🩺 Certificado Bajo IG</span>
-            </div>
-
-            <h4 class="font-bold text-slate text-base mt-2">Bowl de avena, chía y canela bajo IG</h4>
-            <p class="text-xs text-slate/70 mt-1">Sustituto metabólico analizado por IA para control glicémico.</p>
-          </div>
-
-          <div class="mt-4 grid grid-cols-2 gap-2">
-            <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta', 'Chef Camila Ríos', '@camila_nutri')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video</button>
-            <button onclick="downloadRecipePDF('Bowl de avena, chía y canela bajo IG', 'Sin Gluten, Bajo IG, Sin Azúcar Añadida', '10 minutos', 'Chef Camila Ríos (@camila_nutri)', '• 1/2 taza de avena cert. sin gluten\n• 1 cda de semillas de chía\n• 1 cdta de canela en polvo\n• 1/2 taza de bebida vegetal sin azúcar')" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl hover:bg-dew/50 transition flex items-center justify-center gap-1">🤖 Ficha PDF IA</button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECCIÓN 2: SALAS VIRTUALES (AJUSTADAS POR NOMBRE Y CAPACIDAD) -->
-    <section id="salas" class="py-8 border-t border-rain/20">
+    <!-- SECCIÓN SALAS VIRTUALES (ORDEN: LOTUS, CIELO, BOSQUE Y RAÍZ DESPLEGABLE) -->
+    <section id="salas" class="py-6 border-t border-rain/20">
       <div class="mb-6 flex justify-between items-end">
         <div>
           <h2 class="text-2xl font-bold text-slate">Salas Virtuales Adaptadas</h2>
           <p class="text-sm text-rain mt-1">
-            Espacios con transmisión en vivo y límites de capacidad configurables.
+            Espacios interactivos para clases en vivo, talleres culinarios y consultas privadas.
           </p>
         </div>
         <button onclick="openAdminModal()" class="hidden admin-delete-btn bg-currant text-white text-xs font-bold px-3 py-1.5 rounded-xl hover:bg-slate transition">➕ Ajustar / Crear Sala (Admin)</button>
       </div>
 
-      <!-- GRID DINÁMICO DE SALAS VIRTUALES -->
+      <!-- GRID DE SALAS CON ORDEN ESPECÍFICO -->
       <div id="rooms-grid" class="grid gap-6 md:grid-cols-2">
-        <!-- Renderizado dinámicamente vía JS -->
+        <!-- Renderizado automáticamente vía JavaScript -->
+      </div>
+    </section>
+
+    <!-- SECCIÓN RECETAS Y EJERCICIOS (ACCESIBLE TAMBIÉN VÍA DESPLEGABLE DE SALA RAÍZ) -->
+    <section id="recetas-seccion" class="py-10 border-t border-rain/20">
+      <div class="mb-4">
+        <h3 class="text-xl font-bold text-slate">🥗 Videoteca Completa (Recetas Terapéuticas & Ejercicios)</h3>
+        <p class="text-xs text-rain">Filtra por condición médica o zona corporal y descarga las fichas en PDF con logo oficial</p>
+      </div>
+
+      <!-- Filtro por Condición Médica y Ejercicio -->
+      <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
+        <button onclick="filterRecipe('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-1.5 text-xs font-bold transition shrink-0">✨ Todo el Contenido</button>
+        <button onclick="filterRecipe('Gluten')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-4 py-1.5 text-xs font-bold hover:bg-amber-100 transition shrink-0">🌾 Sin Gluten</button>
+        <button onclick="filterRecipe('Lactosa')" class="rounded-full border border-blue-300 bg-blue-50 text-blue-900 px-4 py-1.5 text-xs font-bold hover:bg-blue-100 transition shrink-0">🥛 Sin Lactosa / APLV</button>
+        <button onclick="filterRecipe('BajoIG')" class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 px-4 py-1.5 text-xs font-bold hover:bg-emerald-100 transition shrink-0">🩺 Bajo IG / Diabetes</button>
+        <button onclick="filterRecipe('Ejercicio')" class="rounded-full border border-purple-300 bg-purple-50 text-purple-900 px-4 py-1.5 text-xs font-bold hover:bg-purple-100 transition shrink-0">🏋️‍♀️ Ejercicios / Movilidad</button>
+      </div>
+
+      <!-- CATÁLOGO UNIFICADO -->
+      <div id="recipe-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+
+        <!-- Receta 1 -->
+        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4 relative" data-tag="Gluten BajoIG">
+          <button onclick="deleteCard(this)" class="admin-delete-btn hidden absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow z-20 hover:bg-red-700">🗑️ Eliminar</button>
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta Médica', 'Chef Camila Ríos', '@camila_nutri')">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Bowl Avena" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🤖 Ficha IA Lista</span>
+            </div>
+            <div class="flex flex-wrap gap-1 mt-3">
+              <span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌾 Sin Gluten</span>
+              <span class="bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🩺 Bajo IG</span>
+            </div>
+            <h4 class="font-bold text-slate text-base mt-2">Bowl de avena, chía y canela bajo IG</h4>
+            <p class="text-xs text-slate/70 mt-1">Apto para diabetes e insulinorresistencia.</p>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta', 'Chef Camila Ríos', '@camila_nutri')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video</button>
+            <button onclick="downloadRecipePDF('Bowl de avena, chía y canela bajo IG', 'Sin Gluten, Bajo IG', '10 minutos', 'Chef Camila Ríos (@camila_nutri)', '• 1/2 taza de avena cert. sin gluten\n• 1 cda de semillas de chía\n• 1 cdta de canela en polvo')" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl hover:bg-dew/50 transition flex items-center justify-center gap-1">🤖 Ficha PDF IA</button>
+          </div>
+        </div>
+
+        <!-- Ejercicio 1 -->
+        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4 relative" data-tag="Ejercicio">
+          <button onclick="deleteCard(this)" class="admin-delete-btn hidden absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow z-20 hover:bg-red-700">🗑️ Eliminar</button>
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Rutina de Movilidad y Core', 'Ejercicio', 'Prof. Mateo Silva', '@mateo_fit')">
+              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/inpok4MKVLM?controls=0"></iframe>
+              <span class="absolute top-3 left-3 bg-purple-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🧘 Movilidad & Core</span>
+            </div>
+            <div class="flex flex-wrap gap-1 mt-3">
+              <span class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🏋️‍♀️ Movilidad Adaptada</span>
+            </div>
+            <h4 class="font-bold text-slate text-base mt-2">Rutina de Movilidad y Fortalecimiento de Core</h4>
+            <p class="text-xs text-slate/70 mt-1">Clase guiada para estabilidad lumbar y flexibilidad.</p>
+          </div>
+          <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Rutina de Movilidad y Core', 'Ejercicio', 'Prof. Mateo Silva', '@mateo_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Clase de Ejercicios</button>
+        </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- MODAL PUBLICAR CLASE / RECETA CON IA (PARA PROFESIONALES) -->
+  <!-- MODAL PUBLICAR CLASE / RECETA CON IA PARA PROFESIONALES -->
   <div id="pro-submit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeProModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
@@ -220,7 +233,7 @@
     </div>
   </div>
 
-  <!-- MODAL TRANSMISIÓN EN VIVO -->
+  <!-- MODAL TRANSMISIÓN DE CÁMARA EN VIVO -->
   <div id="live-room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
     <div class="bg-slate rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-dew/30 relative text-white flex flex-col">
       <div class="p-4 bg-creosote border-b border-dew/20 flex justify-between items-center">
@@ -269,39 +282,43 @@
     let isAdminActive = false;
     let localStream = null;
 
-    // SALAS AJUSTADAS CON NOMBRES Y CAPACIDADES
+    // ORDEN OFICIAL DE SALAS SOLICITADO (LOTUS -> CIELO -> BOSQUE -> RAÍZ DESPLEGABLE)
     let virtualRooms = [
       {
         id: 'room-1',
         name: 'Sala Lotus',
         capacity: '⭐ Capacidad: 6 personas (VIP Cámara)',
         tag: 'Mindfulness & Breathwork',
-        desc: 'Espacio íntimo para meditación, breathwork y círculos de palabra.',
-        priceHr: 15000
+        desc: 'Espacio íntimo con luz suave para meditación, breathwork y círculos de palabra.',
+        priceHr: 15000,
+        isDropdown: false
       },
       {
         id: 'room-2',
-        name: 'Sala Bosque',
-        capacity: '⭐ Capacidad: 10 personas',
-        tag: 'Movilidad & Core',
-        desc: 'Equipada para movilidad adaptada en silla, fortalecimiento de core y HIIT.',
-        priceHr: 15000
-      },
-      {
-        id: 'room-3',
         name: 'Sala Cielo',
         capacity: '⭐ Capacidad: 8 personas',
         tag: 'Cocina Demo & Streaming',
         desc: 'Cocina demostrativa en vivo para talleres culinarios bajo índice glicémico.',
-        priceHr: 15000
+        priceHr: 15000,
+        isDropdown: false
+      },
+      {
+        id: 'room-3',
+        name: 'Sala Bosque',
+        capacity: '⭐ Capacidad: 10 personas',
+        tag: 'Movilidad & Core',
+        desc: 'Equipada para movilidad adaptada en silla, fortalecimiento de core y HIIT de bajo impacto.',
+        priceHr: 15000,
+        isDropdown: false
       },
       {
         id: 'room-4',
         name: 'Sala Raíz',
-        capacity: '⭐ Capacidad: 2 personas (1:1)',
-        tag: 'Consultas Privadas',
-        desc: 'Cabina privada para nutrición clínica, seguimiento y coaching.',
-        priceHr: 15000
+        capacity: '⭐ Capacidad: 2 personas (1:1) + Videoteca Integrada',
+        tag: 'Consultas & Desplegable de Videos',
+        desc: 'Cabina privada para nutrición clínica y acceso desplegable a toda la videoteca de recetas y ejercicios.',
+        priceHr: 15000,
+        isDropdown: true
       }
     ];
 
@@ -333,12 +350,20 @@
               <p class="text-xs text-slate/80 mt-2">${room.desc}</p>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-rain/15 flex justify-between items-center gap-2">
-              <div>
-                <span class="text-sm font-bold text-slate block">$${room.priceHr.toLocaleString('es-CL')} / hr</span>
-                <span class="text-[10px] text-rain">Valor base x hora</span>
+            <div class="mt-6 pt-4 border-t border-rain/15 flex flex-col gap-2">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="text-sm font-bold text-slate block">$${room.priceHr.toLocaleString('es-CL')} / hr</span>
+                  <span class="text-[10px] text-rain">Valor base x hora</span>
+                </div>
+                <button onclick="testLiveRoom('${room.name}', '${room.capacity}')" class="bg-currant text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">🎥 Probar Transmisión</button>
               </div>
-              <button onclick="testLiveRoom('${room.name}', '${room.capacity}')" class="bg-currant text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">🎥 Probar Transmisión</button>
+
+              ${room.isDropdown ? `
+                <a href="#recetas-seccion" class="w-full mt-2 text-center bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl hover:bg-dew/50 transition flex items-center justify-center gap-1">
+                  📂 Desplegar Videoteca Completa (Recetas + Ejercicios) ↓
+                </a>
+              ` : ''}
             </div>
           </div>
         `;
@@ -364,7 +389,7 @@
 
       let embedUrl = url;
       if (url.includes('watch?v=')) {
-        embedUrl = 'https://www.youtube.com/embed/' + url.split('v=')[1].split('&')[0];
+        embedUrl = 'https://www.youtube.com/embed/' + url.split('v=').split('&');
       }
 
       const grid = document.getElementById('recipe-grid');
@@ -372,7 +397,7 @@
         <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4 relative" data-tag="Gluten BajoIG">
           ${isAdminActive ? `<button onclick="deleteCard(this)" class="admin-delete-btn absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow z-20">🗑️ Eliminar</button>` : ''}
           <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('${embedUrl}', '${title}', 'Receta Médica IA', '${name}', '@profesional')">
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('${embedUrl}', '${title}', 'Receta / Clase IA', '${name}', '@profesional')">
               <iframe class="w-full h-full pointer-events-none" src="${embedUrl}?controls=0"></iframe>
               <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🤖 Procesado por IA</span>
             </div>
@@ -380,14 +405,14 @@
             <p class="text-xs text-slate/70 mt-1">Aportado por ${name}. Ficha descargable lista.</p>
           </div>
           <div class="mt-4 grid grid-cols-2 gap-2">
-            <button onclick="openModal('${embedUrl}', '${title}', 'Receta', '${name}', '@profesional')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl">▶ Ver Video</button>
+            <button onclick="openModal('${embedUrl}', '${title}', 'Clase', '${name}', '@profesional')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl">▶ Ver Video</button>
             <button onclick="downloadRecipePDF('${title}', 'Certificado Natural Wellness IA', '15 minutos', '${name}', '• Ingredientes procesados automáticamente por la IA de la app.')" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl flex items-center justify-center gap-1">🤖 Ficha PDF IA</button>
           </div>
         </div>
       `;
       grid.insertAdjacentHTML('afterbegin', newCardHTML);
       closeProModal();
-      alert('🤖 ¡Excelente! La IA de Natural Wellness procesó el video y generó la Ficha PDF descargable en la portada.');
+      alert('🤖 ¡Excelente! La IA de Natural Wellness procesó el video y generó la Ficha PDF descargable.');
     }
 
     // DESCARGA DE FICHA PDF CON LOGO Y PROCESAMIENTO IA
@@ -479,14 +504,14 @@
 
     function toggleMic() {
       if (localStream) {
-        const track = localStream.getAudioTracks()[0];
+        const track = localStream.getAudioTracks();
         if (track) track.enabled = !track.enabled;
       }
     }
 
     function toggleCamera() {
       if (localStream) {
-        const track = localStream.getVideoTracks()[0];
+        const track = localStream.getVideoTracks();
         if (track) track.enabled = !track.enabled;
       }
     }
