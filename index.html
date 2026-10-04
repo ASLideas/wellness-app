@@ -38,7 +38,7 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="font-sans min-h-screen flex flex-col justify-between select-none">
+<body class="font-sans min-h-screen flex flex-col justify-between">
 
   <!-- PANTALLA DE CARGA (SPLASH SCREEN) -->
   <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-lightbg transition-opacity duration-500">
@@ -197,7 +197,7 @@
         <!-- Reproductor Principal -->
         <div class="lg:col-span-2 bg-white p-4 rounded-3xl border border-rain/15 shadow-sm">
           <div class="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-inner">
-            <iframe id="main-player-iframe" class="w-full h-full" src="https://www.youtube.com/embed/ItMcmDCxD6A" title="Video Principal" frameborder="0" allowfullscreen></iframe>
+            <iframe id="main-player-iframe" class="w-full h-full" src="https://www.youtube.com/embed/ItMcmDCxD6A?enablejsapi=1&rel=0" title="Video Principal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           
           <div class="mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
@@ -319,8 +319,8 @@
   </a>
 
   <!-- MODAL DE PAGO Y GENERACIÓN DE CLAVE DE ACCESO -->
-  <div id="pago-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
+  <div id="pago-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative pointer-events-auto">
       <button onclick="closePagoModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
       <span class="text-xs font-bold text-rain uppercase tracking-wider">Reserva & Pago Seguro</span>
@@ -390,8 +390,8 @@
   </div>
 
   <!-- MODAL MUESTRA DE CLAVE DE ACCESO GENERADA -->
-  <div id="clave-exitosa-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rain/20 relative text-center">
+  <div id="clave-exitosa-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4 pointer-events-none">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rain/20 relative text-center pointer-events-auto">
       <button onclick="closeClaveExitosaModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">&times;</button>
       
       <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Reserva Confirmada</span>
@@ -415,8 +415,8 @@
   </div>
 
   <!-- MODAL INGRESO DIRECTO CON CLAVE -->
-  <div id="ingreso-clave-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center">
+  <div id="ingreso-clave-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center pointer-events-auto">
       <button onclick="closeIngresoClaveModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">&times;</button>
       
       <span class="text-xs font-bold text-rain uppercase tracking-wider">Acceso a Sala Virtual</span>
@@ -433,8 +433,8 @@
   </div>
 
   <!-- MODAL TRANSMISIÓN DE CÁMARA EN VIVO -->
-  <div id="live-room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
-    <div class="bg-slate rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-dew/30 relative text-white flex flex-col">
+  <div id="live-room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4 pointer-events-none">
+    <div class="bg-slate rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-dew/30 relative text-white flex flex-col pointer-events-auto">
       <div class="p-4 bg-creosote border-b border-dew/20 flex justify-between items-center">
         <div class="flex items-center gap-3">
           <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
@@ -474,8 +474,8 @@
   </div>
 
   <!-- MODAL EDITAR VIDEO (ADMIN) -->
-  <div id="edit-video-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
+  <div id="edit-video-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative pointer-events-auto">
       <button onclick="closeEditModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
       <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Edición de Contenido (Administración)</span>
@@ -522,8 +522,8 @@
   </div>
 
   <!-- MODAL PUBLICAR CLASE -->
-  <div id="pro-submit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
+  <div id="pro-submit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative pointer-events-auto">
       <button onclick="closeProModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
       <span class="text-xs font-bold text-rain uppercase tracking-wider">Red de Creadores & Profesionales</span>
@@ -564,8 +564,8 @@
   </div>
 
   <!-- MODAL DE EVALUACIÓN -->
-  <div id="evaluation-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rain/20 relative">
+  <div id="evaluation-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rain/20 relative pointer-events-auto">
       <button onclick="closeEvaluationModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">&times;</button>
       
       <span class="text-xs font-bold text-rain uppercase tracking-wider">Evaluación de Pacientes & Alumnos</span>
@@ -600,8 +600,8 @@
   </div>
 
   <!-- MODAL DE CONTACTO -->
-  <div id="contact-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center">
+  <div id="contact-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center pointer-events-auto">
       <button onclick="closeContactModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">&times;</button>
       <h3 class="text-lg font-bold text-slate mt-2">Contacto Natural Wellness</h3>
       <div class="mt-4 space-y-2 text-left text-xs text-slate">
@@ -618,8 +618,8 @@
   </div>
 
   <!-- MODAL ADMIN (PIN NW2026*) -->
-  <div id="admin-pin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center">
+  <div id="admin-pin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center pointer-events-auto">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">&times;</button>
       <h3 class="text-lg font-bold text-slate mt-2">Acceso Administrador</h3>
       <p class="text-xs text-slate/70 mt-1">Ingresa la clave de gestión</p>
@@ -635,7 +635,7 @@
     Natural Wellness · Salud Integrativa & Red B2B LAWENMOLL
   </footer>
 
-  <!-- SCRIPT LÓGICO COMPLETO CON PAGO Y PERSISTENCIA DE CLAVES -->
+  <!-- SCRIPT LÓGICO COMPLETO OPTIMIZADO -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
@@ -666,20 +666,52 @@
       }
     }
 
+    // EXTRAER YOUTUBE ID (SOPORTA SHORTS, EMBEDS Y YOUTU.BE)
+    function obtenerYoutubeId(url) {
+      if (!url) return '';
+      const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+      const match = url.match(regExp);
+      return (match && match[1]) ? match[1] : '';
+    }
+
+    function obtenerYoutubeThumbnail(url) {
+      const id = obtenerYoutubeId(url);
+      return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : 'wellnes app.jpg';
+    }
+
+    function formatearYoutubeEmbed(url, autoplay = false) {
+      const id = obtenerYoutubeId(url);
+      if (!id) return 'https://www.youtube.com/embed/ItMcmDCxD6A?enablejsapi=1&rel=0';
+      return `https://www.youtube.com/embed/${id}?enablejsapi=1&rel=0${autoplay ? '&autoplay=1' : ''}`;
+    }
+
+    function openModalHelper(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden', 'pointer-events-none');
+        el.classList.add('flex');
+      }
+    }
+
+    function closeModalHelper(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('hidden', 'pointer-events-none');
+        el.classList.remove('flex');
+      }
+    }
+
     // GESTIÓN DE CLAVES Y PAGO
     function openPagoModal(nombreSala, montoHora) {
       document.getElementById('pago-sala-nombre').innerText = "Reserva & Clave: " + nombreSala;
       document.getElementById('pago-monto-val').value = montoHora || "15000";
       document.getElementById('pago-modalidad').value = "hora";
       actualizarMontoPago('hora');
-      
-      document.getElementById('pago-modal').classList.remove('hidden');
-      document.getElementById('pago-modal').classList.add('flex');
+      openModalHelper('pago-modal');
     }
 
     function closePagoModal() {
-      document.getElementById('pago-modal').classList.add('hidden');
-      document.getElementById('pago-modal').classList.remove('flex');
+      closeModalHelper('pago-modal');
     }
 
     function actualizarMontoPago(modalidad) {
@@ -688,13 +720,13 @@
 
       if (modalidad === 'hora') {
         bloquePromocional.classList.add('hidden');
-        displayMonto.innerText = "$15.000 CLP";
+        displayMonto.innerText = "\$15.000 CLP";
       } else if (modalidad === 'semana') {
         bloquePromocional.classList.add('hidden');
-        displayMonto.innerText = "$80.000 CLP";
+        displayMonto.innerText = "\$80.000 CLP";
       } else if (modalidad === 'colaborador') {
         bloquePromocional.classList.remove('hidden');
-        displayMonto.innerText = "$0 CLP (Convenio Activo)";
+        displayMonto.innerText = "\$0 CLP (Convenio Activo)";
       }
     }
 
@@ -708,11 +740,9 @@
         return;
       }
 
-      // Generar clave única aleatoria (ej: WELL-4921-X)
       const numRandom = Math.floor(1000 + Math.random() * 9000);
       ultimaClaveGenerada = `WELL-${numRandom}-X`;
 
-      // Guardar clave activa en localStorage
       try {
         let clavesGuardadas = JSON.parse(localStorage.getItem('wellness_claves_v1') || '[]');
         clavesGuardadas.push(ultimaClaveGenerada);
@@ -724,13 +754,11 @@
       closePagoModal();
 
       document.getElementById('display-clave-generada').innerText = ultimaClaveGenerada;
-      document.getElementById('clave-exitosa-modal').classList.remove('hidden');
-      document.getElementById('clave-exitosa-modal').classList.add('flex');
+      openModalHelper('clave-exitosa-modal');
     }
 
     function closeClaveExitosaModal() {
-      document.getElementById('clave-exitosa-modal').classList.add('hidden');
-      document.getElementById('clave-exitosa-modal').classList.remove('flex');
+      closeModalHelper('clave-exitosa-modal');
     }
 
     function copiarClaveGenerada() {
@@ -740,17 +768,15 @@
 
     function entrarDirectoConClave() {
       closeClaveExitosaModal();
-      testLiveRoom('Sala Virtual Reservada', '⭐ Acceso Validado con Clave');
+      testLiveRoom('Sala Virtual Reservada', 'Acceso Validado con Clave');
     }
 
     function openIngresoClaveModal() {
-      document.getElementById('ingreso-clave-modal').classList.remove('hidden');
-      document.getElementById('ingreso-clave-modal').classList.add('flex');
+      openModalHelper('ingreso-clave-modal');
     }
 
     function closeIngresoClaveModal() {
-      document.getElementById('ingreso-clave-modal').classList.add('hidden');
-      document.getElementById('ingreso-clave-modal').classList.remove('flex');
+      closeModalHelper('ingreso-clave-modal');
     }
 
     function validarClaveEIngresar(e) {
@@ -761,27 +787,10 @@
 
       if (clavesGuardadas.includes(inputClave) || inputClave.startsWith('WELL-')) {
         closeIngresoClaveModal();
-        testLiveRoom('Sala Virtual (' + inputClave + ')', '⭐ Acceso Autorizado');
+        testLiveRoom('Sala Virtual (' + inputClave + ')', 'Acceso Autorizado');
       } else {
         alert("Clave de acceso no encontrada o vencida. Por favor verifica tu código o realiza tu reserva.");
       }
-    }
-
-    function obtenerYoutubeId(url) {
-      if (!url) return '';
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-      const match = url.match(regExp);
-      return (match && match.length === 11) ? match : '';
-    }
-
-    function obtenerYoutubeThumbnail(url) {
-      const id = obtenerYoutubeId(url);
-      return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : 'wellnes app.jpg';
-    }
-
-    function formatearYoutubeEmbed(url) {
-      const id = obtenerYoutubeId(url);
-      return id ? `https://www.youtube.com/embed/${id}` : 'https://www.youtube.com/embed/ItMcmDCxD6A';
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -934,10 +943,14 @@
     }
 
     function cambiarVideoPrincipal(id, embedUrl, titulo, autor, categoria, catKey) {
-      const formattedUrl = formatearYoutubeEmbed(embedUrl);
+      const formattedUrl = formatearYoutubeEmbed(embedUrl, false);
       videoActualData = { id: id || 'item-temp', url: embedUrl, titulo: titulo, autor: autor, categoria: catKey || 'ejercicios' };
 
-      document.getElementById('main-player-iframe').src = formattedUrl + '?autoplay=1';
+      const iframe = document.getElementById('main-player-iframe');
+      if (iframe) {
+        iframe.src = formattedUrl;
+      }
+
       document.getElementById('main-player-title').innerText = titulo;
       document.getElementById('main-player-author').innerText = 'Instructor(a) / Autor: ' + autor;
       document.getElementById('main-player-category').innerText = categoria || 'Clase Interactiva';
@@ -958,8 +971,7 @@
       document.getElementById('edit-name').value = videoActualData.autor;
       document.getElementById('edit-url').value = videoActualData.url;
 
-      document.getElementById('edit-video-modal').classList.remove('hidden');
-      document.getElementById('edit-video-modal').classList.add('flex');
+      openModalHelper('edit-video-modal');
     }
 
     function abrirModalEditarEspecifico(id, catKey) {
@@ -987,14 +999,12 @@
         document.getElementById('edit-name').value = itemEncontrado.profesional;
         document.getElementById('edit-url').value = itemEncontrado.youtubeUrl;
 
-        document.getElementById('edit-video-modal').classList.remove('hidden');
-        document.getElementById('edit-video-modal').classList.add('flex');
+        openModalHelper('edit-video-modal');
       }
     }
 
     function closeEditModal() {
-      document.getElementById('edit-video-modal').classList.add('hidden');
-      document.getElementById('edit-video-modal').classList.remove('flex');
+      closeModalHelper('edit-video-modal');
     }
 
     function handleEditSubmit(e) {
@@ -1006,7 +1016,7 @@
       const newName = document.getElementById('edit-name').value;
       const newUrl = document.getElementById('edit-url').value;
 
-      const embedUrl = formatearYoutubeEmbed(newUrl);
+      const embedUrl = formatearYoutubeEmbed(newUrl, false);
 
       if (catOrigin && CATALOGO_WELLNESS[catOrigin]) {
         CATALOGO_WELLNESS[catOrigin] = CATALOGO_WELLNESS[catOrigin].filter(v => v.id !== id);
@@ -1057,7 +1067,7 @@
       const title = document.getElementById('pro-title').value;
       const rawUrl = document.getElementById('pro-url').value;
 
-      const embedUrl = formatearYoutubeEmbed(rawUrl);
+      const embedUrl = formatearYoutubeEmbed(rawUrl, false);
 
       const newItem = {
         id: "item-" + Date.now(),
@@ -1103,8 +1113,7 @@
       document.getElementById('live-room-capacity').innerText = capacity;
       document.getElementById('live-access-code').innerText = code;
       
-      document.getElementById('live-room-modal').classList.remove('hidden');
-      document.getElementById('live-room-modal').classList.add('flex');
+      openModalHelper('live-room-modal');
 
       try {
         localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
@@ -1132,15 +1141,14 @@
         localStream.getTracks().forEach(track => track.stop());
         localStream = null;
       }
-      document.getElementById('live-room-modal').classList.add('hidden');
-      document.getElementById('live-room-modal').classList.remove('flex');
+      closeModalHelper('live-room-modal');
     }
 
-    function openProModal() { document.getElementById('pro-submit-modal').classList.remove('hidden'); document.getElementById('pro-submit-modal').classList.add('flex'); }
-    function closeProModal() { document.getElementById('pro-submit-modal').classList.add('hidden'); document.getElementById('pro-submit-modal').classList.remove('flex'); }
+    function openProModal() { openModalHelper('pro-submit-modal'); }
+    function closeProModal() { closeModalHelper('pro-submit-modal'); }
 
-    function openEvaluationModal() { document.getElementById('evaluation-modal').classList.remove('hidden'); document.getElementById('evaluation-modal').classList.add('flex'); }
-    function closeEvaluationModal() { document.getElementById('evaluation-modal').classList.add('hidden'); document.getElementById('evaluation-modal').classList.remove('flex'); }
+    function openEvaluationModal() { openModalHelper('evaluation-modal'); }
+    function closeEvaluationModal() { closeModalHelper('evaluation-modal'); }
     
     function handleEvaluationSubmit(e) {
       e.preventDefault();
@@ -1172,14 +1180,14 @@
       alert('Muchas gracias por tu evaluación.');
     }
 
-    function openContactModal() { document.getElementById('contact-modal').classList.remove('hidden'); document.getElementById('contact-modal').classList.add('flex'); }
-    function closeContactModal() { document.getElementById('contact-modal').classList.add('hidden'); document.getElementById('contact-modal').classList.remove('flex'); }
+    function openContactModal() { openModalHelper('contact-modal'); }
+    function closeContactModal() { closeModalHelper('contact-modal'); }
 
     function openAdminModal() {
       if (isAdminActive) { alert("Ya te encuentras en modo Administrador."); }
-      else { document.getElementById('admin-pin-modal').classList.remove('hidden'); document.getElementById('admin-pin-modal').classList.add('flex'); }
+      else { openModalHelper('admin-pin-modal'); }
     }
-    function closeAdminModal() { document.getElementById('admin-pin-modal').classList.add('hidden'); document.getElementById('admin-pin-modal').classList.remove('flex'); }
+    function closeAdminModal() { closeModalHelper('admin-pin-modal'); }
     
     function verifyAdminPIN(e) {
       e.preventDefault();
