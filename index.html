@@ -53,7 +53,7 @@
     <p class="text-xs text-rain mt-1 font-semibold animate-pulse">Cargando Sabiduría Ancestral & Salud...</p>
   </div>
 
-  <!-- HEADER DE NAVEGACIÓN CON BOTÓN PUBLICAR VISIBLE EN MÓVIL -->
+  <!-- HEADER DE NAVEGACIÓN -->
   <header class="border-b border-rain/20 bg-white/90 p-3 sm:p-4 sticky top-0 z-40 backdrop-blur-md shadow-sm">
     <div class="max-w-6xl mx-auto flex justify-between items-center w-full">
       <div class="flex items-center gap-2.5">
@@ -109,7 +109,7 @@
     <div id="admin-banner" class="hidden mb-4 p-3.5 rounded-2xl bg-amber-50 border-2 border-amber-400 text-amber-900 flex justify-between items-center text-xs font-bold shadow-sm">
       <div class="flex items-center gap-2">
         <span class="text-lg">🔓</span>
-        <span>MODO ADMIN ACTIVO: Permisos completos de edición y eliminación.</span>
+        <span>MODO ADMIN ACTIVO: Puedes editar títulos, corregir videos que no carguen y eliminar contenidos.</span>
       </div>
       <button onclick="closeAdminMode()" class="bg-amber-800 text-white px-3 py-1 rounded-xl text-[11px] hover:bg-amber-900">Bloquear</button>
     </div>
@@ -126,9 +126,14 @@
           <p class="text-xs text-rain mt-0.5">Selecciona una categoría o haz clic en cualquier video de la lista para reproducirlo</p>
         </div>
 
-        <button onclick="openProModal()" class="bg-currant text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-slate transition shadow flex items-center gap-1 shrink-0">
-          <span>➕</span> Publicar Video / Clase
-        </button>
+        <div class="flex gap-2 shrink-0">
+          <button onclick="openProModal()" class="bg-currant text-white text-xs font-bold px-3.5 py-2 rounded-full hover:bg-slate transition shadow flex items-center gap-1">
+            <span>➕</span> Publicar Video
+          </button>
+          <button onclick="editarVideoActual()" class="bg-amber-500 text-white text-xs font-bold px-3.5 py-2 rounded-full hover:bg-amber-600 transition shadow flex items-center gap-1">
+            <span>✏️</span> Editar Video Actual
+          </button>
+        </div>
       </div>
 
       <!-- FILTROS Y NAVEGACIÓN MILENARIA -->
@@ -162,9 +167,14 @@
               <p id="main-player-author" class="text-xs text-rain mt-0.5">Instructor(a): NatyGlossGym · Sin peso y sin saltos</p>
             </div>
 
-            <button onclick="compartirWhatsApp('¡Miren esta clase en Natural Wellness!', window.location.href)" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-emerald-700 transition flex items-center gap-1 shrink-0 shadow">
-              💬 Compartir Clase
-            </button>
+            <div class="flex gap-2 shrink-0">
+              <button onclick="editarVideoActual()" class="bg-amber-500 text-white text-xs font-bold px-3.5 py-2 rounded-full hover:bg-amber-600 transition flex items-center gap-1 shadow">
+                ✏️ Editar Video
+              </button>
+              <button onclick="compartirWhatsApp('¡Miren esta clase en Natural Wellness!', window.location.href)" class="bg-emerald-600 text-white text-xs font-bold px-3.5 py-2 rounded-full hover:bg-emerald-700 transition flex items-center gap-1 shadow">
+                💬 Compartir
+              </button>
+            </div>
           </div>
         </div>
 
@@ -172,9 +182,11 @@
         <div class="lg:col-span-1 bg-white p-4 rounded-3xl border border-rain/20 shadow-sm flex flex-col gap-3">
           <div class="flex justify-between items-center border-b border-rain/15 pb-2">
             <h4 class="text-xs font-bold text-slate uppercase tracking-wide">▶ Catálogo Recomendado</h4>
-            <button onclick="openProModal()" class="text-[11px] font-bold text-currant hover:underline flex items-center gap-0.5">
-              <span>➕</span> Publicar
-            </button>
+            <div class="flex gap-2">
+              <button onclick="openProModal()" class="text-[11px] font-bold text-currant hover:underline flex items-center gap-0.5">
+                <span>➕</span> Publicar
+              </button>
+            </div>
           </div>
           <div id="sidebar-playlist" class="flex flex-col gap-3 max-h-[480px] overflow-y-auto no-scrollbar">
             <!-- Renderizado dinámicamente desde data.js -->
@@ -283,6 +295,58 @@
         <button onclick="toggleCamera()" class="px-4 py-2.5 rounded-full bg-dew/20 hover:bg-dew/40 text-xs font-bold">📹 Cámara</button>
         <button onclick="closeLiveRoomModal()" class="px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-xs font-bold">🔴 Salir de la Sala</button>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL EDITAR VIDEO -->
+  <div id="edit-video-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
+      <button onclick="closeEditModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
+      
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-amber-600 uppercase">✏️ Edición de Contenido</span>
+      </div>
+      <h3 class="text-xl font-bold text-slate mt-1">Editar o Corregir Video</h3>
+      <p class="text-xs text-slate/70 mt-1">Cambia el título, el nombre del autor o la dirección de YouTube si el video no carga.</p>
+
+      <form onsubmit="handleEditSubmit(event)" class="mt-4 space-y-3">
+        <input type="hidden" id="edit-video-id">
+        <input type="hidden" id="edit-video-category-origin">
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Categoría del Video</label>
+          <select id="edit-type" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs font-bold outline-none bg-white">
+            <option value="ejercicios">🏃 Movimientos Ancestrales</option>
+            <option value="recetas">🥗 Recetas Milenarias</option>
+            <option value="meditaciones">🧘 Sabiduría Ancestral & Autoayuda</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Título del Video</label>
+          <input type="text" id="edit-title" required placeholder="Título corregido del video" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Nombre del Profesional / Autor</label>
+          <input type="text" id="edit-name" required placeholder="Nombre del autor o instructor" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Enlace de YouTube (Nuevo o Corregido)</label>
+          <input type="url" id="edit-url" required placeholder="https://www.youtube.com/watch?v=... o https://youtu.be/..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+          <span class="text-[10px] text-rain mt-0.5 block">Copia la URL completa de YouTube para reparar videos que se vean en negro.</span>
+        </div>
+
+        <div class="pt-2 flex gap-2">
+          <button type="submit" class="flex-1 py-3 bg-amber-500 text-white text-xs font-bold rounded-xl hover:bg-amber-600 transition shadow flex items-center justify-center gap-1">
+            <span>💾</span> Guardar Cambios
+          </button>
+          <button type="button" onclick="eliminarVideoActual()" class="py-3 px-4 bg-red-100 text-red-700 hover:bg-red-200 text-xs font-bold rounded-xl transition">
+            🗑️ Eliminar
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -405,13 +469,14 @@
     Natural Wellness · Sabiduría Ancestral & Salud Integrativa
   </footer>
 
-  <!-- SCRIPT LÓGICO COMPLETO -->
+  <!-- SCRIPT LÓGICO COMPLETO DE FUNCIONALIDADES -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
     let localStream = null;
+    let videoActualData = { id: 'ejercicio-1', url: 'https://www.youtube.com/embed/ItMcmDCxD6A', titulo: 'Rutina GAP: Glúteos, Abdomen y Piernas', autor: 'NatyGlossGym', categoria: 'ejercicios' };
 
-    // OBTENER ID DE YOUTUBE
+    // OBTENER ID DE YOUTUBE ROBUSTO
     function obtenerYoutubeId(url) {
       if (!url) return '';
       if (url.includes('embed/')) return url.split('embed/')[1].split('?')[0];
@@ -420,7 +485,7 @@
       return '';
     }
 
-    // GENERAR MINIATURA
+    // GENERAR MINIATURA DE YOUTUBE
     function obtenerYoutubeThumbnail(url) {
       const id = obtenerYoutubeId(url);
       return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : 'wellnes app.jpg';
@@ -429,7 +494,7 @@
     // FORMATEAR URL DE EMBED
     function formatearYoutubeEmbed(url) {
       const id = obtenerYoutubeId(url);
-      return id ? `https://www.youtube.com/embed/${id}` : 'https://www.youtube.com/embed/5qap5aO4i9A';
+      return id ? `https://www.youtube.com/embed/${id}` : 'https://www.youtube.com/embed/ItMcmDCxD6A';
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -445,7 +510,7 @@
       filterPlaylist('Todas');
     });
 
-    // RENDERIZAR SALAS DESDE DATA.JS
+    // RENDERIZAR SALAS
     function renderRoomsFromData() {
       const grid = document.getElementById('rooms-grid');
       if (!grid || typeof CATALOGO_WELLNESS === 'undefined' || !CATALOGO_WELLNESS.salas) return;
@@ -499,13 +564,13 @@
       let videosFiltrados = [];
 
       if ((filtro === 'Todas' || filtro === 'ejercicios') && CATALOGO_WELLNESS.ejercicios) {
-        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.ejercicios.map(v => ({ ...v, concepto: '🏃 Movimientos Ancestrales' })));
+        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.ejercicios.map(v => ({ ...v, concepto: '🏃 Movimientos Ancestrales', catKey: 'ejercicios' })));
       }
       if ((filtro === 'Todas' || filtro === 'recetas') && CATALOGO_WELLNESS.recetas) {
-        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.recetas.map(r => ({ ...r, concepto: '🥗 Recetas Milenarias' })));
+        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.recetas.map(r => ({ ...r, concepto: '🥗 Recetas Milenarias', catKey: 'recetas' })));
       }
       if ((filtro === 'Todas' || filtro === 'meditaciones') && CATALOGO_WELLNESS.meditaciones) {
-        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.meditaciones.map(m => ({ ...m, concepto: '🧘 Sabiduría Ancestral' })));
+        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.meditaciones.map(m => ({ ...m, concepto: '🧘 Sabiduría Ancestral', catKey: 'meditaciones' })));
       }
 
       if (videosFiltrados.length === 0) {
@@ -517,18 +582,24 @@
         const thumbUrl = obtenerYoutubeThumbnail(video.youtubeUrl);
 
         const itemHTML = `
-          <div onclick="cambiarVideoPrincipal('${video.youtubeUrl}', '${video.titulo}', '${video.profesional}', '${video.concepto}')" class="flex gap-3 p-2 rounded-2xl hover:bg-lightbg cursor-pointer transition border border-transparent hover:border-rain/20 group">
-            <div class="w-28 aspect-video rounded-xl overflow-hidden bg-slate/10 shrink-0 relative border border-rain/20">
-              <img src="${thumbUrl}" alt="${video.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='wellnes app.jpg'">
-              <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span class="text-white text-xs">▶</span>
+          <div class="flex items-center gap-2 p-2 rounded-2xl hover:bg-lightbg transition border border-transparent hover:border-rain/20 group">
+            <div onclick="cambiarVideoPrincipal('${video.id}', '${video.youtubeUrl}', '${video.titulo}', '${video.profesional}', '${video.concepto}', '${video.catKey}')" class="flex gap-3 flex-1 cursor-pointer">
+              <div class="w-24 aspect-video rounded-xl overflow-hidden bg-slate/10 shrink-0 relative border border-rain/20">
+                <img src="${thumbUrl}" alt="${video.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='wellnes app.jpg'">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                  <span class="text-white text-xs">▶</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center">
+                <span class="text-[9px] font-bold text-rain">${video.concepto}</span>
+                <h5 class="text-xs font-bold text-slate line-clamp-2 leading-tight mt-0.5">${video.titulo}</h5>
+                <span class="text-[10px] text-slate/70 mt-1">${video.profesional}</span>
               </div>
             </div>
-            <div class="flex flex-col justify-center">
-              <span class="text-[9px] font-bold text-rain">${video.concepto}</span>
-              <h5 class="text-xs font-bold text-slate line-clamp-2 leading-tight mt-0.5">${video.titulo}</h5>
-              <span class="text-[10px] text-slate/70 mt-1">${video.profesional}</span>
-            </div>
+            
+            <button onclick="abrirModalEditarEspecifico('${video.id}', '${video.catKey}')" title="Editar video" class="p-2 text-amber-600 hover:bg-amber-100 rounded-xl transition text-xs font-bold">
+              ✏️
+            </button>
           </div>
         `;
         playlistContainer.insertAdjacentHTML('beforeend', itemHTML);
@@ -536,14 +607,113 @@
     }
 
     // CAMBIAR VIDEO EN EL REPRODUCTOR
-    function cambiarVideoPrincipal(embedUrl, titulo, autor, categoria) {
+    function cambiarVideoPrincipal(id, embedUrl, titulo, autor, categoria, catKey) {
       const formattedUrl = formatearYoutubeEmbed(embedUrl);
+      videoActualData = { id: id || 'item-temp', url: embedUrl, titulo: titulo, autor: autor, categoria: catKey || 'ejercicios' };
+
       document.getElementById('main-player-iframe').src = formattedUrl + '?autoplay=1';
       document.getElementById('main-player-title').innerText = titulo;
       document.getElementById('main-player-author').innerText = 'Instructor(a) / Autor: ' + autor;
       document.getElementById('main-player-category').innerText = categoria || '🎥 Clase Interactiva';
       
       document.getElementById('reproductor-seccion').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // EDITAR VIDEO ACTUAL EN EL REPRODUCTOR
+    function editarVideoActual() {
+      document.getElementById('edit-video-id').value = videoActualData.id;
+      document.getElementById('edit-video-category-origin').value = videoActualData.categoria;
+      document.getElementById('edit-type').value = videoActualData.categoria || 'ejercicios';
+      document.getElementById('edit-title').value = videoActualData.titulo;
+      document.getElementById('edit-name').value = videoActualData.autor;
+      document.getElementById('edit-url').value = videoActualData.url;
+
+      document.getElementById('edit-video-modal').classList.remove('hidden');
+      document.getElementById('edit-video-modal').classList.add('flex');
+    }
+
+    // EDITAR CUALQUIER VIDEO ESPECÍFICO DE LA LISTA
+    function abrirModalEditarEspecifico(id, catKey) {
+      let itemEncontrado = null;
+      if (CATALOGO_WELLNESS[catKey]) {
+        itemEncontrado = CATALOGO_WELLNESS[catKey].find(v => v.id === id);
+      }
+
+      if (!itemEncontrado) {
+        ['ejercicios', 'recetas', 'meditaciones'].forEach(key => {
+          if (!itemEncontrado && CATALOGO_WELLNESS[key]) {
+            const f = CATALOGO_WELLNESS[key].find(v => v.id === id);
+            if (f) { itemEncontrado = f; catKey = key; }
+          }
+        });
+      }
+
+      if (itemEncontrado) {
+        document.getElementById('edit-video-id').value = itemEncontrado.id;
+        document.getElementById('edit-video-category-origin').value = catKey;
+        document.getElementById('edit-type').value = catKey;
+        document.getElementById('edit-title').value = itemEncontrado.titulo;
+        document.getElementById('edit-name').value = itemEncontrado.profesional;
+        document.getElementById('edit-url').value = itemEncontrado.youtubeUrl;
+
+        document.getElementById('edit-video-modal').classList.remove('hidden');
+        document.getElementById('edit-video-modal').classList.add('flex');
+      }
+    }
+
+    function closeEditModal() {
+      document.getElementById('edit-video-modal').classList.add('hidden');
+      document.getElementById('edit-video-modal').classList.remove('flex');
+    }
+
+    // GUARDAR EDICIÓN DEL VIDEO
+    function handleEditSubmit(e) {
+      e.preventDefault();
+      const id = document.getElementById('edit-video-id').value;
+      const catOrigin = document.getElementById('edit-video-category-origin').value;
+      const newType = document.getElementById('edit-type').value;
+      const newTitle = document.getElementById('edit-title').value;
+      const newName = document.getElementById('edit-name').value;
+      const newUrl = document.getElementById('edit-url').value;
+
+      const embedUrl = formatearYoutubeEmbed(newUrl);
+
+      if (catOrigin && CATALOGO_WELLNESS[catOrigin]) {
+        CATALOGO_WELLNESS[catOrigin] = CATALOGO_WELLNESS[catOrigin].filter(v => v.id !== id);
+      }
+
+      const updatedItem = {
+        id: id || ("item-" + Date.now()),
+        titulo: newTitle,
+        profesional: newName,
+        categoria: newType,
+        youtubeUrl: embedUrl,
+        duracion: "20 minutos"
+      };
+
+      if (!CATALOGO_WELLNESS[newType]) CATALOGO_WELLNESS[newType] = [];
+      CATALOGO_WELLNESS[newType].unshift(updatedItem);
+
+      filterPlaylist('Todas');
+      cambiarVideoPrincipal(updatedItem.id, embedUrl, newTitle, newName, newType === 'recetas' ? '🥗 Recetas Milenarias' : newType === 'meditaciones' ? '🧘 Sabiduría Ancestral' : '🏃 Movimientos Ancestrales', newType);
+
+      closeEditModal();
+      alert('✨ ¡Video corregido y actualizado exitosamente!');
+    }
+
+    // ELIMINAR VIDEO
+    function eliminarVideoActual() {
+      const id = document.getElementById('edit-video-id').value;
+      if (confirm('¿Estás seguro de que deseas eliminar este video?')) {
+        ['ejercicios', 'recetas', 'meditaciones'].forEach(key => {
+          if (CATALOGO_WELLNESS[key]) {
+            CATALOGO_WELLNESS[key] = CATALOGO_WELLNESS[key].filter(v => v.id !== id);
+          }
+        });
+        filterPlaylist('Todas');
+        closeEditModal();
+        alert('🗑️ Video eliminado.');
+      }
     }
 
     // PUBLICAR NUEVO VIDEO
@@ -569,7 +739,7 @@
       if (typeof CATALOGO_WELLNESS !== 'undefined' && CATALOGO_WELLNESS[type]) {
         CATALOGO_WELLNESS[type].unshift(newItem);
         filterPlaylist('Todas');
-        cambiarVideoPrincipal(embedUrl, title, name, '✨ Nuevo Video Publicado');
+        cambiarVideoPrincipal(newItem.id, embedUrl, title, name, type === 'recetas' ? '🥗 Recetas Milenarias' : type === 'meditaciones' ? '🧘 Sabiduría Ancestral' : '🏃 Movimientos Ancestrales', type);
       }
 
       closeProModal();
