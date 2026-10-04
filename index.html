@@ -43,7 +43,7 @@
     <p class="text-xs text-rain mt-1 font-semibold animate-pulse">Cargando Ecosistema LAWENMOLL...</p>
   </div>
 
-  <!-- HEADER CON SELECTOR DE IDIOMAS Y PANEL ADMIN -->
+  <!-- HEADER -->
   <header class="border-b border-rain/20 bg-white/90 p-4 sticky top-0 z-40 backdrop-blur-md shadow-sm">
     <div class="max-w-6xl mx-auto flex justify-between items-center w-full">
       <div class="flex items-center gap-3">
@@ -70,7 +70,7 @@
           </select>
         </div>
 
-        <!-- Botón de Panel de Administración Protegido por PIN -->
+        <!-- Botón de Panel Admin / Profesor -->
         <button id="admin-toggle-btn" onclick="openAdminModal()" class="rounded-full bg-slate text-white px-3 py-1.5 text-xs font-bold hover:bg-rain transition shadow-sm flex items-center gap-1">
           ⚙️ Panel Admin
         </button>
@@ -95,26 +95,15 @@
           </div>
           <h2 id="hero-title" class="text-3xl md:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-sm text-slate/80 mt-2">
-            Recetas terapéuticas descargables en PDF con logo oficial, rutinas guiadas y salas virtuales adaptadas.
+            Salas virtuales con videollamada en vivo, recetas descargables en PDF y videotecas de ejercicios adaptadas.
           </p>
-          
-          <div class="mt-4 p-4 rounded-2xl bg-white/90 border border-rain/20 shadow-sm text-xs text-slate/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <img src="lawenmoll_logo.jpg" alt="Logo Lawenmoll" class="w-10 h-10 rounded-full object-cover border border-rain/30 shrink-0" onerror="this.src='wellnes app.jpg'">
-              <div>
-                <strong class="text-rain font-bold text-sm block">Conexión con LAWENMOLL</strong>
-                <p class="mt-0.5">Evaluación médica integrativa unida a la nutrición clínica y movimiento consciente.</p>
-              </div>
-            </div>
-            <a href="https://lawenmoll.vercel.app" target="_blank" class="shrink-0 bg-rain text-white px-3 py-1.5 rounded-xl font-semibold hover:bg-slate transition text-[11px]">Ver Plataforma Médica →</a>
-          </div>
         </div>
 
         <div class="flex flex-col gap-3 w-full md:w-auto">
           <button onclick="openAdminModal()" class="text-center rounded-2xl bg-currant text-white px-6 py-3 text-xs font-bold hover:bg-slate transition shadow-md flex items-center justify-center gap-2">
-            <span>⚙️</span> Panel Admin (Salas & Videos)
+            <span>⚙️</span> Entrar como Profesor(a) (PIN: 1234)
           </button>
-          <a href="#salas" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Ver Salas Virtuales</a>
+          <a href="#salas" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Probar Salas Virtuales (4)</a>
         </div>
       </div>
     </section>
@@ -123,246 +112,126 @@
     <div id="admin-banner" class="hidden mb-6 p-4 rounded-2xl bg-amber-50 border-2 border-amber-400 text-amber-900 flex justify-between items-center text-xs font-bold shadow-sm">
       <div class="flex items-center gap-2">
         <span class="text-lg">🔓</span>
-        <span>MODO ADMIN ACTIVO: Tienes acceso completo para agregar/eliminar videos y ajustar capacidades/precios de las salas virtuales.</span>
+        <span>MODO PROFESOR / ADMIN ACTIVO: Puedes agregar infinitas salas nuevas, ajustar capacidades y transmitir clases.</span>
       </div>
       <button onclick="closeAdminMode()" class="bg-amber-800 text-white px-3 py-1 rounded-xl text-[11px] hover:bg-amber-900">Bloquear y Salir</button>
     </div>
 
-    <!-- SECCIÓN RECETAS -->
-    <section id="recetas" class="pb-10">
-      <div class="mb-4">
-        <h3 class="text-xl font-bold text-slate">🥗 Nutrición Clínica & Recetas Terapéuticas</h3>
-        <p class="text-xs text-rain">Filtra por condición médica y descarga la ficha en PDF con logo oficial</p>
-      </div>
-
-      <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
-        <button onclick="filterRecipe('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-1.5 text-xs font-bold transition shrink-0">✨ Todas las Recetas</button>
-        <button onclick="filterRecipe('Gluten')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-4 py-1.5 text-xs font-bold hover:bg-amber-100 transition shrink-0">🌾 Sin Gluten / Celíacos</button>
-        <button onclick="filterRecipe('Lactosa')" class="rounded-full border border-blue-300 bg-blue-50 text-blue-900 px-4 py-1.5 text-xs font-bold hover:bg-blue-100 transition shrink-0">🥛 Sin Lactosa / Deslactosado</button>
-        <button onclick="filterRecipe('BajoIG')" class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 px-4 py-1.5 text-xs font-bold hover:bg-emerald-100 transition shrink-0">🩺 Bajo IG / Diabetes</button>
-        <button onclick="filterRecipe('Alergenos')" class="rounded-full border border-purple-300 bg-purple-50 text-purple-900 px-4 py-1.5 text-xs font-bold hover:bg-purple-100 transition shrink-0">⚠️ Libre de Alérgenos / APLV</button>
-        <button onclick="filterRecipe('Vegano')" class="rounded-full border border-green-300 bg-green-50 text-green-900 px-4 py-1.5 text-xs font-bold hover:bg-green-100 transition shrink-0">🌱 Vegano / Plant Based</button>
-      </div>
-
-      <div id="recipe-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-4">
-        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4 relative" data-tag="Gluten BajoIG Vegano">
-          <button onclick="deleteCard(this)" class="admin-delete-btn hidden absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow z-20 hover:bg-red-700">🗑️ Eliminar</button>
-          <div>
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta Médica', 'Chef Camila Ríos', '@camila_nutri')">
-              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Bowl Avena" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🩺 Bajo IG / Sin Azúcar</span>
-            </div>
-            <div class="flex flex-wrap gap-1 mt-3">
-              <span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌾 Sin Gluten</span>
-              <span class="bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🩺 Certificado Bajo IG</span>
-              <span class="bg-green-100 text-green-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌱 Vegano</span>
-            </div>
-            <h4 class="font-bold text-slate text-base mt-2">Bowl de avena, chía y canela bajo IG</h4>
-            <p class="text-xs text-slate/70 mt-1">Apto para diabetes, insulinorresistencia y celiaquía.</p>
-          </div>
-          <div class="mt-4 grid grid-cols-2 gap-2">
-            <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta', 'Chef Camila Ríos', '@camila_nutri')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video</button>
-            <button onclick="downloadRecipePDF('Bowl de avena, chía y canela bajo IG', 'Sin Gluten, Bajo IG, Sin Azúcar Añadida, Vegano', '10 minutos', 'Chef Camila Ríos (@camila_nutri)', '• 1/2 taza de avena cert. sin gluten\n• 1 cda de semillas de chía\n• 1 cdta de canela en polvo\n• 1/2 taza de bebida vegetal sin azúcar')" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl hover:bg-dew/50 transition flex items-center justify-center gap-1">📥 Ficha PDF</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN SALAS VIRTUALES CON RENDERIZADO DINÁMICO -->
-    <section id="salas" class="py-12 border-t border-rain/20">
+    <!-- SECCIÓN SALAS VIRTUALES (LAS 4 SALAS OFICIALES) -->
+    <section id="salas" class="py-8 border-t border-rain/20">
       <div class="mb-6 flex justify-between items-end">
         <div>
-          <h2 class="text-2xl font-bold text-slate">Salas Virtuales por Hora o Semana</h2>
+          <h2 class="text-2xl font-bold text-slate">Salas Virtuales Interactivas</h2>
           <p class="text-sm text-rain mt-1">
-            Espacios adaptados para sesiones privadas, grupales, meditaciones y talleres clínicos.
+            Espacios adaptados para transmisión en vivo, consultas 1:1, talleres de cocina y meditaciones.
           </p>
         </div>
-        <button onclick="openAdminModal()" class="hidden admin-delete-btn bg-currant text-white text-xs font-bold px-3 py-1.5 rounded-xl hover:bg-slate transition">➕ Agregar / Editar Sala (Admin)</button>
+        <button onclick="openAdminModal()" class="hidden admin-delete-btn bg-currant text-white text-xs font-bold px-3 py-1.5 rounded-xl hover:bg-slate transition">➕ Crear Nueva Sala (Admin)</button>
       </div>
 
       <!-- GRID DINÁMICO DE SALAS VIRTUALES -->
       <div id="rooms-grid" class="grid gap-6 md:grid-cols-2">
-        <!-- Renderizado dinámicamente vía JavaScript -->
+        <!-- Se renderizan automáticamente vía JS (Lotus, Bosque, Cielo y Raíz) -->
       </div>
     </section>
 
   </main>
 
-  <!-- MODAL ADMIN CON PESTAÑAS: VIDEOS vs SALAS VIRTUALES -->
-  <div id="add-content-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative max-h-[90vh] overflow-y-auto">
-      <button onclick="closeAddContentModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
-      
-      <span class="text-xs font-bold text-rain uppercase">⚙️ Panel de Control Administrador</span>
-      <h3 class="text-xl font-bold text-slate mt-1">Gestión de la Aplicación</h3>
-
-      <!-- Pestañas del Panel Admin -->
-      <div class="flex gap-2 my-4 border-b border-rain/20 pb-2">
-        <button id="tab-videos-btn" onclick="switchAdminTab('videos')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-slate text-white">📹 Videos / Recetas</button>
-        <button id="tab-rooms-btn" onclick="switchAdminTab('rooms')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-lightbg text-slate hover:bg-dew/30">🏛️ Salas Virtuales & Capacidad</button>
+  <!-- MODAL REPRODUCTOR / SIMULADOR DE VIDEOLLAMADA DE SALA VIRTUAL EN VIVO -->
+  <div id="live-room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
+    <div class="bg-slate rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-dew/30 relative text-white flex flex-col">
+      <!-- Header de la Videollamada -->
+      <div class="p-4 bg-creosote border-b border-dew/20 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <span class="w-3 h-3 rounded-full bg-red-500 animate-ping"></span>
+          <h3 id="live-room-title" class="text-base font-bold text-dew"></h3>
+          <span id="live-room-capacity" class="text-xs bg-rain/30 px-2.5 py-0.5 rounded-full text-dew"></span>
+        </div>
+        <button onclick="closeLiveRoomModal()" class="bg-dew/20 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-red-600 transition">&times;</button>
       </div>
 
-      <!-- FORMULARIO 1: VIDEOS Y RECETAS -->
-      <form id="admin-form-videos" onsubmit="handleAddNewContent(event)" class="space-y-3">
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Tipo de Contenido</label>
-          <select id="new-type" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none font-bold">
-            <option value="receta">🥗 Receta Médica / Terapéutica</option>
-            <option value="ejercicio">🏋️️‍♀️ Rutina de Ejercicio / Movilidad</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Título</label>
-          <input type="text" id="new-title" required placeholder="Ej. Smoothie desinflamante bajo IG" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Enlace de YouTube</label>
-          <input type="url" id="new-url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Categoría</label>
-          <select id="new-category" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-            <option value="Gluten BajoIG">🌾 Sin Gluten / Bajo IG</option>
-            <option value="Lactosa Alergenos">🥛 Sin Lactosa / APLV</option>
-            <option value="Vegano">🌱 Vegano / Plant Based</option>
-            <option value="Full Body">💪 Full Body</option>
-            <option value="Tren Inferior">🦵 Tren Inferior</option>
-            <option value="Cardio">🔥 Cardio y HIIT</option>
-          </select>
-        </div>
-
-        <button type="submit" class="w-full mt-2 py-3 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition">Publicar Contenido</button>
-      </form>
-
-      <!-- FORMULARIO 2: GESTIÓN DE SALAS VIRTUALES Y CAPACIDAD -->
-      <form id="admin-form-rooms" onsubmit="handleAddNewRoom(event)" class="hidden space-y-3">
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Nombre de la Sala Virtual</label>
-          <input type="text" id="room-name" required placeholder="Ej. Sala Raíz, Sala Cielo o Sala Lotus" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate mb-1">Capacidad de Personas</label>
-            <input type="text" id="room-capacity" required placeholder="Ej. Capacidad: 6 VIP Cámara" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+      <!-- Pantalla Principal de la Transmisión / Videollamada -->
+      <div class="relative aspect-video bg-black flex items-center justify-center">
+        <!-- Simulación de Cámara del Profesor -->
+        <div class="text-center p-6">
+          <div class="w-24 h-24 mx-auto rounded-full bg-dew/20 border-2 border-dew flex items-center justify-center text-4xl mb-3 shadow-lg">
+            👩‍🏫
           </div>
-          <div>
-            <label class="block text-xs font-bold text-slate mb-1">Valor Hora (CLP)</label>
-            <input type="number" id="room-price-hr" required value="15000" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none font-bold">
-          </div>
+          <h4 class="text-lg font-bold text-dew">Transmisión Activa del Profesor(a)</h4>
+          <p class="text-xs text-rain mt-1">Sala conectada vía WebRTC / Enlace seguro de videollamada</p>
+          <span class="inline-block mt-3 bg-emerald-800 text-emerald-200 text-xs px-3 py-1 rounded-full font-mono">CLAVE ACTIVA: <strong id="live-access-code">WELL-8942-X</strong></span>
         </div>
 
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Etiqueta de Tipo de Sala</label>
-          <input type="text" id="room-tag" required placeholder="Ej. Híbrida Live, Movilidad o Consultas 1:1" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+        <!-- Mosaico de Alumnos / Participantes de la Sala -->
+        <div class="absolute bottom-4 right-4 flex gap-2">
+          <div class="w-16 h-12 bg-creosote/90 border border-dew/40 rounded-xl flex items-center justify-center text-xs">👤 Alumno 1</div>
+          <div class="w-16 h-12 bg-creosote/90 border border-dew/40 rounded-xl flex items-center justify-center text-xs">👤 Alumno 2</div>
         </div>
+      </div>
 
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Descripción del Espacio</label>
-          <textarea id="room-desc" required placeholder="Describe para qué terapias o actividades está equipada esta sala..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none h-20"></textarea>
-        </div>
-
-        <button type="submit" class="w-full mt-2 py-3 bg-rain text-white text-xs font-bold rounded-xl hover:bg-slate transition">Guardar y Renderizar Sala</button>
-      </form>
-
+      <!-- Barra de Controles para el Profesor (Micrófono, Cámara, Pantalla) -->
+      <div class="p-4 bg-creosote border-t border-dew/20 flex justify-center items-center gap-4">
+        <button onclick="alert('Micrófono activado/desactivado')" class="p-3 rounded-full bg-dew/20 hover:bg-dew/40 transition text-sm">🎙️ Micrófono</button>
+        <button onclick="alert('Cámara activada/desactivada')" class="p-3 rounded-full bg-dew/20 hover:bg-dew/40 transition text-sm">📹 Cámara</button>
+        <button onclick="alert('Compartiendo pantalla con los alumnos')" class="p-3 rounded-full bg-dew/20 hover:bg-dew/40 transition text-sm">🖥️ Compartir Pantalla</button>
+        <button onclick="closeLiveRoomModal()" class="px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 transition text-xs font-bold">🔴 Salir de la Sala</button>
+      </div>
     </div>
   </div>
 
-  <!-- MODAL DE PIN ADMIN -->
+  <!-- MODAL ADMIN CON PIN 1234 -->
   <div id="admin-pin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
       <span class="text-3xl">🔒</span>
-      <h3 class="text-lg font-bold text-slate mt-2">Acceso Exclusivo Administrador</h3>
-      <p class="text-xs text-slate/70 mt-1">Ingresa tu clave de acceso para gestionar salas y videos.</p>
+      <h3 class="text-lg font-bold text-slate mt-2">Acceso Exclusivo Profesor / Admin</h3>
+      <p class="text-xs text-slate/70 mt-1">Ingresa tu clave para administrar o crear nuevas salas.</p>
 
       <form onsubmit="verifyAdminPIN(event)" class="mt-4 space-y-3">
         <input type="password" id="admin-pin-input" required placeholder="PIN (Default: 1234)" class="w-full text-center p-3 rounded-xl border border-rain/30 text-sm font-bold outline-none tracking-widest">
-        <button type="submit" class="w-full bg-slate text-white text-xs font-bold py-2.5 rounded-xl hover:bg-rain transition">Desbloquear Panel</button>
+        <button type="submit" class="w-full bg-slate text-white text-xs font-bold py-2.5 rounded-xl hover:bg-rain transition">Entrar como Profesor(a)</button>
       </form>
     </div>
   </div>
 
-  <!-- MODAL DE RESERVA PÚBLICA / PRUEBA EN VIVO -->
-  <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
+  <!-- MODAL CREAR NUEVAS SALAS ILIMITADAS -->
+  <div id="add-content-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
-      <button onclick="closeBookingModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
+      <button onclick="closeAddContentModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
-      <span class="text-xs font-bold text-rain uppercase">📅 Reserva de Sala Virtual</span>
-      <h3 id="booking-room-name" class="text-xl font-bold text-slate mt-1"></h3>
+      <span class="text-xs font-bold text-rain uppercase">➕ Panel Administrador</span>
+      <h3 class="text-xl font-bold text-slate mt-1">Crear Nueva Sala Virtual</h3>
 
-      <form id="booking-form" onsubmit="processBooking(event)" class="mt-4 space-y-3">
+      <form onsubmit="handleAddNewRoom(event)" class="mt-4 space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Nombre de la Nueva Sala</label>
+          <input type="text" id="room-name" required placeholder="Ej. Sala Sol, Sala Terapia o Sala Danza" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+        </div>
+
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-bold text-slate mb-1">Fecha</label>
-            <input type="date" required class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+            <label class="block text-xs font-bold text-slate mb-1">Capacidad Máxima de Personas</label>
+            <input type="text" id="room-capacity" required placeholder="Ej. Capacidad: 15 personas" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate mb-1">Duración / Plan</label>
-            <select id="booking-duration" onchange="updateTotal()" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none font-bold">
-              <option value="1">1 Hora</option>
-              <option value="2">2 Horas</option>
-              <option value="3">3 Horas</option>
-              <option value="week">1 Semana Completa ($80.000 CLP)</option>
-            </select>
+            <label class="block text-xs font-bold text-slate mb-1">Precio por Hora (CLP)</label>
+            <input type="number" id="room-price-hr" required value="15000" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none font-bold">
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate mb-1">Nombre Completo</label>
-          <input type="text" id="user-name" required placeholder="Ej. María González" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+          <label class="block text-xs font-bold text-slate mb-1">Etiqueta Especial</label>
+          <input type="text" id="room-tag" required placeholder="Ej. Streaming Live, Taller o Consultas" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate mb-1">Correo Electrónico (Para enviar tu clave)</label>
-          <input type="email" id="user-email" required placeholder="tu-correo@gmail.com" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+          <label class="block text-xs font-bold text-slate mb-1">Descripción del Espacio</label>
+          <textarea id="room-desc" required placeholder="Escribe el propósito de la sala..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none h-20"></textarea>
         </div>
 
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Medio de Pago</label>
-          <select id="booking-payment-method" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-            <option value="webpay">💳 Webpay.cl / Transbank (Débito y Crédito)</option>
-            <option value="prepago">📱 Prepago (MACH / Tenpo / Chek)</option>
-            <option value="transf">🏦 Transferencia Bancaria Directa</option>
-          </select>
-        </div>
-
-        <div class="p-3.5 rounded-2xl bg-dew/20 border border-dew/50 flex justify-between items-center my-2">
-          <span class="text-xs font-bold text-slate">TOTAL A PAGAR:</span>
-          <span id="booking-total-display" class="text-base font-extrabold text-slate">$15.000 CLP</span>
-        </div>
-
-        <button type="submit" class="w-full bg-currant text-white text-xs font-bold py-3 rounded-xl hover:bg-slate transition shadow">Pagar & Generar Clave de Acceso</button>
+        <button type="submit" class="w-full mt-2 py-3 bg-rain text-white text-xs font-bold rounded-xl hover:bg-slate transition">Crear & Renderizar Sala</button>
       </form>
-
-      <!-- PANTALLA DE CONFIRMACIÓN -->
-      <div id="booking-success" class="hidden mt-4 p-4 rounded-2xl bg-dew/20 border border-dew/50 text-center">
-        <span class="text-2xl">🎉</span>
-        <h4 class="font-bold text-slate text-sm mt-1">¡Reserva / Prueba Confirmada!</h4>
-        <p class="text-xs text-slate/80 mt-1">Hemos enviado el detalle del pago y la clave de acceso a tu correo:</p>
-        <div class="my-3 p-3 bg-white rounded-xl border border-rain/20 font-mono font-bold text-slate text-sm">
-          CLAVE ÚNICA: <span id="access-code" class="text-rain">WELL-8942-X</span>
-        </div>
-        <p id="total-confirmed-text" class="text-xs font-bold text-slate mb-2"></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL REPRODUCTOR DE VIDEO -->
-  <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-rain/20 relative">
-      <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-slate text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain transition">&times;</button>
-      <div class="aspect-video w-full bg-black">
-        <iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <div class="p-6">
-        <span id="modal-category" class="text-xs font-bold text-rain uppercase"></span>
-        <h3 id="modal-title" class="text-xl font-bold text-slate mt-1"></h3>
-      </div>
     </div>
   </div>
 
@@ -371,25 +240,40 @@
   </footer>
 
   <script>
-    let currentRoomPrice = 15000;
     let isAdminActive = false;
 
-    // ESTADO INICIAL DE LAS SALAS VIRTUALES
+    // LAS 4 SALAS VIRTUALES OFICIALES CARGADAS
     let virtualRooms = [
       {
         id: 'room-1',
         name: 'Sala Lotus',
         capacity: '⭐ 4.9 (140 reseñas) · Capacidad: 6 personas (VIP Cámara)',
-        tag: 'Híbrida Live',
-        desc: 'Espacio íntimo para meditación, breathwork, mindfulness y círculos de palabra.',
+        tag: 'Mindfulness & Breathwork',
+        desc: 'Espacio íntimo con luz suave para meditación, breathwork y círculos de palabra.',
         priceHr: 15000
       },
       {
         id: 'room-2',
         name: 'Sala Bosque',
         capacity: '⭐ 4.8 (95 reseñas) · Capacidad: 10 personas',
-        tag: 'Movilidad',
+        tag: 'Movilidad & Core',
         desc: 'Equipada para movilidad adaptada en silla, fortalecimiento de core y HIIT de bajo impacto.',
+        priceHr: 15000
+      },
+      {
+        id: 'room-3',
+        name: 'Sala Cielo',
+        capacity: '⭐ 4.9 (110 reseñas) · Capacidad: 8 personas',
+        tag: 'Cocina Demo & Streaming',
+        desc: 'Cocina demostrativa en vivo con cámara y buena acústica para talleres culinarios.',
+        priceHr: 15000
+      },
+      {
+        id: 'room-4',
+        name: 'Sala Raíz',
+        capacity: '⭐ 5.0 (80 reseñas) · Capacidad: 2 personas (1:1)',
+        tag: 'Consultas Privadas',
+        desc: 'Cabina privada para consultas individuales de nutrición clínica, seguimiento y coaching.',
         priceHr: 15000
       }
     ];
@@ -403,7 +287,7 @@
       }, 800);
     });
 
-    // RENDERIZADO DINÁMICO DE SALAS VIRTUALES
+    // RENDERIZADO DINÁMICO DE LAS SALAS
     function renderRooms() {
       const grid = document.getElementById('rooms-grid');
       grid.innerHTML = '';
@@ -411,7 +295,7 @@
       virtualRooms.forEach(room => {
         const roomHTML = `
           <div class="bg-white rounded-3xl p-6 border border-rain/20 shadow-sm flex flex-col justify-between relative">
-            ${isAdminActive ? `<button onclick="deleteRoom('\${room.id}')" class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10 hover:bg-red-700">🗑️ Eliminar Sala</button>` : ''}
+            ${isAdminActive ? `<button onclick="deleteRoom('\${room.id}')" class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10 hover:bg-red-700">🗑️ Eliminar</button>` : ''}
             <div>
               <div class="flex justify-between items-start">
                 <div>
@@ -423,12 +307,12 @@
               <p class="text-xs text-slate/80 mt-2">${room.desc}</p>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-rain/15 flex justify-between items-center">
+            <div class="mt-6 pt-4 border-t border-rain/15 flex justify-between items-center gap-2">
               <div>
                 <span class="text-sm font-bold text-slate block">$${room.priceHr.toLocaleString('es-CL')} / hr</span>
                 <span class="text-[10px] text-rain">Valor base x hora</span>
               </div>
-              <button onclick="openBookingModal('${room.name}', ${room.priceHr})" class="bg-rain text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">Probar / Reservar & Ver Total</button>
+              <button onclick="testLiveRoom('${room.name}', '${room.capacity}')" class="bg-currant text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">🎥 Probar Videollamada</button>
             </div>
           </div>
         `;
@@ -436,19 +320,18 @@
       });
     }
 
-    // PESTAÑAS DEL PANEL ADMIN
-    function switchAdminTab(tab) {
-      if (tab === 'videos') {
-        document.getElementById('admin-form-videos').classList.remove('hidden');
-        document.getElementById('admin-form-rooms').classList.add('hidden');
-        document.getElementById('tab-videos-btn').className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-slate text-white';
-        document.getElementById('tab-rooms-btn').className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-lightbg text-slate hover:bg-dew/30';
-      } else {
-        document.getElementById('admin-form-videos').classList.add('hidden');
-        document.getElementById('admin-form-rooms').classList.remove('hidden');
-        document.getElementById('tab-rooms-btn').className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-slate text-white';
-        document.getElementById('tab-videos-btn').className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-lightbg text-slate hover:bg-dew/30';
-      }
+    function testLiveRoom(name, capacity) {
+      const code = 'WELL-' + Math.floor(1000 + Math.random() * 9000) + '-X';
+      document.getElementById('live-room-title').innerText = name + ' (En Vivo)';
+      document.getElementById('live-room-capacity').innerText = capacity;
+      document.getElementById('live-access-code').innerText = code;
+      document.getElementById('live-room-modal').classList.remove('hidden');
+      document.getElementById('live-room-modal').classList.add('flex');
+    }
+
+    function closeLiveRoomModal() {
+      document.getElementById('live-room-modal').classList.add('hidden');
+      document.getElementById('live-room-modal').classList.remove('flex');
     }
 
     function openAdminModal() {
@@ -474,9 +357,9 @@
         document.getElementById('admin-banner').classList.remove('hidden');
         document.querySelectorAll('.admin-delete-btn').forEach(btn => btn.classList.remove('hidden'));
         renderRooms();
-        alert('¡Acceso concedido! Ahora puedes gestionar salas, capacidades y videos.');
+        alert('¡Acceso concedido! Bienvenido al Panel de Profesor.');
       } else {
-        alert('PIN incorrecto. Acceso denegado.');
+        alert('PIN incorrecto. Ingresa 1234');
       }
     }
 
@@ -485,12 +368,6 @@
       document.getElementById('admin-banner').classList.add('hidden');
       document.querySelectorAll('.admin-delete-btn').forEach(btn => btn.classList.add('hidden'));
       renderRooms();
-    }
-
-    function deleteCard(btn) {
-      if (confirm('¿Estás seguro de que deseas eliminar este contenido?')) {
-        btn.closest('.recipe-card, .workout-card').remove();
-      }
     }
 
     function deleteRoom(id) {
@@ -518,171 +395,29 @@
       const tag = document.getElementById('room-tag').value;
       const desc = document.getElementById('room-desc').value;
 
-      const newRoom = {
+      virtualRooms.push({
         id: 'room-' + Date.now(),
         name,
         capacity: '⭐ Capacidad: ' + capacity,
         tag,
         desc,
         priceHr
-      };
+      });
 
-      virtualRooms.push(newRoom);
       renderRooms();
       closeAddContentModal();
-      alert('¡Nueva Sala Virtual agregada y configurada con éxito!');
-    }
-
-    function handleAddNewContent(e) {
-      e.preventDefault();
-      alert('¡Contenido publicado con éxito!');
-      closeAddContentModal();
-    }
-
-    function downloadRecipePDF(title, tags, prepTime, chefName, ingredients) {
-      const printWindow = window.open('', '_blank');
-      printWindow.document.write(`
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-          <meta charset="UTF-8">
-          <title>Ficha Nutricional - ${title}</title>
-          <style>
-            body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px; color: #2B4251; line-height: 1.6; }
-            .header { border-bottom: 3px solid #5B7D87; padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
-            .logo-box { display: flex; align-items: center; gap: 15px; }
-            .logo-img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid #5B7D87; }
-            .logo-title { font-size: 24px; font-weight: bold; color: #5B7D87; }
-            .subtitle { font-size: 12px; color: #45415E; font-weight: bold; }
-            .recipe-title { font-size: 22px; font-weight: bold; color: #2B4251; margin-top: 10px; margin-bottom: 15px; }
-            .box { background: #F4F8F9; border: 1px solid #91B3BC; padding: 18px; border-radius: 16px; margin-bottom: 20px; }
-            .box-title { font-size: 13px; font-weight: bold; color: #5B7D87; text-transform: uppercase; margin-bottom: 8px; }
-            .ingredients-list { white-space: pre-line; font-size: 13px; }
-            .footer { margin-top: 40px; border-top: 1px solid #CBD5E1; padding-top: 15px; font-size: 11px; text-align: center; color: #5B7D87; }
-          </style>
-        </head>
-        <body>
-          <div class="header">
-            <div class="logo-box">
-              <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="logo-img" onerror="this.src='wellnes app.jpg'">
-              <div>
-                <div class="logo-title">Natural Wellness</div>
-                <div class="subtitle">Ecosistema Digital LAWENMOLL · Nutrición Terapéutica</div>
-              </div>
-            </div>
-            <div style="text-align: right; font-size: 11px;">
-              Fecha: ${new Date().toLocaleDateString('es-CL')}<br>
-              Documento Oficial Imprimible
-            </div>
-          </div>
-
-          <div class="recipe-title">${title}</div>
-          <p style="font-size: 13px; margin-bottom: 5px;"><strong>Chef / Nutricionista:</strong> ${chefName}</p>
-          <p style="font-size: 13px; margin-bottom: 20px;"><strong>Tiempo estimado:</strong> ${prepTime}</p>
-
-          <div class="box">
-            <div class="box-title">Certificaciones y Condiciones Médicas Aprobadas</div>
-            <div style="font-size: 13px; font-weight: bold; color: #2B4251;">${tags}</div>
-          </div>
-
-          <div class="box">
-            <div class="box-title">Ingredientes y Preparación Terapéutica</div>
-            <div class="ingredients-list">${ingredients}</div>
-          </div>
-
-          <div class="footer">
-            Ficha Nutricional Oficial emitida por Natural Wellness & LAWENMOLL · www.lawenmoll.vercel.app
-          </div>
-
-          <script>
-            window.onload = function() {
-              window.print();
-            }
-          <\/script>
-        </body>
-        </html>
-      `);
-      printWindow.document.close();
-    }
-
-    function filterRecipe(tag) {
-      const cards = document.querySelectorAll('.recipe-card');
-      cards.forEach(card => {
-        const tags = card.getAttribute('data-tag');
-        if (tag === 'Todas' || tags.includes(tag)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    function openBookingModal(roomName, price) {
-      currentRoomPrice = price;
-      document.getElementById('booking-room-name').innerText = roomName;
-      document.getElementById('booking-duration').value = "1";
-      updateTotal();
-
-      document.getElementById('booking-form').classList.remove('hidden');
-      document.getElementById('booking-success').classList.add('hidden');
-      document.getElementById('booking-modal').classList.remove('hidden');
-      document.getElementById('booking-modal').classList.add('flex');
-    }
-
-    function updateTotal() {
-      const duration = document.getElementById('booking-duration').value;
-      let total = 0;
-      if (duration === 'week') {
-        total = 80000;
-      } else {
-        total = currentRoomPrice * parseInt(duration);
-      }
-      document.getElementById('booking-total-display').innerText = '\$' + total.toLocaleString('es-CL') + ' CLP';
-    }
-
-    function closeBookingModal() {
-      document.getElementById('booking-modal').classList.add('hidden');
-      document.getElementById('booking-modal').classList.remove('flex');
-    }
-
-    function processBooking(e) {
-      e.preventDefault();
-      const code = 'WELL-' + Math.floor(1000 + Math.random() * 9000) + '-X';
-      const total = document.getElementById('booking-total-display').innerText;
-
-      document.getElementById('access-code').innerText = code;
-      document.getElementById('total-confirmed-text').innerText = 'Total Reservado: ' + total;
-      document.getElementById('booking-form').classList.add('hidden');
-      document.getElementById('booking-success').classList.remove('hidden');
-    }
-
-    function openModal(embedUrl, title, category, profName, profIg) {
-      document.getElementById('modal-iframe').src = embedUrl;
-      document.getElementById('modal-title').innerText = title;
-      document.getElementById('modal-category').innerText = category;
-      document.getElementById('video-modal').classList.remove('hidden');
-      document.getElementById('video-modal').classList.add('flex');
-    }
-
-    function closeModal() {
-      document.getElementById('modal-iframe').src = '';
-      document.getElementById('video-modal').classList.add('hidden');
-      document.getElementById('video-modal').classList.remove('flex');
+      alert('¡Nueva Sala Virtual agregada con éxito!');
     }
 
     function changeLanguage(lang) {
       if (lang === 'en') {
         document.getElementById('hero-title').innerText = "Nutrition, Movement and Mind in Harmony";
-        document.getElementById('hero-desc').innerText = "Access downloadable PDF therapeutic recipes and guided routines from LAWENMOLL.";
       } else if (lang === 'pt') {
         document.getElementById('hero-title').innerText = "Nutrição, Movimento e Mente em Harmonia";
-        document.getElementById('hero-desc').innerText = "Acesse receitas terapêuticas baixáveis em PDF e rotinas guiadas da rede LAWENMOLL.";
       } else if (lang === 'map') {
         document.getElementById('hero-title').innerText = "Küme Mongen: Iyael, Neyen ka Rakiduam";
-        document.getElementById('hero-desc').innerText = "Lawenmoll kimün: kom che küme mongen tañi poyeel.";
       } else {
         document.getElementById('hero-title').innerText = "Nutrición, Movimiento y Mente en Armonía";
-        document.getElementById('hero-desc').innerText = "Recetas terapéuticas descargables en PDF con logo oficial, rutinas guiadas y salas virtuales adaptadas.";
       }
     }
   </script>
