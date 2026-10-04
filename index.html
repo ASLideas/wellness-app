@@ -70,7 +70,7 @@
           </select>
         </div>
         <button onclick="openSubmitModal()" class="rounded-full bg-currant text-white px-3 py-1.5 text-xs font-semibold hover:bg-slate transition shadow-sm hidden sm:flex items-center gap-1">
-          <span>➕</span> Dejar mi Clase / Receta
+          <span>➕</span> Publicar mi Contenido
         </button>
         <a href="https://lawenmoll.vercel.app" target="_blank" class="rounded-full border border-rain/30 bg-lightbg px-3 py-1.5 text-xs font-semibold text-slate hover:bg-dew/20 transition flex items-center gap-1">
           <img src="lawenmoll_logo.jpg" class="w-4 h-4 rounded-full object-cover" onerror="this.style.display='none'">
@@ -92,7 +92,7 @@
           </div>
           <h2 id="hero-title" class="text-3xl md:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-sm text-slate/80 mt-2">
-            Recetas terapéuticas etiquetadas por condición médica y rutinas adaptadas de la red LAWENMOLL.
+            Recetas terapéuticas descargables en PDF etiquetadas por condición médica y rutinas adaptadas de la red LAWENMOLL.
           </p>
           
           <div class="mt-4 p-4 rounded-2xl bg-white/90 border border-rain/20 shadow-sm text-xs text-slate/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
@@ -116,13 +116,14 @@
       </div>
     </section>
 
-    <!-- RECETAS POR CONDICIÓN MÉDICA -->
+    <!-- SECCIÓN 1: RECETAS TERAPÉUTICAS Y DESCARGA EN PDF -->
     <section id="recetas" class="pb-10">
       <div class="mb-4">
         <h3 class="text-xl font-bold text-slate">🥗 Nutrición Clínica & Recetas Terapéuticas</h3>
-        <p class="text-xs text-rain">Selecciona según tus condiciones metabólicas, alergias o estilo alimentario regulado</p>
+        <p class="text-xs text-rain">Filtra por condición médica y descarga la ficha en PDF lista para cocinar</p>
       </div>
 
+      <!-- Filtro por Condición Médica -->
       <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
         <button onclick="filterRecipe('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-1.5 text-xs font-bold transition shrink-0">✨ Todas las Recetas</button>
         <button onclick="filterRecipe('Gluten')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-4 py-1.5 text-xs font-bold hover:bg-amber-100 transition shrink-0">🌾 Sin Gluten / Celíacos</button>
@@ -132,7 +133,10 @@
         <button onclick="filterRecipe('Vegano')" class="rounded-full border border-green-300 bg-green-50 text-green-900 px-4 py-1.5 text-xs font-bold hover:bg-green-100 transition shrink-0">🌱 Vegano / Plant Based</button>
       </div>
 
+      <!-- CATÁLOGO DE RECETAS -->
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+
+        <!-- Receta 1: Bajo IG & Sin Gluten -->
         <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-tag="Gluten BajoIG Vegano">
           <div>
             <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta Médica', 'Chef Camila Ríos', '@camila_nutri')">
@@ -146,8 +150,8 @@
               <span class="bg-green-100 text-green-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌱 Vegano</span>
             </div>
 
-            <h4 class="font-bold text-slate text-base mt-2">Bowl de avena, chía y canela de bajo índice glicémico</h4>
-            <p class="text-xs text-slate/70 mt-1">Apto para personas con diabetes, resistencia a la insulina o celiaquía.</p>
+            <h4 class="font-bold text-slate text-base mt-2">Bowl de avena, chía y canela bajo IG</h4>
+            <p class="text-xs text-slate/70 mt-1">Apto para diabetes, insulinorresistencia y celiaquía. Endulzado naturalmente con canela y alulosa.</p>
             
             <div class="mt-3 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
               <span class="font-bold text-rain block mb-0.5">⏱ Preparación: 10 min | 🌾 100% Libre de Gluten</span>
@@ -165,8 +169,215 @@
             </div>
           </div>
 
-          <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta', 'Chef Camila Ríos', '@camila_nutri')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video de la Receta</button>
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta', 'Chef Camila Ríos', '@camila_nutri')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video</button>
+            <button onclick="downloadRecipePDF('Bowl de avena, chía y canela bajo IG', 'Sin Gluten, Bajo IG, Sin Azúcar Añadida, Vegano', '10 minutos', 'Chef Camila Ríos (@camila_nutri)', '• 1/2 taza de avena cert. sin gluten\n• 1 cda de semillas de chía\n• 1 cdta de canela en polvo\n• 1/2 taza de bebida vegetal sin azúcar\n• Frutos rojos opcionales')" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl hover:bg-dew/50 transition flex items-center justify-center gap-1">📥 Ficha PDF</button>
+          </div>
         </div>
+
+        <!-- Receta 2: Sin Lactosa & APLV -->
+        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-tag="Lactosa Alergenos Gluten">
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Crema dorada APLV', 'Receta Médica', 'Dra. Amanda Silva', '@amanda_nutri')">
+              <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80" alt="Crema Zapallo" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-purple-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">⚠️ Libre de APLV & Alérgenos</span>
+            </div>
+
+            <div class="flex flex-wrap gap-1 mt-3">
+              <span class="bg-blue-100 text-blue-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🥛 Sin Lactosa</span>
+              <span class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2 py-0.5 rounded-full">⚠️ APLV Safe</span>
+              <span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌾 Sin Gluten</span>
+            </div>
+
+            <h4 class="font-bold text-slate text-base mt-2">Crema dorada de zapallo y leche de coco</h4>
+            <p class="text-xs text-slate/70 mt-1">Libre de proteína de leche de vaca (APLV), sin lactosa y altamente digestiva.</p>
+            
+            <div class="mt-3 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <span class="font-bold text-rain block mb-0.5">⏱ Preparación: 20 min | 🥛 100% Deslactosado</span>
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                  <span class="block text-xs font-bold text-slate">Dra. Amanda Silva</span>
+                  <span class="block text-[10px] text-rain">Inmunología & Nutrición</span>
+                </div>
+              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+            </div>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Crema dorada APLV', 'Receta', 'Dra. Amanda Silva', '@amanda_nutri')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video</button>
+            <button onclick="downloadRecipePDF('Crema dorada de zapallo y leche de coco', 'Sin Lactosa, APLV Safe, Sin Gluten', '20 minutos', 'Dra. Amanda Silva (@amanda_nutri)', '• 400g de zapallo camote trozado\n• 100ml de leche de coco liviana\n• 1 trozo pequeño de jengibre fresco\n• 1 pizca de cúrcuma orgánica\n• Sal de mar y aceite de oliva al gusto')" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl hover:bg-dew/50 transition flex items-center justify-center gap-1">📥 Ficha PDF</button>
+          </div>
+        </div>
+
+        <!-- Receta 3: Vegano / Plant Based -->
+        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-tag="Vegano BajoIG Gluten">
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Garbanzos crujientes V-Label', 'Receta Médica', 'Prof. Carlos Vega', '@carlos_nutri')">
+              <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" alt="Garbanzos" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-green-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🌱 Plant Based / V-Label</span>
+            </div>
+
+            <div class="flex flex-wrap gap-1 mt-3">
+              <span class="bg-green-100 text-green-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌱 100% Vegano</span>
+              <span class="bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🩺 Sin Azúcar Añadida</span>
+              <span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌾 Sin Gluten</span>
+            </div>
+
+            <h4 class="font-bold text-slate text-base mt-2">Garbanzos crujientes con cúrcuma y limón</h4>
+            <p class="text-xs text-slate/70 mt-1">Snack rico en proteína vegetal y fibra, ideal para el control glicémico y saciedad.</p>
+            
+            <div class="mt-3 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <span class="font-bold text-rain block mb-0.5">⏱ Preparación: 25 min | 🌱 Sello Plant Based</span>
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                  <span class="block text-xs font-bold text-slate">Prof. Carlos Vega</span>
+                  <span class="block text-[10px] text-rain">Nutrición Vegetariana</span>
+                </div>
+              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+            </div>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <button onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Garbanzos crujientes V-Label', 'Receta', 'Prof. Carlos Vega', '@carlos_nutri')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video</button>
+            <button onclick="downloadRecipePDF('Garbanzos crujientes con cúrcuma y limón', '100% Vegano, Plant Based, Sin Gluten, Sin Azúcar', '25 minutos', 'Prof. Carlos Vega (@carlos_nutri)', '• 1 taza de garbanzos cocidos y secos\n• 1 cda de aceite de oliva virgen extra\n• 1/2 cdta de cúrcuma en polvo\n• Jugo de 1/2 limón fresco\n• Sal de mar y pimentón dulce al gusto')" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl hover:bg-dew/50 transition flex items-center justify-center gap-1">📥 Ficha PDF</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: RUTINAS DE EJERCICIO Y MOVILIDAD -->
+    <section id="rutinas" class="py-10 border-t border-rain/20">
+      <div class="mb-4">
+        <h3 class="text-xl font-bold text-slate">🏋️‍♀️ Entrenamiento Consciente & Movilidad</h3>
+        <p class="text-xs text-rain">Filtra por zona corporal e intensidad adaptada a tu condición física</p>
+      </div>
+
+      <!-- Filtros por Intensidad y Zona -->
+      <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
+        <span class="text-xs font-bold text-slate flex items-center shrink-0 pr-2">Nivel:</span>
+        <button onclick="filterIntensity('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-1.5 text-xs font-bold transition">✨ Todos los Niveles</button>
+        <button onclick="filterIntensity('Básico')" class="rounded-full border border-green-300 bg-green-50 text-green-800 px-4 py-1.5 text-xs font-bold hover:bg-green-100 transition">🟢 Básico (Principiantes)</button>
+        <button onclick="filterIntensity('Medio')" class="rounded-full border border-yellow-300 bg-yellow-50 text-yellow-800 px-4 py-1.5 text-xs font-bold hover:bg-yellow-100 transition">🟡 Medio (Intermedio)</button>
+        <button onclick="filterIntensity('Alta Intensidad')" class="rounded-full border border-red-300 bg-red-50 text-red-800 px-4 py-1.5 text-xs font-bold hover:bg-red-100 transition">🔴 Alta Intensidad (Avanzado)</button>
+      </div>
+
+      <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar mt-2">
+        <span class="text-xs font-bold text-slate flex items-center shrink-0 pr-2">Zona:</span>
+        <button onclick="filterCategory('Todas')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">Todas las Zonas</button>
+        <button onclick="filterCategory('Full Body')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">💪 Cuerpo Completo (Full Body)</button>
+        <button onclick="filterCategory('Tren Inferior')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🦵 Tren Inferior (Piernas y Glúteos)</button>
+        <button onclick="filterCategory('Tren Superior')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">👕 Tren Superior (Brazos, Pecho y Espalda)</button>
+        <button onclick="filterCategory('Abdominales')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🧘 Abdominales y Core</button>
+        <button onclick="filterCategory('Cardio')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🔥 Cardio y HIIT</button>
+        <button onclick="filterCategory('Movilidad')" class="rounded-full border border-rain/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate hover:bg-dew/30 transition">🍃 Movilidad y Yoga</button>
+      </div>
+
+      <div id="video-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+
+        <!-- Rutina Full Body -->
+        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Full Body" data-intensity="Medio">
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Cuerpo Completo (Full Body)', 'Full Body', 'Prof. Mateo Silva', '@mateo_fit')">
+              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/5qap5aO4i9A?controls=0" frameborder="0"></iframe>
+              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🟡 Nivel Medio</span>
+            </div>
+            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Full Body · 30 min</span>
+            <h4 class="font-bold text-slate text-base mt-0.5">Cuerpo Completo (Full Body)</h4>
+            <p class="text-xs text-slate/70 mt-1">Trabaja todos los músculos principales para quemar calorías y ganar condición física.</p>
+            
+            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
+              Sentadillas, flexiones de pecho y puente de glúteos.
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                  <span class="block text-xs font-bold text-slate">Prof. Mateo Silva</span>
+                  <span class="block text-[10px] text-rain">Kinesiología Deportiva</span>
+                </div>
+              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+            </div>
+          </div>
+
+          <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Cuerpo Completo (Full Body)', 'Full Body', 'Prof. Mateo Silva', '@mateo_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Rutina Full Body</button>
+        </div>
+
+        <!-- Rutina Tren Inferior -->
+        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Tren Inferior" data-intensity="Medio">
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Tren Inferior (Piernas y Glúteos)', 'Tren Inferior', 'Dra. Amanda Silva', '@amanda_fit')">
+              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/inpok4MKVLM?controls=0" frameborder="0"></iframe>
+              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🟡 Nivel Medio</span>
+            </div>
+            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Tren Inferior · 25 min</span>
+            <h4 class="font-bold text-slate text-base mt-0.5">Tren Inferior (Piernas y Glúteos)</h4>
+            <p class="text-xs text-slate/70 mt-1">Enfocada en la parte baja mediante ejercicios guiados.</p>
+            
+            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
+              Zancadas, sentadillas sumo, peso muerto y elevaciones de talones.
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                  <span class="block text-xs font-bold text-slate">Dra. Amanda Silva</span>
+                  <span class="block text-[10px] text-rain">Medicina Integrativa</span>
+                </div>
+              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+            </div>
+          </div>
+
+          <button onclick="openModal('https://www.youtube.com/embed/inpok4MKVLM', 'Tren Inferior', 'Tren Inferior', 'Dra. Amanda Silva', '@amanda_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Rutina Tren Inferior</button>
+        </div>
+
+        <!-- Rutina Cardio HIIT -->
+        <div class="workout-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4" data-category="Cardio" data-intensity="Alta Intensidad">
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Cardio & HIIT quema grasa', 'Cardio', 'Prof. Mateo Silva', '@mateo_fit')">
+              <iframe class="w-full h-full pointer-events-none" src="https://www.youtube.com/embed/L_LUpnjgPso?controls=0" frameborder="0"></iframe>
+              <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🔴 Alta Intensidad</span>
+            </div>
+            <span class="text-[10px] font-bold text-rain uppercase block mt-3">Cardio & HIIT · 20 min</span>
+            <h4 class="font-bold text-slate text-base mt-0.5">Cardio y HIIT Quema Grasa</h4>
+            <p class="text-xs text-slate/70 mt-1">Movimientos dinámicos e intensos para potenciar la quema de calorías.</p>
+            
+            <div class="mt-2 p-2.5 rounded-xl bg-lightbg border border-rain/10 text-[11px] text-slate/80">
+              <strong class="text-rain font-bold block mb-0.5">Ejercicios incluidos:</strong>
+              Jumping jacks, rodillas al pecho (skipping) y burpees.
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-rain/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                  <span class="block text-xs font-bold text-slate">Prof. Mateo Silva</span>
+                  <span class="block text-[10px] text-rain">Preparador Físico</span>
+                </div>
+              </div>
+              <a href="https://instagram.com" target="_blank" class="p-1.5 rounded-lg bg-lightbg text-xs hover:bg-dew/30">📷</a>
+            </div>
+          </div>
+
+          <button onclick="openModal('https://www.youtube.com/embed/L_LUpnjgPso', 'Cardio y HIIT', 'Cardio', 'Prof. Mateo Silva', '@mateo_fit')" class="mt-4 w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Iniciar Cardio HIIT</button>
+        </div>
+
       </div>
     </section>
 
@@ -226,7 +437,7 @@
 
   </main>
 
-  <!-- MODAL DE RESERVA DE SALA VIRTUAL -->
+  <!-- MODAL DE RESERVA -->
   <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
       <button onclick="closeBookingModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
@@ -275,7 +486,7 @@
           <span id="booking-total-display" class="text-base font-extrabold text-slate">$15.000 CLP</span>
         </div>
 
-        <!-- REDES SOCIALES EN EL FORMULARIO DE RESERVA -->
+        <!-- REDES SOCIALES EN LA RESERVA -->
         <div class="p-3 rounded-2xl bg-lightbg border border-rain/20 text-center">
           <span class="text-[11px] font-bold text-slate block mb-1.5">📲 Síguenos y contáctanos en nuestras redes sociales:</span>
           <div class="flex justify-center items-center gap-2">
@@ -288,7 +499,7 @@
         <button type="submit" class="w-full bg-currant text-white text-xs font-bold py-3 rounded-xl hover:bg-slate transition shadow">Pagar & Generar Clave de Acceso</button>
       </form>
 
-      <!-- PANTALLA DE CONFIRMACIÓN CON CLAVE Y REDES SOCIALES -->
+      <!-- PANTALLA DE CONFIRMACIÓN -->
       <div id="booking-success" class="hidden mt-4 p-4 rounded-2xl bg-dew/20 border border-dew/50 text-center">
         <span class="text-2xl">🎉</span>
         <h4 class="font-bold text-slate text-sm mt-1">¡Reserva Confirmada!</h4>
@@ -298,7 +509,6 @@
         </div>
         <p id="total-confirmed-text" class="text-xs font-bold text-slate mb-2"></p>
 
-        <!-- Redes sociales en confirmación -->
         <div class="my-3 p-2.5 rounded-xl bg-white border border-rain/20">
           <span class="text-[11px] font-bold text-slate block mb-1">📢 Sigue a la comunidad de Natural Wellness:</span>
           <div class="flex justify-center gap-3">
@@ -370,6 +580,8 @@
 
   <script>
     let currentRoomPrice = 15000;
+    let selectedIntensity = 'Todas';
+    let selectedCategory = 'Todas';
 
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
@@ -379,11 +591,100 @@
       }, 800);
     });
 
+    // GENERADOR Y DESCARGADOR DE FICHA PDF EN VENTANA DE IMPRESIÓN
+    function downloadRecipePDF(title, tags, prepTime, chefName, ingredients) {
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+          <meta charset="UTF-8">
+          <title>Ficha Nutricional - ${title}</title>
+          <style>
+            body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px; color: #2B4251; line-height: 1.6; }
+            .header { border-bottom: 3px solid #5B7D87; padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+            .logo-title { font-size: 24px; font-weight: bold; color: #5B7D87; }
+            .subtitle { font-size: 12px; color: #45415E; font-weight: bold; }
+            .recipe-title { font-size: 22px; font-weight: bold; color: #2B4251; margin-top: 10px; margin-bottom: 15px; }
+            .box { background: #F4F8F9; border: 1px solid #91B3BC; padding: 18px; border-radius: 16px; margin-bottom: 20px; }
+            .box-title { font-size: 13px; font-weight: bold; color: #5B7D87; text-transform: uppercase; margin-bottom: 8px; }
+            .ingredients-list { white-space: pre-line; font-size: 13px; }
+            .footer { margin-top: 40px; border-top: 1px solid #CBD5E1; padding-top: 15px; font-size: 11px; text-align: center; color: #5B7D87; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div>
+              <div class="logo-title">Natural Wellness</div>
+              <div class="subtitle">Ecosistema Digital LAWENMOLL · Nutrición Terapéutica</div>
+            </div>
+            <div style="text-align: right; font-size: 11px;">
+              Fecha: ${new Date().toLocaleDateString('es-CL')}<br>
+              Documento Imprimible
+            </div>
+          </div>
+
+          <div class="recipe-title">${title}</div>
+          <p style="font-size: 13px; margin-bottom: 5px;"><strong>Chef / Nutricionista:</strong> ${chefName}</p>
+          <p style="font-size: 13px; margin-bottom: 20px;"><strong>Tiempo estimado:</strong> ${prepTime}</p>
+
+          <div class="box">
+            <div class="box-title">Certificaciones y Condiciones Médicas Aprobadas</div>
+            <div style="font-size: 13px; font-weight: bold; color: #2B4251;">${tags}</div>
+          </div>
+
+          <div class="box">
+            <div class="box-title">Ingredientes y Preparación Terapéutica</div>
+            <div class="ingredients-list">${ingredients}</div>
+          </div>
+
+          <div class="footer">
+            Ficha Nutricional Oficial emitidad por Natural Wellness & LAWENMOLL · www.lawenmoll.vercel.app
+          </div>
+
+          <script>
+            window.onload = function() {
+              window.print();
+            }
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+
     function filterRecipe(tag) {
       const cards = document.querySelectorAll('.recipe-card');
       cards.forEach(card => {
         const tags = card.getAttribute('data-tag');
         if (tag === 'Todas' || tags.includes(tag)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function filterIntensity(level) {
+      selectedIntensity = level;
+      applyFilters();
+    }
+
+    function filterCategory(cat) {
+      selectedCategory = cat;
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const cards = document.querySelectorAll('.workout-card');
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const intensity = card.getAttribute('data-intensity');
+
+        const matchCat = (selectedCategory === 'Todas' || cat === selectedCategory);
+        const matchInt = (selectedIntensity === 'Todas' || intensity === selectedIntensity);
+
+        if (matchCat && matchInt) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
@@ -411,7 +712,7 @@
       } else {
         total = currentRoomPrice * parseInt(duration);
       }
-      document.getElementById('booking-total-display').innerText = '$' + total.toLocaleString('es-CL') + ' CLP';
+      document.getElementById('booking-total-display').innerText = '\$' + total.toLocaleString('es-CL') + ' CLP';
     }
 
     function closeBookingModal() {
@@ -467,16 +768,16 @@
     function changeLanguage(lang) {
       if (lang === 'en') {
         document.getElementById('hero-title').innerText = "Nutrition, Movement and Mind in Harmony";
-        document.getElementById('hero-desc').innerText = "Access therapeutic recipes and guided routines from LAWENMOLL.";
+        document.getElementById('hero-desc').innerText = "Access downloadable PDF therapeutic recipes and guided routines from LAWENMOLL.";
       } else if (lang === 'pt') {
         document.getElementById('hero-title').innerText = "Nutrição, Movimento e Mente em Harmonia";
-        document.getElementById('hero-desc').innerText = "Acesse receitas terapêuticas e rotinas guiadas da rede LAWENMOLL.";
+        document.getElementById('hero-desc').innerText = "Acesse receitas terapêuticas baixáveis em PDF e rotinas guiadas da rede LAWENMOLL.";
       } else if (lang === 'map') {
         document.getElementById('hero-title').innerText = "Küme Mongen: Iyael, Neyen ka Rakiduam";
         document.getElementById('hero-desc').innerText = "Lawenmoll kimün: kom che küme mongen tañi poyeel.";
       } else {
         document.getElementById('hero-title').innerText = "Nutrición, Movimiento y Mente en Armonía";
-        document.getElementById('hero-desc').innerText = "Recetas terapéuticas etiquetadas por condición médica y rutinas adaptadas de la red LAWENMOLL.";
+        document.getElementById('hero-desc').innerText = "Recetas terapéuticas descargables en PDF etiquetadas por condición médica y rutinas adaptadas de la red LAWENMOLL.";
       }
     }
   </script>
