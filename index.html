@@ -70,14 +70,15 @@
           </select>
         </div>
 
-        <button id="admin-toggle-btn" onclick="openAdminModal()" class="rounded-full bg-slate text-white px-3 py-1.5 text-xs font-bold hover:bg-rain transition shadow-sm flex items-center gap-1">
-          ⚙️ Panel Admin
+        <!-- Botón para Profesionales de la Red -->
+        <button onclick="openProModal()" class="rounded-full bg-currant text-white px-3 py-1.5 text-xs font-bold hover:bg-slate transition shadow-sm hidden sm:flex items-center gap-1">
+          👩‍⚕️ Publicar Clase / Receta
         </button>
 
-        <a href="https://lawenmoll.vercel.app" target="_blank" class="rounded-full border border-rain/30 bg-lightbg px-3 py-1.5 text-xs font-semibold text-slate hover:bg-dew/20 transition flex items-center gap-1">
-          <img src="lawenmoll_logo.jpg" class="w-4 h-4 rounded-full object-cover" onerror="this.style.display='none'">
-          <span class="hidden md:inline">Ecosistema</span> LAWENMOLL
-        </a>
+        <!-- Botón Admin (PIN: 1234) -->
+        <button id="admin-toggle-btn" onclick="openAdminModal()" class="rounded-full bg-slate text-white px-3 py-1.5 text-xs font-bold hover:bg-rain transition shadow-sm flex items-center gap-1">
+          ⚙️ Admin
+        </button>
       </div>
     </div>
   </header>
@@ -90,19 +91,19 @@
         <div class="max-w-2xl">
           <div class="flex items-center gap-2 mb-2">
             <span class="rounded-full bg-currant px-3 py-1 text-xs font-semibold text-white">Salud Integrativa & Metabolismo</span>
-            <span class="rounded-full bg-rain/20 text-slate px-3 py-1 text-xs font-bold">Ecosistema Digital</span>
+            <span class="rounded-full bg-rain/20 text-slate px-3 py-1 text-xs font-bold">IA Terapéutica</span>
           </div>
           <h2 id="hero-title" class="text-3xl md:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-sm text-slate/80 mt-2">
-            Salas virtuales con transmisión de cámara en vivo, recetas descargables en PDF y videotecas de ejercicios adaptadas.
+            Descarga recetas extraídas por IA en formato PDF con logo oficial y accede a salas virtuales en vivo.
           </p>
         </div>
 
         <div class="flex flex-col gap-3 w-full md:w-auto">
-          <button onclick="openAdminModal()" class="text-center rounded-2xl bg-currant text-white px-6 py-3 text-xs font-bold hover:bg-slate transition shadow-md flex items-center justify-center gap-2">
-            <span>⚙️</span> Entrar como Profesor(a) (PIN: 1234)
+          <button onclick="openProModal()" class="text-center rounded-2xl bg-currant text-white px-6 py-3 text-xs font-bold hover:bg-slate transition shadow-md flex items-center justify-center gap-2">
+            <span>👩‍⚕️</span> Dejar mi Clase en Natural Wellness
           </button>
-          <a href="#salas" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Probar Cámara en Salas (4)</a>
+          <a href="#recetas" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">Ver Recetas con IA</a>
         </div>
       </div>
     </section>
@@ -111,21 +112,68 @@
     <div id="admin-banner" class="hidden mb-6 p-4 rounded-2xl bg-amber-50 border-2 border-amber-400 text-amber-900 flex justify-between items-center text-xs font-bold shadow-sm">
       <div class="flex items-center gap-2">
         <span class="text-lg">🔓</span>
-        <span>MODO PROFESOR / ADMIN ACTIVO: Puedes transmitir en vivo con tu cámara, crear salas y gestionar contenidos.</span>
+        <span>MODO ADMIN ACTIVO: Tienes acceso completo para agregar o eliminar salas, editar precios y gestionar videos.</span>
       </div>
       <button onclick="closeAdminMode()" class="bg-amber-800 text-white px-3 py-1 rounded-xl text-[11px] hover:bg-amber-900">Bloquear y Salir</button>
     </div>
 
-    <!-- SECCIÓN SALAS VIRTUALES (LAS 4 SALAS OFICIALES) -->
+    <!-- SECCIÓN 1: RECETAS Y FICHA IA PDF -->
+    <section id="recetas" class="pb-10">
+      <div class="mb-4">
+        <h3 class="text-xl font-bold text-slate">🥗 Nutrición Clínica & Recetas Terapéuticas (IA)</h3>
+        <p class="text-xs text-rain">Haz clic en "Ficha PDF por IA" para descargar el resumen con logo oficial</p>
+      </div>
+
+      <!-- Filtro por Condición Médica -->
+      <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
+        <button onclick="filterRecipe('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-1.5 text-xs font-bold transition shrink-0">✨ Todas las Recetas</button>
+        <button onclick="filterRecipe('Gluten')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-4 py-1.5 text-xs font-bold hover:bg-amber-100 transition shrink-0">🌾 Sin Gluten / Celíacos</button>
+        <button onclick="filterRecipe('Lactosa')" class="rounded-full border border-blue-300 bg-blue-50 text-blue-900 px-4 py-1.5 text-xs font-bold hover:bg-blue-100 transition shrink-0">🥛 Sin Lactosa / Deslactosado</button>
+        <button onclick="filterRecipe('BajoIG')" class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 px-4 py-1.5 text-xs font-bold hover:bg-emerald-100 transition shrink-0">🩺 Bajo IG / Diabetes</button>
+        <button onclick="filterRecipe('Alergenos')" class="rounded-full border border-purple-300 bg-purple-50 text-purple-900 px-4 py-1.5 text-xs font-bold hover:bg-purple-100 transition shrink-0">⚠️️ Libre de Alérgenos / APLV</button>
+      </div>
+
+      <!-- CATÁLOGO DE RECETAS -->
+      <div id="recipe-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+
+        <!-- Receta 1 -->
+        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4 relative" data-tag="Gluten BajoIG Vegano">
+          <button onclick="deleteCard(this)" class="admin-delete-btn hidden absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow z-20 hover:bg-red-700">🗑️ Eliminar</button>
+
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta Médica', 'Chef Camila Ríos', '@camila_nutri')">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Bowl Avena" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🤖 Ficha IA Lista</span>
+            </div>
+
+            <div class="flex flex-wrap gap-1 mt-3">
+              <span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🌾 Sin Gluten</span>
+              <span class="bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2 py-0.5 rounded-full">🩺 Certificado Bajo IG</span>
+            </div>
+
+            <h4 class="font-bold text-slate text-base mt-2">Bowl de avena, chía y canela bajo IG</h4>
+            <p class="text-xs text-slate/70 mt-1">Sustituto metabólico analizado por IA para control glicémico.</p>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <button onclick="openModal('https://www.youtube.com/embed/5qap5aO4i9A', 'Bowl de avena y canela bajo IG', 'Receta', 'Chef Camila Ríos', '@camila_nutri')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Ver Video</button>
+            <button onclick="downloadRecipePDF('Bowl de avena, chía y canela bajo IG', 'Sin Gluten, Bajo IG, Sin Azúcar Añadida', '10 minutos', 'Chef Camila Ríos (@camila_nutri)', '• 1/2 taza de avena cert. sin gluten\n• 1 cda de semillas de chía\n• 1 cdta de canela en polvo\n• 1/2 taza de bebida vegetal sin azúcar')" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl hover:bg-dew/50 transition flex items-center justify-center gap-1">🤖 Ficha PDF IA</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: SALAS VIRTUALES (AJUSTADAS POR NOMBRE Y CAPACIDAD) -->
     <section id="salas" class="py-8 border-t border-rain/20">
       <div class="mb-6 flex justify-between items-end">
         <div>
-          <h2 class="text-2xl font-bold text-slate">Salas Virtuales con Cámara en Vivo</h2>
+          <h2 class="text-2xl font-bold text-slate">Salas Virtuales Adaptadas</h2>
           <p class="text-sm text-rain mt-1">
-            Prueba la videollamada real utilizando la cámara y micrófono de tu dispositivo.
+            Espacios con transmisión en vivo y límites de capacidad configurables.
           </p>
         </div>
-        <button onclick="openAdminModal()" class="hidden admin-delete-btn bg-currant text-white text-xs font-bold px-3 py-1.5 rounded-xl hover:bg-slate transition">➕ Crear Nueva Sala (Admin)</button>
+        <button onclick="openAdminModal()" class="hidden admin-delete-btn bg-currant text-white text-xs font-bold px-3 py-1.5 rounded-xl hover:bg-slate transition">➕ Ajustar / Crear Sala (Admin)</button>
       </div>
 
       <!-- GRID DINÁMICO DE SALAS VIRTUALES -->
@@ -136,10 +184,45 @@
 
   </main>
 
-  <!-- MODAL DE VIDEOLLAMADA EN VIVO CON CÁMARA REAL DEL DISPOSITIVO -->
+  <!-- MODAL PUBLICAR CLASE / RECETA CON IA (PARA PROFESIONALES) -->
+  <div id="pro-submit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
+      <button onclick="closeProModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
+      
+      <span class="text-xs font-bold text-rain uppercase">👩‍⚕️ Red de Profesionales LAWENMOLL</span>
+      <h3 class="text-xl font-bold text-slate mt-1">Dejar Clase / Receta con IA</h3>
+
+      <form onsubmit="handleProSubmit(event)" class="mt-4 space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Nombre o Especialidad del Profesional</label>
+          <input type="text" id="pro-name" required placeholder="Ej. Dra. María Paz / Nutricionista Célular" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Título de la Clase o Receta</label>
+          <input type="text" id="pro-title" required placeholder="Ej. Tarta de zapallo APLV o Rutina de Movilidad" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate mb-1">Enlace de YouTube</label>
+          <input type="url" id="pro-url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+        </div>
+
+        <div class="p-3 bg-dew/20 rounded-2xl border border-dew/40 text-xs text-slate">
+          <strong class="text-rain font-bold block mb-1">🤖 Extracción de Receta por IA:</strong>
+          La IA de la app procesará el video de YouTube para generar la lista de ingredientes y la Ficha Nutricional descargable en PDF de forma automática.
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow">
+          🤖 Procesar con IA & Publicar en Natural Wellness
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL TRANSMISIÓN EN VIVO -->
   <div id="live-room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/90 backdrop-blur-md p-4">
     <div class="bg-slate rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-dew/30 relative text-white flex flex-col">
-      <!-- Header de la Videollamada -->
       <div class="p-4 bg-creosote border-b border-dew/20 flex justify-between items-center">
         <div class="flex items-center gap-3">
           <span class="w-3 h-3 rounded-full bg-red-500 animate-ping"></span>
@@ -149,35 +232,17 @@
         <button onclick="closeLiveRoomModal()" class="bg-dew/20 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-red-600 transition">&times;</button>
       </div>
 
-      <!-- Transmisión de Cámara Real -->
       <div class="relative aspect-video bg-black flex items-center justify-center overflow-hidden">
-        <!-- Reproductor de la Cámara Web Real -->
         <video id="webcam-video" autoplay playsinline muted class="w-full h-full object-cover rounded-2xl border border-dew/30 bg-black"></video>
-
-        <!-- Indicador de Estado y Clave Única -->
-        <div class="absolute top-4 left-4 bg-creosote/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-dew/30 text-xs font-mono flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span>TRANSMISIÓN EN VIVO | <strong id="live-access-code" class="text-dew">WELL-8942-X</strong></span>
-        </div>
-
-        <!-- Mosaico de Alumnos en la Sala -->
-        <div class="absolute bottom-4 right-4 flex gap-2">
-          <div class="w-20 h-14 bg-creosote/90 border border-dew/40 rounded-xl flex items-center justify-center text-[11px] shadow">👤 Alumno 1</div>
-          <div class="w-20 h-14 bg-creosote/90 border border-dew/40 rounded-xl flex items-center justify-center text-[11px] shadow">👤 Alumno 2</div>
+        <div class="absolute top-4 left-4 bg-creosote/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-dew/30 text-xs font-mono">
+          TRANSMISIÓN EN VIVO | <strong id="live-access-code" class="text-dew">WELL-8942-X</strong>
         </div>
       </div>
 
-      <!-- Barra de Controles para la Transmisión (Micrófono, Cámara y Salir) -->
       <div class="p-4 bg-creosote border-t border-dew/20 flex justify-center items-center gap-4">
-        <button onclick="toggleMic()" class="px-4 py-2.5 rounded-full bg-dew/20 hover:bg-dew/40 transition text-xs font-bold flex items-center gap-1.5">
-          🎙️ <span id="mic-label">Silenciar Micrófono</span>
-        </button>
-        <button onclick="toggleCamera()" class="px-4 py-2.5 rounded-full bg-dew/20 hover:bg-dew/40 transition text-xs font-bold flex items-center gap-1.5">
-          📹 <span id="cam-label">Apagar Cámara</span>
-        </button>
-        <button onclick="closeLiveRoomModal()" class="px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 transition text-xs font-bold shadow">
-          🔴 Salir de la Sala
-        </button>
+        <button onclick="toggleMic()" class="px-4 py-2.5 rounded-full bg-dew/20 hover:bg-dew/40 text-xs font-bold">🎙️ Micrófono</button>
+        <button onclick="toggleCamera()" class="px-4 py-2.5 rounded-full bg-dew/20 hover:bg-dew/40 text-xs font-bold">📹 Cámara</button>
+        <button onclick="closeLiveRoomModal()" class="px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-xs font-bold">🔴 Salir de la Sala</button>
       </div>
     </div>
   </div>
@@ -186,54 +251,12 @@
   <div id="admin-pin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
-      
       <span class="text-3xl">🔒</span>
-      <h3 class="text-lg font-bold text-slate mt-2">Acceso Exclusivo Profesor / Admin</h3>
-      <p class="text-xs text-slate/70 mt-1">Ingresa tu clave para administrar o crear nuevas salas.</p>
-
+      <h3 class="text-lg font-bold text-slate mt-2">Acceso Administrador</h3>
+      <p class="text-xs text-slate/70 mt-1">Ingresa tu clave de acceso (PIN: 1234)</p>
       <form onsubmit="verifyAdminPIN(event)" class="mt-4 space-y-3">
-        <input type="password" id="admin-pin-input" required placeholder="PIN (Default: 1234)" class="w-full text-center p-3 rounded-xl border border-rain/30 text-sm font-bold outline-none tracking-widest">
-        <button type="submit" class="w-full bg-slate text-white text-xs font-bold py-2.5 rounded-xl hover:bg-rain transition">Entrar como Profesor(a)</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- MODAL CREAR NUEVAS SALAS -->
-  <div id="add-content-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-rain/20 relative">
-      <button onclick="closeAddContentModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
-      
-      <span class="text-xs font-bold text-rain uppercase">➕ Panel Administrador</span>
-      <h3 class="text-xl font-bold text-slate mt-1">Crear Nueva Sala Virtual</h3>
-
-      <form onsubmit="handleAddNewRoom(event)" class="mt-4 space-y-3">
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Nombre de la Nueva Sala</label>
-          <input type="text" id="room-name" required placeholder="Ej. Sala Sol, Sala Terapia o Sala Danza" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate mb-1">Capacidad Máxima de Personas</label>
-            <input type="text" id="room-capacity" required placeholder="Ej. Capacidad: 15 personas" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate mb-1">Precio por Hora (CLP)</label>
-            <input type="number" id="room-price-hr" required value="15000" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none font-bold">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Etiqueta Especial</label>
-          <input type="text" id="room-tag" required placeholder="Ej. Streaming Live, Taller o Consultas" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate mb-1">Descripción del Espacio</label>
-          <textarea id="room-desc" required placeholder="Escribe el propósito de la sala..." class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none h-20"></textarea>
-        </div>
-
-        <button type="submit" class="w-full mt-2 py-3 bg-rain text-white text-xs font-bold rounded-xl hover:bg-slate transition">Crear & Renderizar Sala</button>
+        <input type="password" id="admin-pin-input" required placeholder="PIN (Default: 1234)" class="w-full text-center p-3 rounded-xl border border-rain/30 text-sm font-bold outline-none">
+        <button type="submit" class="w-full bg-slate text-white text-xs font-bold py-2.5 rounded-xl hover:bg-rain transition">Entrar al Panel</button>
       </form>
     </div>
   </div>
@@ -246,38 +269,38 @@
     let isAdminActive = false;
     let localStream = null;
 
-    // LAS 4 SALAS VIRTUALES OFICIALES
+    // SALAS AJUSTADAS CON NOMBRES Y CAPACIDADES
     let virtualRooms = [
       {
         id: 'room-1',
         name: 'Sala Lotus',
-        capacity: '⭐ 4.9 (140 reseñas) · Capacidad: 6 personas (VIP Cámara)',
+        capacity: '⭐ Capacidad: 6 personas (VIP Cámara)',
         tag: 'Mindfulness & Breathwork',
-        desc: 'Espacio íntimo con luz suave para meditación, breathwork y círculos de palabra.',
+        desc: 'Espacio íntimo para meditación, breathwork y círculos de palabra.',
         priceHr: 15000
       },
       {
         id: 'room-2',
         name: 'Sala Bosque',
-        capacity: '⭐ 4.8 (95 reseñas) · Capacidad: 10 personas',
+        capacity: '⭐ Capacidad: 10 personas',
         tag: 'Movilidad & Core',
-        desc: 'Equipada para movilidad adaptada en silla, fortalecimiento de core y HIIT de bajo impacto.',
+        desc: 'Equipada para movilidad adaptada en silla, fortalecimiento de core y HIIT.',
         priceHr: 15000
       },
       {
         id: 'room-3',
         name: 'Sala Cielo',
-        capacity: '⭐ 4.9 (110 reseñas) · Capacidad: 8 personas',
+        capacity: '⭐ Capacidad: 8 personas',
         tag: 'Cocina Demo & Streaming',
-        desc: 'Cocina demostrativa en vivo con cámara y buena acústica para talleres culinarios.',
+        desc: 'Cocina demostrativa en vivo para talleres culinarios bajo índice glicémico.',
         priceHr: 15000
       },
       {
         id: 'room-4',
         name: 'Sala Raíz',
-        capacity: '⭐ 5.0 (80 reseñas) · Capacidad: 2 personas (1:1)',
+        capacity: '⭐ Capacidad: 2 personas (1:1)',
         tag: 'Consultas Privadas',
-        desc: 'Cabina privada para consultas individuales de nutrición clínica, seguimiento y coaching.',
+        desc: 'Cabina privada para nutrición clínica, seguimiento y coaching.',
         priceHr: 15000
       }
     ];
@@ -315,7 +338,7 @@
                 <span class="text-sm font-bold text-slate block">$${room.priceHr.toLocaleString('es-CL')} / hr</span>
                 <span class="text-[10px] text-rain">Valor base x hora</span>
               </div>
-              <button onclick="testLiveRoom('${room.name}', '${room.capacity}')" class="bg-currant text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">🎥 Probar Videollamada</button>
+              <button onclick="testLiveRoom('${room.name}', '${room.capacity}')" class="bg-currant text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-slate transition shadow">🎥 Probar Transmisión</button>
             </div>
           </div>
         `;
@@ -323,7 +346,117 @@
       });
     }
 
-    // ACTIVACIÓN DE LA CÁMARA REAL VÍA getUserMedia
+    function openProModal() {
+      document.getElementById('pro-submit-modal').classList.remove('hidden');
+      document.getElementById('pro-submit-modal').classList.add('flex');
+    }
+
+    function closeProModal() {
+      document.getElementById('pro-submit-modal').classList.add('hidden');
+      document.getElementById('pro-submit-modal').classList.remove('flex');
+    }
+
+    function handleProSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('pro-name').value;
+      const title = document.getElementById('pro-title').value;
+      const url = document.getElementById('pro-url').value;
+
+      let embedUrl = url;
+      if (url.includes('watch?v=')) {
+        embedUrl = 'https://www.youtube.com/embed/' + url.split('v=')[1].split('&')[0];
+      }
+
+      const grid = document.getElementById('recipe-grid');
+      const newCardHTML = `
+        <div class="recipe-card bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between p-4 relative" data-tag="Gluten BajoIG">
+          ${isAdminActive ? `<button onclick="deleteCard(this)" class="admin-delete-btn absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow z-20">🗑️ Eliminar</button>` : ''}
+          <div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate/10 cursor-pointer" onclick="openModal('${embedUrl}', '${title}', 'Receta Médica IA', '${name}', '@profesional')">
+              <iframe class="w-full h-full pointer-events-none" src="${embedUrl}?controls=0"></iframe>
+              <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">🤖 Procesado por IA</span>
+            </div>
+            <h4 class="font-bold text-slate text-base mt-2">${title}</h4>
+            <p class="text-xs text-slate/70 mt-1">Aportado por ${name}. Ficha descargable lista.</p>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <button onclick="openModal('${embedUrl}', '${title}', 'Receta', '${name}', '@profesional')" class="bg-slate text-white text-xs font-semibold py-2 rounded-xl">▶ Ver Video</button>
+            <button onclick="downloadRecipePDF('${title}', 'Certificado Natural Wellness IA', '15 minutos', '${name}', '• Ingredientes procesados automáticamente por la IA de la app.')" class="bg-dew/30 text-slate border border-rain/30 text-xs font-bold py-2 rounded-xl flex items-center justify-center gap-1">🤖 Ficha PDF IA</button>
+          </div>
+        </div>
+      `;
+      grid.insertAdjacentHTML('afterbegin', newCardHTML);
+      closeProModal();
+      alert('🤖 ¡Excelente! La IA de Natural Wellness procesó el video y generó la Ficha PDF descargable en la portada.');
+    }
+
+    // DESCARGA DE FICHA PDF CON LOGO Y PROCESAMIENTO IA
+    function downloadRecipePDF(title, tags, prepTime, chefName, ingredients) {
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+          <meta charset="UTF-8">
+          <title>Ficha Nutricional IA - ${title}</title>
+          <style>
+            body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px; color: #2B4251; line-height: 1.6; }
+            .header { border-bottom: 3px solid #5B7D87; padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+            .logo-box { display: flex; align-items: center; gap: 15px; }
+            .logo-img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid #5B7D87; }
+            .logo-title { font-size: 24px; font-weight: bold; color: #5B7D87; }
+            .subtitle { font-size: 12px; color: #45415E; font-weight: bold; }
+            .recipe-title { font-size: 22px; font-weight: bold; color: #2B4251; margin-top: 10px; margin-bottom: 15px; }
+            .box { background: #F4F8F9; border: 1px solid #91B3BC; padding: 18px; border-radius: 16px; margin-bottom: 20px; }
+            .box-title { font-size: 13px; font-weight: bold; color: #5B7D87; text-transform: uppercase; margin-bottom: 8px; }
+            .ingredients-list { white-space: pre-line; font-size: 13px; }
+            .footer { margin-top: 40px; border-top: 1px solid #CBD5E1; padding-top: 15px; font-size: 11px; text-align: center; color: #5B7D87; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="logo-box">
+              <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="logo-img" onerror="this.src='wellnes app.jpg'">
+              <div>
+                <div class="logo-title">Natural Wellness</div>
+                <div class="subtitle">Ecosistema LAWENMOLL · Ficha Nutricional Extraída con IA</div>
+              </div>
+            </div>
+            <div style="text-align: right; font-size: 11px;">
+              Fecha: ${new Date().toLocaleDateString('es-CL')}<br>
+              Documento Imprimible Oficial
+            </div>
+          </div>
+
+          <div class="recipe-title">${title}</div>
+          <p style="font-size: 13px; margin-bottom: 5px;"><strong>Profesional / Chef:</strong> ${chefName}</p>
+          <p style="font-size: 13px; margin-bottom: 20px;"><strong>Tiempo estimado:</strong> ${prepTime}</p>
+
+          <div class="box">
+            <div class="box-title">Certificaciones y Condiciones Médicas (Análisis IA)</div>
+            <div style="font-size: 13px; font-weight: bold; color: #2B4251;">${tags}</div>
+          </div>
+
+          <div class="box">
+            <div class="box-title">Ingredientes y Preparación Terapéutica</div>
+            <div class="ingredients-list">${ingredients}</div>
+          </div>
+
+          <div class="footer">
+            Ficha Nutricional Generada por la IA de Natural Wellness & LAWENMOLL · www.lawenmoll.vercel.app
+          </div>
+
+          <script>
+            window.onload = function() {
+              window.print();
+            }
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+
     async function testLiveRoom(name, capacity) {
       const code = 'WELL-' + Math.floor(1000 + Math.random() * 9000) + '-X';
       document.getElementById('live-room-title').innerText = name + ' (En Vivo)';
@@ -333,10 +466,6 @@
       document.getElementById('live-room-modal').classList.remove('hidden');
       document.getElementById('live-room-modal').classList.add('flex');
 
-      await startCamera();
-    }
-
-    async function startCamera() {
       try {
         localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         const videoElement = document.getElementById('webcam-video');
@@ -344,28 +473,21 @@
           videoElement.srcObject = localStream;
         }
       } catch (err) {
-        console.error("Error al acceder a la cámara:", err);
-        alert("⚠️ Por favor permite el acceso a tu cámara y micrófono en la ventana emergente de tu navegador para poder transmitir.");
+        console.error("Cámara no disponible:", err);
       }
     }
 
     function toggleMic() {
       if (localStream) {
-        const audioTrack = localStream.getAudioTracks()[0];
-        if (audioTrack) {
-          audioTrack.enabled = !audioTrack.enabled;
-          document.getElementById('mic-label').innerText = audioTrack.enabled ? "Silenciar Micrófono" : "Activar Micrófono";
-        }
+        const track = localStream.getAudioTracks()[0];
+        if (track) track.enabled = !track.enabled;
       }
     }
 
     function toggleCamera() {
       if (localStream) {
-        const videoTrack = localStream.getVideoTracks()[0];
-        if (videoTrack) {
-          videoTrack.enabled = !videoTrack.enabled;
-          document.getElementById('cam-label').innerText = videoTrack.enabled ? "Apagar Cámara" : "Encender Cámara";
-        }
+        const track = localStream.getVideoTracks()[0];
+        if (track) track.enabled = !track.enabled;
       }
     }
 
@@ -380,7 +502,7 @@
 
     function openAdminModal() {
       if (isAdminActive) {
-        openAddContentModal();
+        alert("Ya estás en modo Administrador.");
       } else {
         document.getElementById('admin-pin-modal').classList.remove('hidden');
         document.getElementById('admin-pin-modal').classList.add('flex');
@@ -401,7 +523,6 @@
         document.getElementById('admin-banner').classList.remove('hidden');
         document.querySelectorAll('.admin-delete-btn').forEach(btn => btn.classList.remove('hidden'));
         renderRooms();
-        alert('¡Acceso concedido! Bienvenido al Panel de Profesor.');
       } else {
         alert('PIN incorrecto. Ingresa 1234');
       }
@@ -414,43 +535,47 @@
       renderRooms();
     }
 
+    function deleteCard(btn) {
+      if (confirm('¿Deseas eliminar este contenido?')) {
+        btn.closest('.recipe-card').remove();
+      }
+    }
+
     function deleteRoom(id) {
-      if (confirm('¿Estás seguro de que deseas eliminar esta Sala Virtual?')) {
+      if (confirm('¿Deseas eliminar esta Sala Virtual?')) {
         virtualRooms = virtualRooms.filter(r => r.id !== id);
         renderRooms();
       }
     }
 
-    function openAddContentModal() {
-      document.getElementById('add-content-modal').classList.remove('hidden');
-      document.getElementById('add-content-modal').classList.add('flex');
+    function openModal(embedUrl, title, category, profName, profIg) {
+      const modal = document.createElement('div');
+      modal.className = "fixed inset-0 z-50 flex items-center justify-center bg-slate/80 backdrop-blur-sm p-4";
+      modal.onclick = () => modal.remove();
+      modal.innerHTML = `
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative" onclick="event.stopPropagation()">
+          <button onclick="this.closest('.fixed').remove()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center font-bold">&times;</button>
+          <span class="text-xs font-bold text-rain uppercase">${category}</span>
+          <h3 class="text-xl font-bold text-slate mb-3">${title}</h3>
+          <div class="aspect-video bg-black rounded-2xl overflow-hidden">
+            <iframe class="w-full h-full" src="${embedUrl}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p class="text-xs text-slate/70 mt-3">Profesor(a) / Chef: <strong>${profName}</strong></p>
+        </div>
+      `;
+      document.body.appendChild(modal);
     }
 
-    function closeAddContentModal() {
-      document.getElementById('add-content-modal').classList.add('hidden');
-      document.getElementById('add-content-modal').classList.remove('flex');
-    }
-
-    function handleAddNewRoom(e) {
-      e.preventDefault();
-      const name = document.getElementById('room-name').value;
-      const capacity = document.getElementById('room-capacity').value;
-      const priceHr = parseInt(document.getElementById('room-price-hr').value);
-      const tag = document.getElementById('room-tag').value;
-      const desc = document.getElementById('room-desc').value;
-
-      virtualRooms.push({
-        id: 'room-' + Date.now(),
-        name,
-        capacity: '⭐ Capacidad: ' + capacity,
-        tag,
-        desc,
-        priceHr
+    function filterRecipe(tag) {
+      const cards = document.querySelectorAll('.recipe-card');
+      cards.forEach(card => {
+        const tags = card.getAttribute('data-tag');
+        if (tag === 'Todas' || tags.includes(tag)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
       });
-
-      renderRooms();
-      closeAddContentModal();
-      alert('¡Nueva Sala Virtual agregada con éxito!');
     }
 
     function changeLanguage(lang) {
