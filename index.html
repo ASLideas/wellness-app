@@ -14,7 +14,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- ARCHIVO DE DATOS SEPARADO -->
+  <!-- BASE DE DATOS LOCAL Y CATEGORÍAS MILENARIAS -->
   <script src="data.js"></script>
 
   <script>
@@ -41,7 +41,7 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col justify-between select-none">
 
-  <!-- PANTALLA DE CARGA (SPLASH SCREEN CORREGIDO) -->
+  <!-- PANTALLA DE CARGA (SPLASH SCREEN MEJORADO) -->
   <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-lightbg transition-opacity duration-500">
     <div class="relative flex items-center justify-center">
       <div class="w-32 h-32 rounded-full border-4 border-dew/30 border-t-rain animate-spin absolute"></div>
@@ -90,7 +90,7 @@
           </div>
           <h2 id="hero-title" class="text-2xl sm:text-4xl font-bold text-slate leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-xs sm:text-sm text-slate/80 mt-2">
-            Salas virtuales con transmisión de cámara en vivo, videoteca interactiva y Fichas PDF con IA.
+            Salas virtuales con cámara en vivo, recetas milenarias, movimientos ancestrales y autoayuda.
           </p>
         </div>
 
@@ -109,20 +109,41 @@
     <div id="admin-banner" class="hidden mb-4 p-3.5 rounded-2xl bg-amber-50 border-2 border-amber-400 text-amber-900 flex justify-between items-center text-xs font-bold shadow-sm">
       <div class="flex items-center gap-2">
         <span class="text-lg">🔓</span>
-        <span>MODO ADMIN ACTIVO: Tienes acceso completo para agregar o eliminar salas y contenidos.</span>
+        <span>MODO ADMIN ACTIVO: Permisos completos de edición y eliminación.</span>
       </div>
       <button onclick="closeAdminMode()" class="bg-amber-800 text-white px-3 py-1 rounded-xl text-[11px] hover:bg-amber-900">Bloquear</button>
     </div>
 
-    <!-- REPRODUCTOR PRINCIPAL ESTILO YOUTUBE -->
+    <!-- TRANSMISIÓN DE SABIDURÍA MILENARIA (REPRODUCTOR PRINCIPAL) -->
     <section id="reproductor-seccion" class="py-4 border-t border-rain/20">
-      <div class="mb-3">
-        <h3 class="text-xl font-bold text-slate">📺 Reproductor Interactivo estilo YouTube</h3>
-        <p class="text-xs text-rain">Haz clic en cualquier video de la lista lateral para reproducirlo en la pantalla principal</p>
+      <div class="mb-4">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="rounded-full bg-currant text-white px-3 py-0.5 text-[10px] font-bold">Experiencia Integrativa</span>
+          <span class="rounded-full bg-dew/30 text-slate px-3 py-0.5 text-[10px] font-bold">Sabiduría Ancestral</span>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-slate">📺 Transmisión de Sabiduría Milenaria</h3>
+        <p class="text-xs text-rain mt-0.5">Selecciona una categoría o haz clic en cualquier video de la lista para reproducirlo</p>
       </div>
 
+      <!-- FILTROS POR CONCEPTOS MILENARIOS -->
+      <div class="flex gap-2 overflow-x-auto pb-3 no-scrollbar mb-2">
+        <button onclick="filterPlaylist('Todas')" class="rounded-full border border-rain/30 bg-slate text-white px-4 py-2 text-xs font-bold shrink-0 shadow-sm">
+          ✨ Todo el Contenido
+        </button>
+        <button onclick="filterPlaylist('recetas')" class="rounded-full border border-amber-300 bg-amber-50 text-amber-900 px-4 py-2 text-xs font-bold shrink-0 hover:bg-amber-100 transition">
+          🥗 Recetas Milenarias
+        </button>
+        <button onclick="filterPlaylist('meditaciones')" class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 px-4 py-2 text-xs font-bold shrink-0 hover:bg-emerald-100 transition">
+          🧘 Sabiduría Ancestral & Autoayuda
+        </button>
+        <button onclick="filterPlaylist('ejercicios')" class="rounded-full border border-purple-300 bg-purple-50 text-purple-900 px-4 py-2 text-xs font-bold shrink-0 hover:bg-purple-100 transition">
+          🏃 Movimientos Ancestrales
+        </button>
+      </div>
+
+      <!-- REPRODUCTOR Y LISTA LATERAL -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- COLUMNA PRINCIPAL (2 Cols): Reproductor Activo -->
+        <!-- Reproductor Principal (2 Columnas) -->
         <div class="lg:col-span-2 bg-white p-4 rounded-3xl border border-rain/20 shadow-sm">
           <div class="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-md">
             <iframe id="main-player-iframe" class="w-full h-full" src="https://www.youtube.com/embed/ItMcmDCxD6A" title="Video Principal" frameborder="0" allowfullscreen></iframe>
@@ -130,22 +151,22 @@
           
           <div class="mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
             <div>
-              <span id="main-player-category" class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2.5 py-1 rounded-full">🏋️‍♀️ Ejercicios / GAP</span>
+              <span id="main-player-category" class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2.5 py-1 rounded-full">🏃 Movimientos Ancestrales</span>
               <h3 id="main-player-title" class="text-lg font-bold text-slate mt-2">Rutina GAP: Glúteos, Abdomen y Piernas</h3>
               <p id="main-player-author" class="text-xs text-rain mt-0.5">Instructor(a): NatyGlossGym · Sin peso y sin saltos</p>
             </div>
 
-            <button onclick="compartirWhatsApp('¡Miren esta clase en Natural Wellness!', window.location.href)" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-emerald-700 transition flex items-center gap-1 shrink-0">
+            <button onclick="compartirWhatsApp('¡Miren esta clase en Natural Wellness!', window.location.href)" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-emerald-700 transition flex items-center gap-1 shrink-0 shadow">
               💬 Compartir Clase
             </button>
           </div>
         </div>
 
-        <!-- COLUMNA DERECHA (1 Col): Lista de Reproducción Lateral -->
+        <!-- Lista de Reproducción Lateral (1 Columna) -->
         <div class="lg:col-span-1 bg-white p-4 rounded-3xl border border-rain/20 shadow-sm flex flex-col gap-3">
-          <h4 class="text-xs font-bold text-slate border-b border-rain/15 pb-2 uppercase tracking-wide">▶ Siguientes Clases & Recetas</h4>
+          <h4 class="text-xs font-bold text-slate border-b border-rain/15 pb-2 uppercase tracking-wide">▶ Catálogo Recomendado</h4>
           <div id="sidebar-playlist" class="flex flex-col gap-3 max-h-[480px] overflow-y-auto no-scrollbar">
-            <!-- Se carga dinámicamente desde data.js -->
+            <!-- Renderizado dinámicamente desde data.js -->
           </div>
         </div>
       </div>
@@ -166,7 +187,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN RESEÑAS, COMUNIDAD Y COMPARTIR -->
+    <!-- SECCIÓN RESEÑAS, COMUNIDAD Y RECOMENDACIONES -->
     <section id="resenas-comunidad" class="py-6 border-t border-rain/20 bg-white/60 rounded-3xl p-5 my-4 shadow-sm">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-5">
         <div>
@@ -178,7 +199,7 @@
           <button onclick="openEvaluationModal()" class="bg-currant text-white px-3.5 py-2 rounded-full text-xs font-bold hover:bg-slate transition shadow">
             ✍️ Escribir Reseña
           </button>
-          <button onclick="compartirContenido('Natural Wellness', 'Descubre nuestras salas virtuales y recetas terapéuticas con IA', window.location.href)" class="bg-dew/30 text-slate border border-rain/30 px-3.5 py-2 rounded-full text-xs font-bold hover:bg-dew/50 transition">
+          <button onclick="compartirContenido('Natural Wellness', 'Descubre nuestras salas virtuales, recetas milenarias y meditaciones', window.location.href)" class="bg-dew/30 text-slate border border-rain/30 px-3.5 py-2 rounded-full text-xs font-bold hover:bg-dew/50 transition">
             📲 Compartir App
           </button>
         </div>
@@ -192,8 +213,8 @@
               <span class="text-xs font-bold text-slate">Claudia Morales</span>
               <span class="text-amber-500 text-xs">⭐⭐⭐⭐⭐</span>
             </div>
-            <span class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2 py-0.5 rounded-full">Rutina GAP</span>
-            <p class="text-xs text-slate/80 mt-2">"Excelente rutina sin saltos. Perfecta para entrenar sin impactar las articulaciones. ¡100% recomendada!"</p>
+            <span class="bg-purple-100 text-purple-900 text-[10px] font-bold px-2 py-0.5 rounded-full">Movimientos Ancestrales</span>
+            <p class="text-xs text-slate/80 mt-2">"Excelente rutina GAP sin saltos. Perfecta para entrenar sin impactar las articulaciones. ¡100% recomendada!"</p>
           </div>
           <div class="mt-4 pt-2 border-t border-rain/10 flex justify-between items-center text-[10px] text-rain">
             <span>Hace 2 días</span>
@@ -209,7 +230,7 @@
               <span class="text-amber-500 text-xs">⭐⭐⭐⭐⭐</span>
             </div>
             <span class="bg-dew/30 text-slate text-[10px] font-bold px-2 py-0.5 rounded-full">Sala Lotus (VIP)</span>
-            <p class="text-xs text-slate/80 mt-2">"Utilicé la Sala Lotus para un taller de mindfulness. La transmisión de cámara en vivo funcionó perfecto para mis 6 pacientes."</p>
+            <p class="text-xs text-slate/80 mt-2">"Utilicé la Sala Lotus para un taller de meditación y autoayuda. La transmisión de cámara funcionó impecable."</p>
           </div>
           <div class="mt-4 pt-2 border-t border-rain/10 flex justify-between items-center text-[10px] text-rain">
             <span>Profesional Verificada</span>
@@ -260,15 +281,15 @@
       <button onclick="closeProModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
       <span class="text-xs font-bold text-rain uppercase">👩‍⚕️ Red de Profesionales</span>
-      <h3 class="text-xl font-bold text-slate mt-1">Publicar Contenido con IA</h3>
+      <h3 class="text-xl font-bold text-slate mt-1">Publicar Contenido Ancestral</h3>
 
       <form onsubmit="handleProSubmit(event)" class="mt-4 space-y-3">
         <div>
-          <label class="block text-xs font-bold text-slate mb-1">Tipo de Contenido</label>
+          <label class="block text-xs font-bold text-slate mb-1">Categoría</label>
           <select id="pro-type" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs font-bold outline-none">
-            <option value="ejercicios">🏋️‍♀️ Ejercicio / Rutina GAP</option>
-            <option value="recetas">🥗 Receta Terapéutica</option>
-            <option value="meditaciones">🧘 Meditación / Breathwork</option>
+            <option value="ejercicios">🏃 Movimientos Ancestrales</option>
+            <option value="recetas">🥗 Recetas Milenarias</option>
+            <option value="meditaciones">🧘 Sabiduría Ancestral & Autoayuda</option>
           </select>
         </div>
 
@@ -278,8 +299,8 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate mb-1">Título de la Clase o Receta</label>
-          <input type="text" id="pro-title" required placeholder="Ej. Rutina GAP o Bowl Bajo IG" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
+          <label class="block text-xs font-bold text-slate mb-1">Título de la Clase o Contenido</label>
+          <input type="text" id="pro-title" required placeholder="Ej. Meditación Guiada o Rutina GAP" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs outline-none">
         </div>
 
         <div>
@@ -368,7 +389,7 @@
     Natural Wellness · Sabiduría Ancestral & Salud Integrativa
   </footer>
 
-  <!-- SCRIPT LÓGICO INTEGRADO -->
+  <!-- SCRIPT LÓGICO Y RENDERIZADO DESDE DATA.JS -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
@@ -385,7 +406,7 @@
       }, 500);
 
       renderRoomsFromData();
-      renderPlaylistFromData();
+      filterPlaylist('Todas');
     });
 
     // RENDERIZAR SALAS DESDE DATA.JS
@@ -425,26 +446,33 @@
       });
     }
 
-    // RENDERIZAR PLAYLIST LATERAL DESDE DATA.JS (ESTILO YOUTUBE)
-    function renderPlaylistFromData() {
+    // RENDERIZAR PLAYLIST CON FILTRO MILENARIO
+    function filterPlaylist(filtro = 'Todas') {
       const playlistContainer = document.getElementById('sidebar-playlist');
       if (!playlistContainer || typeof CATALOGO_WELLNESS === 'undefined') return;
 
       playlistContainer.innerHTML = '';
 
-      let todosLosVideos = []
-        .concat(CATALOGO_WELLNESS.ejercicios.map(v => ({ ...v, tipo: '🏋️‍♀️ Ejercicio' })))
-        .concat(CATALOGO_WELLNESS.recetas.map(r => ({ ...r, tipo: '🥗 Receta' })))
-        .concat(CATALOGO_WELLNESS.meditaciones.map(m => ({ ...m, tipo: '🧘 Meditación' })));
+      let videosFiltrados = [];
 
-      todosLosVideos.forEach(video => {
+      if (filtro === 'Todas' || filtro === 'ejercicios') {
+        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.ejercicios.map(v => ({ ...v, concepto: '🏃 Movimientos Ancestrales' })));
+      }
+      if (filtro === 'Todas' || filtro === 'recetas') {
+        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.recetas.map(r => ({ ...r, concepto: '🥗 Recetas Milenarias' })));
+      }
+      if (filtro === 'Todas' || filtro === 'meditaciones') {
+        videosFiltrados = videosFiltrados.concat(CATALOGO_WELLNESS.meditaciones.map(m => ({ ...m, concepto: '🧘 Sabiduría Ancestral' })));
+      }
+
+      videosFiltrados.forEach(video => {
         const itemHTML = `
-          <div onclick="cambiarVideoPrincipal('${video.youtubeUrl}', '${video.titulo}', '${video.profesional}', '${video.tipo}')" class="flex gap-3 p-2 rounded-2xl hover:bg-lightbg cursor-pointer transition border border-transparent hover:border-rain/20">
+          <div onclick="cambiarVideoPrincipal('${video.youtubeUrl}', '${video.titulo}', '${video.profesional}', '${video.concepto}')" class="flex gap-3 p-2 rounded-2xl hover:bg-lightbg cursor-pointer transition border border-transparent hover:border-rain/20">
             <div class="w-28 aspect-video rounded-xl overflow-hidden bg-slate/10 shrink-0 relative">
               <iframe class="w-full h-full pointer-events-none" src="${video.youtubeUrl}"></iframe>
             </div>
             <div class="flex flex-col justify-center">
-              <span class="text-[9px] font-bold text-rain">${video.tipo}</span>
+              <span class="text-[9px] font-bold text-rain">${video.concepto}</span>
               <h5 class="text-xs font-bold text-slate line-clamp-2 leading-tight mt-0.5">${video.titulo}</h5>
               <span class="text-[10px] text-slate/70 mt-1">${video.profesional}</span>
             </div>
@@ -454,14 +482,13 @@
       });
     }
 
-    // CAMBIAR VIDEO EN EL REPRODUCTOR PRINCIPAL
+    // CAMBIAR VIDEO PRINCIPAL
     function cambiarVideoPrincipal(embedUrl, titulo, autor, categoria) {
       document.getElementById('main-player-iframe').src = embedUrl + '?autoplay=1';
       document.getElementById('main-player-title').innerText = titulo;
       document.getElementById('main-player-author').innerText = 'Instructor(a) / Autor: ' + autor;
       document.getElementById('main-player-category').innerText = categoria || '🎥 Clase Interactiva';
       
-      // Scroll suave hacia el reproductor
       document.getElementById('reproductor-seccion').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -500,14 +527,14 @@
     }
 
     function toggleMic() {
-      if (localStream && localStream.getAudioTracks()[0]) {
-        localStream.getAudioTracks()[0].enabled = !localStream.getAudioTracks()[0].enabled;
+      if (localStream && localStream.getAudioTracks()) {
+        localStream.getAudioTracks().enabled = !localStream.getAudioTracks().enabled;
       }
     }
 
     function toggleCamera() {
-      if (localStream && localStream.getVideoTracks()[0]) {
-        localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0].enabled;
+      if (localStream && localStream.getVideoTracks()) {
+        localStream.getVideoTracks().enabled = !localStream.getVideoTracks().enabled;
       }
     }
 
@@ -532,7 +559,7 @@
       let url = document.getElementById('pro-url').value;
 
       if (url.includes('watch?v=')) {
-        url = 'https://www.youtube.com/embed/' + url.split('v=')[1].split('&')[0];
+        url = 'https://www.youtube.com/embed/' + url.split('v=').split('&');
       }
 
       const newItem = {
@@ -540,18 +567,18 @@
         titulo: title,
         profesional: name,
         categoria: type,
-        etiquetas: ["🤖 Nuevo Video"],
+        etiquetas: ["🤖 Nuevo Contenido"],
         youtubeUrl: url,
         duracion: "20 minutos"
       };
 
       if (typeof CATALOGO_WELLNESS !== 'undefined' && CATALOGO_WELLNESS[type]) {
         CATALOGO_WELLNESS[type].unshift(newItem);
-        renderPlaylistFromData();
+        filterPlaylist('Todas');
       }
 
       closeProModal();
-      alert('🤖 ¡Contenido agregado con éxito!');
+      alert('🤖 ¡Contenido publicado exitosamente!');
     }
 
     function openEvaluationModal() { document.getElementById('evaluation-modal').classList.remove('hidden'); document.getElementById('evaluation-modal').classList.add('flex'); }
@@ -603,7 +630,7 @@
         closeAdminModal();
         document.getElementById('admin-banner').classList.remove('hidden');
         renderRoomsFromData();
-        renderPlaylistFromData();
+        filterPlaylist('Todas');
       } else {
         alert('PIN incorrecto. Ingresa NW2026*');
       }
@@ -613,7 +640,7 @@
       isAdminActive = false;
       document.getElementById('admin-banner').classList.add('hidden');
       renderRoomsFromData();
-      renderPlaylistFromData();
+      filterPlaylist('Todas');
     }
   </script>
 </body>
