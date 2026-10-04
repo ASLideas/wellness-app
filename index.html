@@ -96,7 +96,7 @@
 
         <div class="flex flex-col gap-2.5 w-full md:w-auto">
           <button onclick="openProModal()" class="w-full text-center rounded-2xl bg-currant text-white px-5 py-3 text-xs font-bold hover:bg-slate transition shadow-md flex items-center justify-center gap-2">
-            <span>👩‍⚕️️</span> Publicar Clase / Video en Natural Wellness
+            <span>👩‍⚕️</span> Publicar Clase / Video en Natural Wellness
           </button>
           <button onclick="openEvaluationModal()" class="w-full text-center rounded-2xl bg-slate text-white px-5 py-3 text-xs font-semibold hover:bg-rain transition">
             ⭐ Dejar Evaluación / Reseña
@@ -370,7 +370,7 @@
 
         <div class="pt-2 flex gap-2">
           <button type="submit" class="flex-1 py-3 bg-amber-500 text-white text-xs font-bold rounded-xl hover:bg-amber-600 transition shadow flex items-center justify-center gap-1">
-            <span>💾</span> Guardar Cambios
+            <span>💾</span> Guardar y Mostrar en Pantalla Principal
           </button>
           <button type="button" onclick="eliminarVideoActual()" class="py-3 px-4 bg-red-100 text-red-700 hover:bg-red-200 text-xs font-bold rounded-xl transition">
             🗑️ Eliminar
@@ -391,7 +391,7 @@
       <h3 class="text-xl font-bold text-slate mt-1">Publicar Contenido Ancestral</h3>
       <p class="text-xs text-slate/70 mt-1">Agrega una receta, rutina o meditación para compartir con la comunidad.</p>
 
-      <form onsubmit="handleProSubmit(event)" class="mt-4 space-y-3">
+      <form id="pro-form" onsubmit="handleProSubmit(event)" class="mt-4 space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate mb-1">Categoría del Video</label>
           <select id="pro-type" class="w-full p-2.5 rounded-xl border border-rain/30 text-xs font-bold outline-none bg-white">
@@ -418,7 +418,7 @@
 
         <div class="pt-2">
           <button type="submit" class="w-full py-3 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow flex items-center justify-center gap-2">
-            <span>🚀</span> Publicar Video Ahora
+            <span>🚀</span> Publicar y Ver en Pantalla Principal
           </button>
         </div>
       </form>
@@ -499,20 +499,19 @@
     Natural Wellness · Sabiduría Ancestral & Salud Integrativa
   </footer>
 
-  <!-- SCRIPT LÓGICO COMPLETO -->
+  <!-- SCRIPT LÓGICO COMPLETO SIN ERRORES -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
     let localStream = null;
     let videoActualData = { id: 'ejercicio-1', url: 'https://www.youtube.com/embed/ItMcmDCxD6A', titulo: 'Rutina GAP: Glúteos, Abdomen y Piernas', autor: 'NatyGlossGym', categoria: 'ejercicios' };
 
-    // OBTENER ID DE YOUTUBE ROBUSTO
+    // OBTENER ID DE YOUTUBE CON REGEX ROBUSTO (ROBUST YOUTUBE PARSER)
     function obtenerYoutubeId(url) {
       if (!url) return '';
-      if (url.includes('embed/')) return url.split('embed/')[1].split('?')[0];
-      if (url.includes('v=')) return url.split('v=')[1].split('&')[0];
-      if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0];
-      return '';
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : '';
     }
 
     // GENERAR MINIATURA DE YOUTUBE
@@ -521,7 +520,7 @@
       return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : 'wellnes app.jpg';
     }
 
-    // FORMATEAR URL DE EMBED
+    // FORMATEAR URL DE EMBED ROBUSTA
     function formatearYoutubeEmbed(url) {
       const id = obtenerYoutubeId(url);
       return id ? `https://www.youtube.com/embed/${id}` : 'https://www.youtube.com/embed/ItMcmDCxD6A';
@@ -683,7 +682,7 @@
       });
     }
 
-    // CAMBIAR VIDEO EN EL REPRODUCTOR
+    // CAMBIAR VIDEO EN EL REPRODUCTOR PRINCIPAL
     function cambiarVideoPrincipal(id, embedUrl, titulo, autor, categoria, catKey) {
       const formattedUrl = formatearYoutubeEmbed(embedUrl);
       videoActualData = { id: id || 'item-temp', url: embedUrl, titulo: titulo, autor: autor, categoria: catKey || 'ejercicios' };
@@ -750,7 +749,7 @@
       document.getElementById('edit-video-modal').classList.remove('flex');
     }
 
-    // GUARDAR EDICIÓN DEL VIDEO
+    // GUARDAR EDICIÓN DEL VIDEO Y ACTUALIZAR LA PÁGINA PRINCIPAL
     function handleEditSubmit(e) {
       e.preventDefault();
       const id = document.getElementById('edit-video-id').value;
@@ -762,6 +761,7 @@
 
       const embedUrl = formatearYoutubeEmbed(newUrl);
 
+      // Eliminar de la categoría de origen
       if (catOrigin && CATALOGO_WELLNESS[catOrigin]) {
         CATALOGO_WELLNESS[catOrigin] = CATALOGO_WELLNESS[catOrigin].filter(v => v.id !== id);
       }
@@ -779,10 +779,14 @@
       CATALOGO_WELLNESS[newType].unshift(updatedItem);
 
       filterPlaylist('Todas');
-      cambiarVideoPrincipal(updatedItem.id, embedUrl, newTitle, newName, newType === 'recetas' ? '🥗 Recetas Milenarias' : newType === 'meditaciones' ? '🧘 Sabiduría Ancestral' : '🏃 Movimientos Ancestrales', newType);
+      
+      const conceptoTexto = newType === 'recetas' ? '🥗 Recetas Milenarias' : newType === 'meditaciones' ? '🧘 Sabiduría Ancestral' : '🏃 Movimientos Ancestrales';
+      
+      // MOSTRAR INMEDIATAMENTE EN EL REPRODUCTOR DE LA PÁGINA PRINCIPAL
+      cambiarVideoPrincipal(updatedItem.id, embedUrl, newTitle, newName, conceptoTexto, newType);
 
       closeEditModal();
-      alert('✨ ¡Video corregido y actualizado por Administrador!');
+      alert('✨ ¡Video guardado! Ahora se está reproduciendo en la pantalla principal.');
     }
 
     // ELIMINAR VIDEO
@@ -800,7 +804,7 @@
       }
     }
 
-    // PUBLICAR NUEVO VIDEO
+    // PUBLICAR NUEVO VIDEO Y CARGARLO EN LA PÁGINA PRINCIPAL
     function handleProSubmit(e) {
       e.preventDefault();
       const type = document.getElementById('pro-type').value;
@@ -823,11 +827,17 @@
       if (typeof CATALOGO_WELLNESS !== 'undefined' && CATALOGO_WELLNESS[type]) {
         CATALOGO_WELLNESS[type].unshift(newItem);
         filterPlaylist('Todas');
-        cambiarVideoPrincipal(newItem.id, embedUrl, title, name, type === 'recetas' ? '🥗 Recetas Milenarias' : type === 'meditaciones' ? '🧘 Sabiduría Ancestral' : '🏃 Movimientos Ancestrales', type);
+
+        const conceptoTexto = type === 'recetas' ? '🥗 Recetas Milenarias' : type === 'meditaciones' ? '🧘 Sabiduría Ancestral' : '🏃 Movimientos Ancestrales';
+        
+        // Cargar inmediatamente en la pantalla principal
+        cambiarVideoPrincipal(newItem.id, embedUrl, title, name, conceptoTexto, type);
       }
 
+      // Resetear el formulario y cerrar el modal limpiamente
+      document.getElementById('pro-form').reset();
       closeProModal();
-      alert('🤖 ¡Video publicado con éxito en la plataforma!');
+      alert('🚀 ¡Video publicado exitosamente! Ya se está reproduciendo en la pantalla principal.');
     }
 
     // COMPARTIR
