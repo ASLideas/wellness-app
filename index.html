@@ -17,7 +17,6 @@
             slate: '#2B4251',
             creosote: '#2E323C',
             lightbg: '#F4F8F9',
-            cardbg: '#FFFFFF',
           }
         }
       }
@@ -31,218 +30,194 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col justify-between">
 
-  <!-- HEADER CON LOGO -->
+  <!-- PANTALLA DE CARGA (SPLASH SCREEN) -->
+  <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-lightbg transition-opacity duration-700">
+    <div class="relative flex items-center justify-center">
+      <div class="w-28 h-28 rounded-full border-4 border-dew/30 border-t-rain animate-spin absolute"></div>
+      <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="w-20 h-20 rounded-full object-cover shadow-lg z-10" onerror="this.src='wellnes app.jpg'">
+    </div>
+    <h2 class="mt-6 text-xl font-bold text-slate tracking-wide">Natural Wellness</h2>
+    <p class="text-xs text-rain mt-1 animate-pulse">Cargando Sabiduría Ancestral...</p>
+  </div>
+
+  <!-- HEADER CON LOGO CIRCULAR -->
   <header class="border-b border-rain/20 bg-white/90 p-4 sticky top-0 z-40 backdrop-blur-md shadow-sm">
     <div class="max-w-6xl mx-auto flex justify-between items-center w-full">
       <div class="flex items-center gap-3">
-        <!-- Logo de la app -->
-        <img src="wellnes app.jpg" alt="Natural Wellness Logo" class="w-11 h-11 rounded-full object-cover border border-rain/30 shadow-sm" onerror="this.src='https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=100&q=80'">
+        <!-- Logo circular -->
+        <img src="LOGO WELLNESS.jpg" alt="Logo Circular" class="w-11 h-11 rounded-full object-cover border-2 border-rain shadow-sm" onerror="this.src='wellnes app.jpg'">
         <div>
-          <h1 class="text-xl font-bold text-slate">Natural Wellness</h1>
-          <p class="text-xs text-rain font-medium">Sabiduría Ancestral & Salud Integrativa</p>
+          <h1 class="text-lg font-bold text-slate leading-tight">Natural Wellness</h1>
+          <p class="text-xs text-rain">Ecosistema LAWENMOLL</p>
         </div>
       </div>
       <div class="flex gap-2">
-        <a href="#videoteca" class="rounded-full border border-rain/30 bg-lightbg px-4 py-2 text-xs font-semibold text-slate hover:bg-dew/20">Videoteca</a>
-        <a href="#salas" class="rounded-full bg-rain px-4 py-2 text-xs font-semibold text-white shadow hover:bg-slate">Reservar Salas</a>
+        <a href="https://lawenmoll.vercel.app" target="_blank" class="rounded-full border border-rain/30 bg-lightbg px-3 py-1.5 text-xs font-semibold text-slate hover:bg-dew/20 transition">🌐 Ir a LAWENMOLL</a>
+        <a href="#salas" class="rounded-full bg-rain px-4 py-1.5 text-xs font-semibold text-white shadow hover:bg-slate transition">Reservar Salas</a>
       </div>
     </div>
   </header>
 
   <main class="max-w-6xl mx-auto p-4 w-full">
 
-    <!-- HERO BANNER -->
-    <section class="rounded-3xl bg-gradient-to-r from-dew/20 to-rain/10 p-8 my-6 border border-rain/20 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="max-w-xl">
-        <span class="rounded-full bg-currant px-3 py-1 text-xs font-semibold text-white">Ecosistema LAWENMOLL</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-slate mt-3 leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
-        <p class="text-sm text-slate/80 mt-2">Accede a sesiones gratuitas de cocina saludable, rutinas adaptadas y meditaciones ancestrales guiadas.</p>
+    <!-- HERO BANNER Y RESEÑA LAWENMOLL -->
+    <section class="rounded-3xl bg-gradient-to-r from-dew/20 via-white to-rain/15 p-6 md:p-8 my-6 border border-rain/20 shadow-sm">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div class="max-w-2xl">
+          <span class="rounded-full bg-currant px-3 py-1 text-xs font-semibold text-white">Plataforma Integrada</span>
+          <h2 class="text-3xl font-bold text-slate mt-3 leading-tight">Nutrición, Movimiento y Mente en Armonía</h2>
+          <p class="text-sm text-slate/80 mt-2">
+            Accede a sesiones gratuitas de cocina saludable, rutinas adaptadas y meditaciones ancestrales guiadas.
+          </p>
+          
+          <!-- Reseña sobre LAWENMOLL -->
+          <div class="mt-4 p-4 rounded-2xl bg-white/80 border border-rain/15 text-xs text-slate/90">
+            <strong class="text-rain font-bold">¿Qué es LAWENMOLL?</strong> Es el ecosistema clínico de salud integrativa que une la medicina ancestral con fichas médicas digitales y evaluación metabólica. Desde esta Web App Wellness entregamos las herramientas prácticas de autocuidado recomendadas por nuestros profesionales.
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3 w-full md:w-auto">
+          <a href="#videoteca" class="text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition shadow">Explorar Clases</a>
+          <a href="https://lawenmoll.vercel.app" target="_blank" class="text-center rounded-2xl border border-rain/30 bg-white text-slate px-6 py-3 text-xs font-semibold hover:bg-lightbg transition">Conocer LAWENMOLL</a>
+        </div>
       </div>
-      <a href="#videoteca" class="rounded-2xl bg-slate text-white px-6 py-3 text-sm font-semibold hover:bg-rain transition">Explorar Clases</a>
     </section>
 
     <!-- FILTROS DE SALUD -->
     <section class="pb-6">
-      <h3 class="text-lg font-bold text-slate mb-3">Filtros de salud</h3>
-      <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar md:flex-wrap">
-        <!-- Cocina -->
-        <div class="flex min-w-max items-center gap-2 rounded-2xl bg-white p-2 border border-rain/20 shadow-sm">
-          <span class="px-2 text-xs font-bold text-rain">🥗 Cocina</span>
-          <button onclick="filterCategory('Bajar Azúcar')" class="rounded-full bg-lightbg px-3 py-1.5 text-xs text-slate hover:bg-dew/30">Bajar Azúcar</button>
-          <button onclick="filterCategory('Quemador de Grasa')" class="rounded-full bg-lightbg px-3 py-1.5 text-xs text-slate hover:bg-dew/30">Quemador Grasa</button>
-          <button onclick="filterCategory('Nausea-Free')" class="rounded-full bg-lightbg px-3 py-1.5 text-xs text-slate hover:bg-dew/30">Nausea-Free</button>
-        </div>
-        <!-- Ejercicios -->
-        <div class="flex min-w-max items-center gap-2 rounded-2xl bg-white p-2 border border-rain/20 shadow-sm">
-          <span class="px-2 text-xs font-bold text-rain">🏋️‍♀️ Ejercicios</span>
-          <button onclick="filterCategory('Movilidad')" class="rounded-full bg-lightbg px-3 py-1.5 text-xs text-slate hover:bg-dew/30">Movilidad en Silla</button>
-          <button onclick="filterCategory('HIIT')" class="rounded-full bg-lightbg px-3 py-1.5 text-xs text-slate hover:bg-dew/30">HIIT Bajo Impacto</button>
-          <button onclick="filterCategory('Core')" class="rounded-full bg-lightbg px-3 py-1.5 text-xs text-slate hover:bg-dew/30">Core Consciente</button>
-        </div>
-        <!-- Mindfulness -->
-        <div class="flex min-w-max items-center gap-2 rounded-2xl bg-white p-2 border border-rain/20 shadow-sm">
-          <span class="px-2 text-xs font-bold text-rain">🧘‍♂️ Mindfulness</span>
-          <button onclick="filterCategory('Meditación')" class="rounded-full bg-lightbg px-3 py-1.5 text-xs text-slate hover:bg-dew/30">Meditación</button>
-          <button onclick="filterCategory('Respiración')" class="rounded-full bg-lightbg px-3 py-1.5 text-xs text-slate hover:bg-dew/30">Respiración 4-7-8</button>
-          <button onclick="filterCategory('Secretos')" class="rounded-full bg-lightbg px-3 py-1.5 text-xs text-slate hover:bg-dew/30">Secretos Milenarios</button>
-        </div>
+      <h3 class="text-base font-bold text-slate mb-3">Filtros de salud integrativa</h3>
+      <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+        <button onclick="filterCategory('Bajar Azúcar')" class="rounded-full border border-rain/20 bg-white px-4 py-2 text-xs font-semibold text-slate hover:bg-dew/30 transition">🥗 Bajar Azúcar / Bajo IG</button>
+        <button onclick="filterCategory('Quemador de Grasa')" class="rounded-full border border-rain/20 bg-white px-4 py-2 text-xs font-semibold text-slate hover:bg-dew/30 transition">🔥 Quemador de Grasa</button>
+        <button onclick="filterCategory('Movilidad')" class="rounded-full border border-rain/20 bg-white px-4 py-2 text-xs font-semibold text-slate hover:bg-dew/30 transition">🧘‍♀️ Movilidad en Silla</button>
+        <button onclick="filterCategory('HIIT')" class="rounded-full border border-rain/20 bg-white px-4 py-2 text-xs font-semibold text-slate hover:bg-dew/30 transition">🏃‍♂️ HIIT Bajo Impacto</button>
+        <button onclick="filterCategory('Meditación')" class="rounded-full border border-rain/20 bg-white px-4 py-2 text-xs font-semibold text-slate hover:bg-dew/30 transition">🕯️ Meditación Guiada</button>
       </div>
     </section>
 
-    <!-- VIDEOTECA GRATUITA CON LINKS -->
+    <!-- VIDEOTECA CON REPRODUCTOR INTERNO -->
     <section id="videoteca" class="pb-16">
       <div class="mb-6 flex justify-between items-end">
         <div>
           <h2 class="text-2xl font-bold text-slate">Videoteca Gratuita</h2>
-          <p class="text-xs text-rain">12 sesiones disponibles con reproducción en línea</p>
+          <p class="text-xs text-rain">Haz clic en cualquier clase para reproducirla en pantalla</p>
         </div>
         <span class="text-xs font-semibold bg-dew/20 text-slate px-3 py-1 rounded-full border border-dew/40">100% Gratis</span>
       </div>
 
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        
-        <!-- Video 1: Cocina -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition">
-          <div class="relative aspect-video bg-slate/10">
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Receta" class="w-full h-full object-cover">
-            <span class="absolute top-3 left-3 bg-rain text-white text-[10px] font-bold px-2 py-1 rounded-full">Receta</span>
-            <span class="absolute bottom-3 right-3 bg-slate/80 text-white text-[10px] px-2 py-1 rounded-full">12 min · YouTube</span>
+
+        <!-- Card Video 1 -->
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-video bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Bowl de avena y canela de bajo índice glicémico', 'Bajar Azúcar', 'https://youtube.com')">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Receta" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-rain text-white text-[10px] font-bold px-2 py-1 rounded-full">Receta</span>
+              <div class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition">
+                <span class="w-12 h-12 rounded-full bg-white/90 text-slate flex items-center justify-center shadow-lg text-lg font-bold">▶</span>
+              </div>
+            </div>
+            <div class="p-4">
+              <span class="text-[11px] font-bold text-rain uppercase">Bajar Azúcar / Bajo IG</span>
+              <h4 class="font-bold text-slate text-base mt-1">Bowl de avena y canela de bajo índice glicémico</h4>
+            </div>
           </div>
-          <div class="p-4">
-            <span class="text-[11px] font-bold text-rain uppercase">Bajar Azúcar / Bajo IG</span>
-            <h4 class="font-bold text-slate text-base mt-1">Bowl de avena y canela de bajo índice glicémico</h4>
-            <a href="https://www.youtube.com/results?search_query=bowl+avena+bajo+indice+glicemico" target="_blank" class="mt-3 inline-block w-full text-center bg-lightbg text-slate text-xs font-semibold py-2 rounded-xl border border-rain/20 hover:bg-dew/30">▶ Ver Video de Receta</a>
+          <div class="p-4 pt-0">
+            <button onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Bowl de avena y canela', 'Bajar Azúcar', 'https://youtube.com')" class="w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir en la App</button>
           </div>
         </div>
 
-        <!-- Video 2: Cocina -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition">
-          <div class="relative aspect-video bg-slate/10">
-            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" alt="Receta" class="w-full h-full object-cover">
-            <span class="absolute top-3 left-3 bg-rain text-white text-[10px] font-bold px-2 py-1 rounded-full">Receta</span>
-            <span class="absolute bottom-3 right-3 bg-slate/80 text-white text-[10px] px-2 py-1 rounded-full">18 min · YouTube</span>
+        <!-- Card Video 2 -->
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-video bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Garbanzos al horno con cúrcuma y limón', 'Nutrición Ancestral', 'https://youtube.com')">
+              <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" alt="Receta" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-rain text-white text-[10px] font-bold px-2 py-1 rounded-full">Cocina</span>
+              <div class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition">
+                <span class="w-12 h-12 rounded-full bg-white/90 text-slate flex items-center justify-center shadow-lg text-lg font-bold">▶</span>
+              </div>
+            </div>
+            <div class="p-4">
+              <span class="text-[11px] font-bold text-rain uppercase">Antinflamatorio</span>
+              <h4 class="font-bold text-slate text-base mt-1">Garbanzos al horno con cúrcuma y limón</h4>
+            </div>
           </div>
-          <div class="p-4">
-            <span class="text-[11px] font-bold text-rain uppercase">Bajar Azúcar / Bajo IG</span>
-            <h4 class="font-bold text-slate text-base mt-1">Garbanzos al horno con cúrcuma y limón</h4>
-            <a href="https://www.youtube.com/results?search_query=garbanzos+al+horno+curcuma" target="_blank" class="mt-3 inline-block w-full text-center bg-lightbg text-slate text-xs font-semibold py-2 rounded-xl border border-rain/20 hover:bg-dew/30">▶ Ver Video de Receta</a>
-          </div>
-        </div>
-
-        <!-- Video 3: Quemador -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition">
-          <div class="relative aspect-video bg-slate/10">
-            <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=800&q=80" alt="Smoothie" class="w-full h-full object-cover">
-            <span class="absolute top-3 left-3 bg-rain text-white text-[10px] font-bold px-2 py-1 rounded-full">Nutrición</span>
-            <span class="absolute bottom-3 right-3 bg-slate/80 text-white text-[10px] px-2 py-1 rounded-full">8 min · YouTube</span>
-          </div>
-          <div class="p-4">
-            <span class="text-[11px] font-bold text-rain uppercase">Quemador de Grasa</span>
-            <h4 class="font-bold text-slate text-base mt-1">Smoothie quemador: té verde, jengibre y piña</h4>
-            <a href="https://www.youtube.com/results?search_query=smoothie+te+verde+jengibre+pina" target="_blank" class="mt-3 inline-block w-full text-center bg-lightbg text-slate text-xs font-semibold py-2 rounded-xl border border-rain/20 hover:bg-dew/30">▶ Ver Video de Receta</a>
+          <div class="p-4 pt-0">
+            <button onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Garbanzos con cúrcuma', 'Nutrición', 'https://youtube.com')" class="w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir en la App</button>
           </div>
         </div>
 
-        <!-- Video 4: Movilidad Yoga -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition">
-          <div class="relative aspect-video bg-slate/10">
-            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Yoga" class="w-full h-full object-cover">
-            <span class="absolute top-3 left-3 bg-currant text-white text-[10px] font-bold px-2 py-1 rounded-full">Ejercicio Adaptado</span>
-            <span class="absolute bottom-3 right-3 bg-slate/80 text-white text-[10px] px-2 py-1 rounded-full">16 min · YouTube</span>
+        <!-- Card Video 3 -->
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-video bg-slate/10 cursor-pointer" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Movilidad en silla para cuello y espalda', 'Ejercicio Adaptado', 'https://youtube.com')">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Movilidad" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-currant text-white text-[10px] font-bold px-2 py-1 rounded-full">Movilidad</span>
+              <div class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition">
+                <span class="w-12 h-12 rounded-full bg-white/90 text-slate flex items-center justify-center shadow-lg text-lg font-bold">▶</span>
+              </div>
+            </div>
+            <div class="p-4">
+              <span class="text-[11px] font-bold text-rain uppercase">Adulto Mayor / Silla</span>
+              <h4 class="font-bold text-slate text-base mt-1">Movilidad adaptada en silla para flexibilidad</h4>
+            </div>
           </div>
-          <div class="p-4">
-            <span class="text-[11px] font-bold text-rain uppercase">Movilidad Adaptada</span>
-            <h4 class="font-bold text-slate text-base mt-1">Movilidad en silla: cuello, hombros y cadera</h4>
-            <a href="https://www.youtube.com/results?search_query=movilidad+en+silla+adulto+mayor" target="_blank" class="mt-3 inline-block w-full text-center bg-lightbg text-slate text-xs font-semibold py-2 rounded-xl border border-rain/20 hover:bg-dew/30">▶ Ver Rutina de Movilidad</a>
-          </div>
-        </div>
-
-        <!-- Video 5: HIIT -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition">
-          <div class="relative aspect-video bg-slate/10">
-            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80" alt="HIIT" class="w-full h-full object-cover">
-            <span class="absolute top-3 left-3 bg-currant text-white text-[10px] font-bold px-2 py-1 rounded-full">Ejercicio</span>
-            <span class="absolute bottom-3 right-3 bg-slate/80 text-white text-[10px] px-2 py-1 rounded-full">20 min · YouTube</span>
-          </div>
-          <div class="p-4">
-            <span class="text-[11px] font-bold text-rain uppercase">HIIT Bajo Impacto</span>
-            <h4 class="font-bold text-slate text-base mt-1">HIIT bajo impacto: 20 minutos sin saltos</h4>
-            <a href="https://www.youtube.com/results?search_query=hiit+bajo+impacto+sin+saltos" target="_blank" class="mt-3 inline-block w-full text-center bg-lightbg text-slate text-xs font-semibold py-2 rounded-xl border border-rain/20 hover:bg-dew/30">▶ Ver Rutina HIIT</a>
-          </div>
-        </div>
-
-        <!-- Video 6: Meditación Guiada -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition">
-          <div class="relative aspect-video bg-slate/10">
-            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Meditacion" class="w-full h-full object-cover">
-            <span class="absolute top-3 left-3 bg-dew text-slate text-[10px] font-bold px-2 py-1 rounded-full">Mindfulness</span>
-            <span class="absolute bottom-3 right-3 bg-slate/80 text-white text-[10px] px-2 py-1 rounded-full">10 min · YouTube</span>
-          </div>
-          <div class="p-4">
-            <span class="text-[11px] font-bold text-rain uppercase">Meditación Guiada</span>
-            <h4 class="font-bold text-slate text-base mt-1">Meditación guiada 10 minutos para calmar la mente</h4>
-            <a href="https://www.youtube.com/results?search_query=meditacion+guiada+10+minutos+paz" target="_blank" class="mt-3 inline-block w-full text-center bg-lightbg text-slate text-xs font-semibold py-2 rounded-xl border border-rain/20 hover:bg-dew/30">▶ Ver Meditación Guiada</a>
-          </div>
-        </div>
-
-        <!-- Video 7: Respiracion -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition">
-          <div class="relative aspect-video bg-slate/10">
-            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" alt="Respiracion" class="w-full h-full object-cover">
-            <span class="absolute top-3 left-3 bg-dew text-slate text-[10px] font-bold px-2 py-1 rounded-full">Breathwork</span>
-            <span class="absolute bottom-3 right-3 bg-slate/80 text-white text-[10px] px-2 py-1 rounded-full">7 min · YouTube</span>
-          </div>
-          <div class="p-4">
-            <span class="text-[11px] font-bold text-rain uppercase">Respiración Guiada</span>
-            <h4 class="font-bold text-slate text-base mt-1">Respiración 4-7-8 para conciliar el sueño profundo</h4>
-            <a href="https://www.youtube.com/results?search_query=respiracion+4+7+8+guiada" target="_blank" class="mt-3 inline-block w-full text-center bg-lightbg text-slate text-xs font-semibold py-2 rounded-xl border border-rain/20 hover:bg-dew/30">▶ Ver Ejercicio de Respiración</a>
-          </div>
-        </div>
-
-        <!-- Video 8: Secretos Milenarios -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-rain/15 hover:shadow-md transition">
-          <div class="relative aspect-video bg-slate/10">
-            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Ancestral" class="w-full h-full object-cover">
-            <span class="absolute top-3 left-3 bg-currant text-white text-[10px] font-bold px-2 py-1 rounded-full">Sabiduría</span>
-            <span class="absolute bottom-3 right-3 bg-slate/80 text-white text-[10px] px-2 py-1 rounded-full">11 min · YouTube</span>
-          </div>
-          <div class="p-4">
-            <span class="text-[11px] font-bold text-rain uppercase">Secretos Milenarios</span>
-            <h4 class="font-bold text-slate text-base mt-1">Infusión ancestral de cúrcuma y pimienta negra</h4>
-            <a href="https://www.youtube.com/results?search_query=infusion+curcuma+y+pimienta+beneficios" target="_blank" class="mt-3 inline-block w-full text-center bg-lightbg text-slate text-xs font-semibold py-2 rounded-xl border border-rain/20 hover:bg-dew/30">▶ Ver Secreto Milenario</a>
+          <div class="p-4 pt-0">
+            <button onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Movilidad adaptada', 'Ejercicio', 'https://youtube.com')" class="w-full bg-slate text-white text-xs font-semibold py-2 rounded-xl hover:bg-rain transition">▶ Reproducir en la App</button>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- SALAS VIRTUALES -->
+    <!-- SALAS VIRTUALES Y FORMAS DE PAGO -->
     <section id="salas" class="py-12 border-t border-rain/20">
-      <h2 class="text-2xl font-bold text-slate">Salas Virtuales por Hora</h2>
-      <p class="text-sm text-rain mt-1">Arriendo por hora <strong class="text-slate">$15.000 CLP</strong> o por semana <strong class="text-slate">$80.000 CLP</strong>.</p>
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-slate">Salas Virtuales por Hora o Semana</h2>
+        <p class="text-sm text-rain mt-1">Arriendo por hora <strong class="text-slate">$15.000 CLP</strong> o por semana <strong class="text-slate">$80.000 CLP</strong>.</p>
+      </div>
 
-      <div class="grid gap-6 md:grid-cols-2 mt-6">
-        <div class="bg-white rounded-3xl p-5 border border-rain/20 shadow-sm flex flex-col justify-between">
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="bg-white rounded-3xl p-6 border border-rain/20 shadow-sm flex flex-col justify-between">
           <div>
-            <span class="text-xs font-bold text-rain">Capacidad: 6 pers.</span>
+            <span class="text-xs font-bold text-rain">Capacidad: 6 personas</span>
             <h3 class="text-xl font-bold text-slate mt-1">Sala Lotus</h3>
-            <p class="text-xs text-slate/80 mt-2">Espacio íntimo para meditación, breathwork y círculos de palabra.</p>
+            <p class="text-xs text-slate/80 mt-2">Espacio íntimo diseñado para meditación, breathwork y círculos de palabra.</p>
           </div>
-          <div class="mt-4 flex justify-between items-center">
+          <div class="mt-6 flex justify-between items-center pt-4 border-t border-rain/15">
             <span class="text-sm font-bold text-slate">$15.000 / hr</span>
-            <a href="https://wa.me/?text=Hola,%20deseo%20reservar%20la%20Sala%20Lotus" target="_blank" class="bg-rain text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-slate">Reservar por WhatsApp</a>
+            <a href="https://wa.me/?text=Hola,%20deseo%20reservar%20la%20Sala%20Lotus" target="_blank" class="bg-rain text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-slate transition">Reservar Vía WhatsApp</a>
           </div>
         </div>
 
-        <div class="bg-white rounded-3xl p-5 border border-rain/20 shadow-sm flex flex-col justify-between">
+        <div class="bg-white rounded-3xl p-6 border border-rain/20 shadow-sm flex flex-col justify-between">
           <div>
-            <span class="text-xs font-bold text-rain">Capacidad: 10 pers.</span>
+            <span class="text-xs font-bold text-rain">Capacidad: 10 personas</span>
             <h3 class="text-xl font-bold text-slate mt-1">Sala Bosque</h3>
-            <p class="text-xs text-slate/80 mt-2">Ideal para movilidad en silla, core y HIIT de bajo impacto.</p>
+            <p class="text-xs text-slate/80 mt-2">Equipada para actividades de movilidad adaptada en silla, core y HIIT suave.</p>
           </div>
-          <div class="mt-4 flex justify-between items-center">
+          <div class="mt-6 flex justify-between items-center pt-4 border-t border-rain/15">
             <span class="text-sm font-bold text-slate">$15.000 / hr</span>
-            <a href="https://wa.me/?text=Hola,%20deseo%20reservar%20la%20Sala%20Bosque" target="_blank" class="bg-rain text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-slate">Reservar por WhatsApp</a>
+            <a href="https://wa.me/?text=Hola,%20deseo%20reservar%20la%20Sala%20Bosque" target="_blank" class="bg-rain text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-slate transition">Reservar Vía WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMAS DE PAGO -->
+      <div class="mt-10 bg-white rounded-3xl p-6 border border-rain/20 shadow-sm">
+        <h4 class="font-bold text-slate text-base mb-3">💳 Formas de Pago Aceptadas</h4>
+        <div class="grid gap-4 sm:grid-cols-3 text-xs text-slate/80">
+          <div class="p-3 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="block text-slate font-bold mb-1">🏦 Transferencia Bancaria Directa</strong>
+            BancoEstado / Khipu. Confirmación inmediata vía comprobante.
+          </div>
+          <div class="p-3 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="block text-slate font-bold mb-1">💳 Webpay / Mercado Pago</strong>
+            Acepta Tarjetas de Débito y Crédito en cuotas sin interés.
+          </div>
+          <div class="p-3 rounded-2xl bg-lightbg border border-rain/15">
+            <strong class="block text-slate font-bold mb-1">📲 Pago Directo por WhatsApp</strong>
+            Atención personalizada para coordinar tu horario y recibir tu link de pago.
           </div>
         </div>
       </div>
@@ -250,13 +225,59 @@
 
   </main>
 
+  <!-- MODAL DE REPRODUCTOR DE VIDEO -->
+  <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-rain/20 relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-slate text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain transition">&times;</button>
+      <div class="aspect-video w-full bg-black">
+        <iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="p-6">
+        <span id="modal-category" class="text-xs font-bold text-rain uppercase"></span>
+        <h3 id="modal-title" class="text-xl font-bold text-slate mt-1"></h3>
+        <div class="mt-4 flex flex-wrap justify-between items-center border-t border-rain/15 pt-4">
+          <a id="modal-author-link" href="#" target="_blank" class="text-xs font-semibold text-rain hover:underline flex items-center gap-1">
+            🔗 Abrir canal original del creador en YouTube
+          </a>
+          <button onclick="closeModal()" class="bg-slate text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-rain transition">Cerrar Video</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="border-t border-rain/20 bg-white py-6 text-center text-xs text-slate/70">
-    Natural Wellness · Plataforma Integrada con LAWENMOLL
+    Natural Wellness · Conectado con LAWENMOLL Ecosistema Digital
   </footer>
 
   <script>
+    // Quitar splash screen al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const splash = document.getElementById('splash-screen');
+        splash.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => splash.remove(), 700);
+      }, 900);
+    });
+
+    // Abrir modal de video
+    function openModal(embedUrl, title, category, authorUrl) {
+      document.getElementById('modal-iframe').src = embedUrl;
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-category').innerText = category;
+      document.getElementById('modal-author-link').href = authorUrl;
+      document.getElementById('video-modal').classList.remove('hidden');
+      document.getElementById('video-modal').classList.add('flex');
+    }
+
+    // Cerrar modal
+    function closeModal() {
+      document.getElementById('modal-iframe').src = '';
+      document.getElementById('video-modal').classList.add('hidden');
+      document.getElementById('video-modal').classList.remove('flex');
+    }
+
     function filterCategory(cat) {
-      alert("Filtrando por categoría: " + cat);
+      alert("Filtrando videoteca por: " + cat);
     }
   </script>
 </body>
