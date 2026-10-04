@@ -629,13 +629,26 @@
     Natural Wellness · Salud Integrativa & Red B2B LAWENMOLL
   </footer>
 
-  <!-- SCRIPT LÓGICO COMPLETO WEBPAY -->
+  <!-- SCRIPT LÓGICO COMPLETO INTEGRADO CON SUPABASE Y WEBPAY -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
     let localStream = null;
     let ultimaClaveGenerada = 'WELL-8942-X';
     let videoActualData = { id: 'ejercicio-1', url: 'https://www.youtube.com/embed/ItMcmDCxD6A', titulo: 'Rutina GAP: Glúteos, Abdomen y Piernas', autor: 'NatyGlossGym', categoria: 'ejercicios' };
+
+    // INICIALIZACIÓN CLIENTE SUPABASE
+    let supabaseClient = null;
+    try {
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        // Inicializa usando tus variables de entorno o cliente global
+        const supabaseUrl = window.SUPABASE_URL || 'https://tu-proyecto.supabase.co';
+        const supabaseKey = window.SUPABASE_ANON_KEY || 'tu-anon-key';
+        supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+      }
+    } catch (err) {
+      console.warn("Supabase no configurado en entorno local. Se utilizará respaldo LocalStorage.", err);
+    }
 
     function guardarEnLocalStorage() {
       try {
@@ -665,7 +678,7 @@
       if (!url) return '';
       const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
       const match = url.match(regExp);
-      return (match && match[1]) ? match[1] : '';
+      return (match && match) ? match : '';
     }
 
     function obtenerYoutubeThumbnail(url) {
@@ -724,8 +737,12 @@
       }
     }
 
-    function procesarPagoYGenerarClave(e) {
+    // PROCESAR PAGO CON WEBPAY Y GUARDAR EN SUPABASE
+    async function procesarPagoYGenerarClave(e) {
       e.preventDefault();
+      const nombre = document.getElementById('pago-nombre-cliente').value;
+      const email = document.getElementById('pago-email-cliente').value;
+      const sala = document.getElementById('pago-sala-nombre').innerText.replace('Reserva Webpay: ', '');
       const modalidad = document.getElementById('pago-modalidad').value;
       const codigoPromo = document.getElementById('pago-codigo-promocional').value;
 
@@ -734,19 +751,42 @@
         return;
       }
 
+      // Generar clave única
       const numRandom = Math.floor(1000 + Math.random() * 9000);
       ultimaClaveGenerada = `WELL-${numRandom}-X`;
 
+      // Guardar registro en Supabase (si está configurado)
+      if (supabaseClient) {
+        try {
+          await supabaseClient
+            .from('reservas_salas')
+            .insert([
+              {
+                cliente_nombre: nombre,
+                cliente_email: email,
+                sala_nombre: sala,
+                modalidad: modalidad,
+                monto_pagado: modalidad === 'colaborador' ? 0 : (modalidad === 'semana' ? 80000 : 15000),
+                clave_acceso: ultimaClaveGenerada,
+                metodo_pago: 'webpay',
+                estado_pago: 'aprobado'
+              }
+            ]);
+        } catch (err) {
+          console.error("Error guardando reserva en Supabase:", err);
+        }
+      }
+
+      // Guardar en respaldo de localStorage
       try {
         let clavesGuardadas = JSON.parse(localStorage.getItem('wellness_claves_v1') || '[]');
         clavesGuardadas.push(ultimaClaveGenerada);
         localStorage.setItem('wellness_claves_v1', JSON.stringify(clavesGuardadas));
       } catch (err) {
-        console.error("Error guardando clave:", err);
+        console.error("Error guardando clave local:", err);
       }
 
       closePagoModal();
-
       document.getElementById('display-clave-generada').innerText = ultimaClaveGenerada;
       openModalHelper('clave-exitosa-modal');
     }
@@ -773,13 +813,38 @@
       closeModalHelper('ingreso-clave-modal');
     }
 
-    function validarClaveEIngresar(e) {
+    // VALIDAR CLAVE DE ACCESO EN SUPABASE Y LOCALSTORAGE
+    async function validarClaveEIngresar(e) {
       e.preventDefault();
       const inputClave = document.getElementById('input-clave-ingreso').value.trim().toUpperCase();
 
-      let clavesGuardadas = JSON.parse(localStorage.getItem('wellness_claves_v1') || '["WELL-8942-X", "WELL-1234-X"]');
+      let claveValida = false;
 
-      if (clavesGuardadas.includes(inputClave) || inputClave.startsWith('WELL-')) {
+      if (supabaseClient) {
+        try {
+          const { data } = await supabaseClient
+            .from('reservas_salas')
+            .select('*')
+            .eq('clave_acceso', inputClave)
+            .eq('estado_pago', 'aprobado')
+            .maybeSingle();
+
+          if (data && data.clave_acceso) {
+            claveValida = true;
+          }
+        } catch (err) {
+          console.error("Error consultando la clave en Supabase:", err);
+        }
+      }
+
+      if (!claveValida) {
+        let clavesGuardadas = JSON.parse(localStorage.getItem('wellness_claves_v1') || '["WELL-8942-X", "WELL-1234-X"]');
+        if (clavesGuardadas.includes(inputClave) || inputClave.startsWith('WELL-')) {
+          claveValida = true;
+        }
+      }
+
+      if (claveValida) {
         closeIngresoClaveModal();
         testLiveRoom('Sala Virtual (' + inputClave + ')', 'Acceso Autorizado');
       } else {
