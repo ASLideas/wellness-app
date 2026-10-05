@@ -3,14 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Natural Wellness — Salud Integrativa</title>
+  <title>Natural Wellness — Salud Integrativa LAWENMOLL</title>
 
-  <!-- CONFIGURACIÓN PWA MÓVIL -->
+  <!-- CONFIGURACIÓN PWA MÓVIL (ANDROID Y iOS / APPLE) -->
   <meta name="theme-color" content="#2B4251">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Natural Wellness">
+  <meta name="apple-mobile-web-app-title" content="Wellness App">
   <link rel="apple-touch-icon" href="LOGO WELLNESS.jpg">
+  <link rel="apple-touch-icon" sizes="152x152" href="lawenmoll_logo.jpg">
+  <link rel="apple-touch-icon" sizes="180x180" href="LOGO WELLNESS.jpg">
+  <link rel="icon" type="image/jpeg" href="lawenmoll_logo.jpg">
+
+  <!-- MANIFEST INLINE PARA ANDROID CHROME -->
+  <link rel="manifest" href='data:application/manifest+json,{"name":"Natural Wellness LAWENMOLL","short_name":"WellnessApp","start_url":".","display":"standalone","background_color":"#F4F8F9","theme_color":"#2B4251","icons":[{"src":"LOGO WELLNESS.jpg","sizes":"192x192","type":"image/jpeg"},{"src":"lawenmoll_logo.jpg","sizes":"512x512","type":"image/jpeg"}]}'>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -40,39 +47,52 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col justify-between">
 
-  <!-- PANTALLA DE CARGA (SPLASH SCREEN) -->
+  <!-- PANTALLA DE CARGA (SPLASH SCREEN) CON DOBLE LOGO -->
   <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-lightbg transition-opacity duration-500">
     <div class="relative flex items-center justify-center">
-      <div class="w-28 h-28 rounded-full border-2 border-dew/30 border-t-rain animate-spin absolute"></div>
-      <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="w-20 h-20 rounded-full object-cover shadow-lg z-10 border border-white" onerror="this.src='wellnes app.jpg'">
+      <div class="w-32 h-32 rounded-full border-2 border-dew/30 border-t-rain animate-spin absolute"></div>
+      <div class="flex items-center -space-x-4 z-10">
+        <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="w-16 h-16 rounded-full object-cover shadow-lg border-2 border-white ring-2 ring-dew/40" onerror="this.src='wellnes app.jpg'">
+        <img src="lawenmoll_logo.jpg" alt="LAWENMOLL" class="w-16 h-16 rounded-full object-cover shadow-lg border-2 border-white ring-2 ring-rain/40" onerror="this.src='wellnes app.jpg'">
+      </div>
     </div>
     <h2 class="text-xl font-bold text-slate tracking-wide mt-6">Natural Wellness</h2>
-    <p class="text-xs text-rain mt-1 font-medium animate-pulse">Salud Integrativa & Plataforma Digital</p>
+    <p class="text-xs text-rain mt-1 font-medium animate-pulse">Ecosistema Salud Integrativa · LAWENMOLL</p>
   </div>
 
-  <!-- HEADER DE NAVEGACIÓN -->
+  <!-- HEADER DE NAVEGACIÓN CON LOGO LAWENMOLL Y WELLNESS -->
   <header class="border-b border-rain/15 bg-white/95 p-3 sm:p-4 sticky top-0 z-40 backdrop-blur-md shadow-sm">
-    <div class="max-w-6xl mx-auto flex justify-between items-center w-full">
-      <div class="flex items-center gap-3">
-        <img src="LOGO WELLNESS.jpg" alt="Logo Wellness" class="w-10 h-10 rounded-full object-cover border border-rain/30 shadow-sm" onerror="this.src='wellnes app.jpg'">
+    <div class="max-w-6xl mx-auto flex justify-between items-center w-full gap-2">
+      <!-- LOGOS E IDENTIDAD -->
+      <div class="flex items-center gap-2 sm:gap-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <div class="flex items-center -space-x-3">
+          <img src="LOGO WELLNESS.jpg" alt="Logo Wellness" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-rain/30 shadow-sm" onerror="this.src='wellnes app.jpg'">
+          <a href="https://lawenmoll.cl" target="_blank" title="Visitar Ecosistema LAWENMOLL">
+            <img src="lawenmoll_logo.jpg" alt="Logo Lawenmoll" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-white shadow-md hover:scale-105 transition" onerror="this.src='wellnes app.jpg'">
+          </a>
+        </div>
         <div>
-          <h1 class="text-base font-bold text-slate leading-tight tracking-tight">Natural Wellness</h1>
-          <p class="text-[11px] text-rain font-medium">Salud Integrativa</p>
+          <div class="flex items-center gap-1.5">
+            <h1 class="text-sm sm:text-base font-bold text-slate leading-tight tracking-tight">Natural Wellness</h1>
+            <a href="https://lawenmoll.cl" target="_blank" class="hidden sm:inline-block bg-currant text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full hover:bg-slate transition">LAWENMOLL</a>
+          </div>
+          <p class="text-[10px] sm:text-[11px] text-rain font-medium">Salud Integrativa & App Móvil</p>
         </div>
       </div>
 
-      <div class="flex gap-2 items-center">
-        <button onclick="openIngresoClaveModal()" class="rounded-full bg-lightbg border border-rain/30 text-slate px-3.5 py-1.5 text-xs font-semibold hover:bg-dew/20 transition">
-          Ingresar con Clave
+      <!-- BOTONES DE ACCIÓN -->
+      <div class="flex gap-1.5 sm:gap-2 items-center flex-wrap justify-end">
+        <button onclick="openInstallPwaModal()" class="rounded-full bg-dew/20 text-slate border border-dew/40 px-3 py-1.5 text-xs font-bold hover:bg-dew/40 transition flex items-center gap-1">
+          <span>📲</span> <span class="hidden xs:inline">Instalar App</span>
         </button>
-        <button onclick="openProModal()" class="rounded-full bg-currant text-white px-4 py-1.5 text-xs font-semibold hover:bg-slate transition shadow-sm">
-          Publicar Clase
+        <button onclick="openIngresoClaveModal()" class="rounded-full bg-lightbg border border-rain/30 text-slate px-3 py-1.5 text-xs font-semibold hover:bg-dew/20 transition">
+          Ingresar Clave
         </button>
-        <button onclick="openContactModal()" class="rounded-full bg-lightbg border border-rain/30 text-slate px-3.5 py-1.5 text-xs font-semibold hover:bg-dew/20 transition">
-          Contacto
+        <button onclick="openProModal()" class="rounded-full bg-currant text-white px-3.5 py-1.5 text-xs font-semibold hover:bg-slate transition shadow-sm">
+          Publicar
         </button>
-        <button id="admin-toggle-btn" onclick="openAdminModal()" class="rounded-full bg-slate text-white px-3.5 py-1.5 text-xs font-semibold hover:bg-rain transition shadow-sm">
-          Administración
+        <button id="admin-toggle-btn" onclick="openAdminModal()" class="rounded-full bg-slate text-white px-3 py-1.5 text-xs font-semibold hover:bg-rain transition shadow-sm">
+          Admin
         </button>
       </div>
     </div>
@@ -80,13 +100,16 @@
 
   <main class="max-w-6xl mx-auto p-3 sm:p-4 w-full">
 
-    <!-- HERO PORTADA ELEGANTE -->
-    <section class="rounded-3xl bg-gradient-to-br from-dew/20 via-white to-rain/10 p-6 sm:p-10 my-4 border border-rain/15 shadow-sm">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <!-- HERO PORTADA ELEGANTE CON ACCESO AL ECOSISTEMA LAWENMOLL -->
+    <section class="rounded-3xl bg-gradient-to-br from-dew/20 via-white to-rain/10 p-5 sm:p-8 my-4 border border-rain/15 shadow-sm relative overflow-hidden">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
         <div class="max-w-2xl">
-          <div class="flex items-center gap-2 mb-3">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
             <span class="rounded-full bg-currant px-3 py-1 text-[11px] font-semibold text-white tracking-wide">Plataforma Integrativa</span>
-            <span class="rounded-full bg-rain/15 text-slate px-3 py-1 text-[11px] font-semibold">Ecosistema LAWENMOLL</span>
+            <a href="https://lawenmoll.cl" target="_blank" class="rounded-full bg-dew/30 text-slate border border-rain/20 px-3 py-1 text-[11px] font-bold hover:bg-dew/50 transition flex items-center gap-1">
+              <img src="lawenmoll_logo.jpg" alt="LAWENMOLL" class="w-3.5 h-3.5 rounded-full object-cover">
+              <span>Ver Web App LAWENMOLL ↗</span>
+            </a>
           </div>
           <h2 id="hero-title" class="text-2xl sm:text-4xl font-bold text-slate leading-tight tracking-tight">Nutrición, Movimiento y Mente en Armonía</h2>
           <p id="hero-desc" class="text-xs sm:text-sm text-slate/80 mt-3 leading-relaxed">
@@ -94,12 +117,16 @@
           </p>
         </div>
 
-        <div class="flex flex-col gap-3 w-full md:w-auto shrink-0">
-          <button onclick="openProModal()" class="w-full text-center rounded-2xl bg-currant text-white px-6 py-3 text-xs font-semibold hover:bg-slate transition shadow-sm">
+        <div class="flex flex-col sm:flex-row md:flex-col gap-2.5 w-full md:w-auto shrink-0">
+          <a href="https://lawenmoll.cl" target="_blank" class="w-full text-center rounded-2xl bg-dew text-slate border border-rain/20 px-5 py-3 text-xs font-bold hover:bg-white transition shadow-sm flex items-center justify-center gap-2">
+            <img src="lawenmoll_logo.jpg" class="w-4 h-4 rounded-full">
+            <span>Ir a Web App LAWENMOLL</span>
+          </a>
+          <button onclick="openProModal()" class="w-full text-center rounded-2xl bg-currant text-white px-5 py-3 text-xs font-semibold hover:bg-slate transition shadow-sm">
             Publicar Clase / Video
           </button>
-          <button onclick="openEvaluationModal()" class="w-full text-center rounded-2xl bg-slate text-white px-6 py-3 text-xs font-semibold hover:bg-rain transition">
-            Dejar Evaluación o Reseña
+          <button onclick="openEvaluationModal()" class="w-full text-center rounded-2xl bg-slate text-white px-5 py-3 text-xs font-semibold hover:bg-rain transition">
+            Dejar Reseña o Evaluación
           </button>
         </div>
       </div>
@@ -145,7 +172,7 @@
     <!-- BANNER MODO ADMIN -->
     <div id="admin-banner" class="hidden mb-4 p-4 rounded-2xl bg-amber-50 border border-amber-300 text-amber-900 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs font-semibold shadow-sm">
       <div class="flex items-center gap-2">
-        <span>Modo Administrador Activo: Puedes editar videos, salas y gestionar el catálogo.</span>
+        <span>Modo Administrador Activo: Puedes editar o eliminar videos, salas y gestionar el catálogo.</span>
       </div>
       <div class="flex gap-2 shrink-0">
         <button onclick="editarVideoActual()" class="bg-amber-500 text-white px-3.5 py-1.5 rounded-xl text-xs hover:bg-amber-600 transition">
@@ -230,7 +257,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN SALAS VIRTUALES CON PAGO WEBPAY Y CLAVES -->
+    <!-- SECCIÓN SALAS VIRTUALES CON BOTÓN DE ELIMINAR CORREGIDO (SIN SOBREPOSICIÓN) -->
     <section id="salas" class="py-8 border-t border-rain/15">
       <div class="mb-5 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
@@ -254,7 +281,7 @@
 
       <!-- TARJETAS DE SALAS -->
       <div id="rooms-grid" class="grid gap-4 sm:gap-6 md:grid-cols-2">
-        <!-- Renderizado dinámicamente -->
+        <!-- Renderizado dinámicamente sin solapamiento del botón eliminar -->
       </div>
     </section>
 
@@ -270,7 +297,7 @@
           <button onclick="openEvaluationModal()" class="bg-currant text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-slate transition shadow-sm">
             Escribir Reseña
           </button>
-          <button onclick="compartirContenido('Natural Wellness', 'Descubre nuestras salas virtuales, recetas y ejercicios integrativos', window.location.href)" class="bg-dew/20 text-slate border border-rain/25 px-4 py-2 rounded-full text-xs font-semibold hover:bg-dew/40 transition">
+          <button onclick="compartirContenido('Natural Wellness LAWENMOLL', 'Descubre nuestras salas virtuales, recetas y ejercicios integrativos', window.location.href)" class="bg-dew/20 text-slate border border-rain/25 px-4 py-2 rounded-full text-xs font-semibold hover:bg-dew/40 transition">
             Compartir App
           </button>
         </div>
@@ -304,7 +331,7 @@
             <p class="text-xs text-slate/80 mt-2 leading-relaxed">"Utilicé la Sala Lotus para un taller de meditación y autoayuda. La transmisión de cámara funcionó impecable."</p>
           </div>
           <div class="mt-4 pt-2 border-t border-rain/10 flex justify-between items-center text-[10px] text-rain">
-            <span>Profesional Verificada</span>
+            <span>Profesional Verificada LAWENMOLL</span>
             <button onclick="compartirWhatsApp('Recomiendo la Sala Lotus en Natural Wellness:', window.location.href)" class="text-slate font-semibold hover:underline">Compartir</button>
           </div>
         </div>
@@ -314,9 +341,52 @@
   </main>
 
   <!-- BOTÓN FLOTANTE WHATSAPP -->
-  <a href="https://wa.me/56912345678?text=Hola%20Natural%20Wellness,%20quisiera%20consultar%20sobre%20las%20salas%20y%20clases" target="_blank" class="fixed bottom-5 right-5 z-40 bg-emerald-600 text-white px-4 py-3 rounded-full shadow-xl font-semibold text-xs flex items-center gap-2 hover:bg-emerald-700 transition border border-white">
+  <a href="https://wa.me/56912345678?text=Hola%20Natural%20Wellness%20LAWENMOLL,%20quisiera%20consultar%20sobre%20las%20salas%20y%20clases" target="_blank" class="fixed bottom-5 right-5 z-40 bg-emerald-600 text-white px-4 py-3 rounded-full shadow-xl font-semibold text-xs flex items-center gap-2 hover:bg-emerald-700 transition border border-white">
     <span>WhatsApp Soporte</span>
   </a>
+
+  <!-- MODAL INSTALACIÓN PWA MÓVIL (ANDROID Y iOS / APPLE) -->
+  <div id="install-pwa-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rain/20 relative pointer-events-auto">
+      <button onclick="closeInstallPwaModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
+      
+      <div class="flex items-center gap-3 mb-3">
+        <img src="LOGO WELLNESS.jpg" class="w-12 h-12 rounded-2xl object-cover border border-rain/20 shadow-sm" onerror="this.src='wellnes app.jpg'">
+        <div>
+          <h3 class="text-lg font-bold text-slate leading-tight">Instalar App Móvil</h3>
+          <p class="text-xs text-rain font-medium">Android, iPhone (iOS) & iPad</p>
+        </div>
+      </div>
+
+      <div class="space-y-4 my-4">
+        <!-- Instrucciones iPhone / iOS -->
+        <div class="p-3.5 bg-lightbg rounded-2xl border border-rain/15">
+          <span class="text-xs font-bold text-slate block mb-1">📱 En iPhone / iPad (Safari iOS):</span>
+          <ol class="text-xs text-slate/80 space-y-1 list-decimal list-inside leading-relaxed">
+            <li>Toca el botón <strong>Compartir</strong> (icono de cuadrado con flecha arriba ⎋).</li>
+            <li>Desplázate hacia abajo y selecciona <strong>"Añadir a pantalla de inicio"</strong> (+).</li>
+            <li>Toca <strong>Añadir</strong> en la esquina superior derecha.</li>
+          </ol>
+        </div>
+
+        <!-- Instrucciones Android -->
+        <div class="p-3.5 bg-lightbg rounded-2xl border border-rain/15">
+          <span class="text-xs font-bold text-slate block mb-1">🤖 En Android (Chrome):</span>
+          <ol class="text-xs text-slate/80 space-y-1 list-decimal list-inside leading-relaxed">
+            <li>Toca los <strong>3 puntos menú</strong> (⋮) en la esquina superior derecha.</li>
+            <li>Selecciona <strong>"Instalar aplicación"</strong> o <strong>"Añadir a pantalla principal"</strong>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <button id="btn-pwa-install-native" onclick="ejecutarInstalacionNativaPwa()" class="w-full py-3 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow-sm hidden">
+        Instalar Ahora en este Dispositivo
+      </button>
+      <button onclick="closeInstallPwaModal()" class="w-full py-2.5 bg-lightbg text-slate text-xs font-semibold rounded-xl hover:bg-rain/20 transition mt-2">
+        Entendido
+      </button>
+    </div>
+  </div>
 
   <!-- MODAL DE PAGO EXCLUSIVO WEBPAY & GENERACIÓN DE CLAVE -->
   <div id="pago-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
@@ -356,7 +426,6 @@
           <span class="text-[10px] text-rain block mt-0.5">Ingresa LAWENMOLL2026 para activar la sala sin costo.</span>
         </div>
 
-        <!-- MÉTODOS DE PAGO: ÚNICAMENTE WEBPAY -->
         <div>
           <label class="block text-xs font-bold text-slate mb-1">Pasarela de Pago Oficial</label>
           <div class="p-3 rounded-2xl bg-red-50 border border-red-200 flex items-center justify-between">
@@ -593,24 +662,6 @@
     </div>
   </div>
 
-  <!-- MODAL DE CONTACTO -->
-  <div id="contact-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
-    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center pointer-events-auto">
-      <button onclick="closeContactModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">&times;</button>
-      <h3 class="text-lg font-bold text-slate mt-2">Contacto Natural Wellness</h3>
-      <div class="mt-4 space-y-2 text-left text-xs text-slate">
-        <div class="p-3 bg-lightbg rounded-xl border border-rain/15">
-          <strong class="block text-rain">Correo Oficial:</strong>
-          <span>contacto@naturalwellness.cl</span>
-        </div>
-        <div class="p-3 bg-lightbg rounded-xl border border-rain/15">
-          <strong class="block text-rain">WhatsApp Soporte & Convenios:</strong>
-          <span>+56 9 1234 5678</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- MODAL ADMIN (PIN NW2026*) -->
   <div id="admin-pin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
     <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center pointer-events-auto">
@@ -626,18 +677,50 @@
   </div>
 
   <footer class="border-t border-rain/15 bg-white py-6 text-center text-xs text-slate/70 mb-12 sm:mb-0">
-    Natural Wellness · Salud Integrativa & Red B2B LAWENMOLL
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <img src="LOGO WELLNESS.jpg" class="w-5 h-5 rounded-full object-cover">
+      <span class="font-bold text-slate">Natural Wellness</span>
+      <span>·</span>
+      <img src="lawenmoll_logo.jpg" class="w-5 h-5 rounded-full object-cover">
+      <a href="https://lawenmoll.cl" target="_blank" class="font-bold text-currant hover:underline">LAWENMOLL Web App</a>
+    </div>
+    <span>Ecosistema Integrativo B2B & PWA para Android y iOS</span>
   </footer>
 
-  <!-- SCRIPT LÓGICO COMPLETO INTEGRADO CON SUPABASE Y WEBPAY -->
+  <!-- SCRIPT LÓGICO Y CONTROL PWA -->
   <script>
     const ADMIN_PIN_SECRET = "NW2026*";
     let isAdminActive = false;
     let localStream = null;
+    let deferredPrompt = null;
     let ultimaClaveGenerada = 'WELL-8942-X';
     let videoActualData = { id: 'ejercicio-1', url: 'https://www.youtube.com/embed/ItMcmDCxD6A', titulo: 'Rutina GAP: Glúteos, Abdomen y Piernas', autor: 'NatyGlossGym', categoria: 'ejercicios' };
 
-    // INICIALIZACIÓN CLIENTE SUPABASE
+    // CAPTURA DE PROMPT PWA PARA ANDROID NATIVO
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const nativeBtn = document.getElementById('btn-pwa-install-native');
+      if (nativeBtn) nativeBtn.classList.remove('hidden');
+    });
+
+    function openInstallPwaModal() { openModalHelper('install-pwa-modal'); }
+    function closeInstallPwaModal() { closeModalHelper('install-pwa-modal'); }
+
+    function ejecutarInstalacionNativaPwa() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('El usuario aceptó instalar la PWA');
+          }
+          deferredPrompt = null;
+          closeInstallPwaModal();
+        });
+      }
+    }
+
+    // SUPABASE CLIENT
     let supabaseClient = null;
     try {
       if (window.supabase && typeof window.supabase.createClient === 'function') {
@@ -646,7 +729,7 @@
         supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
       }
     } catch (err) {
-      console.warn("Supabase no configurado en entorno local. Se utilizará respaldo LocalStorage.", err);
+      console.warn("Supabase en modo local.", err);
     }
 
     function guardarEnLocalStorage() {
@@ -672,7 +755,6 @@
       }
     }
 
-    // EXTRAER YOUTUBE ID (SOPORTA SHORTS, EMBEDS Y YOUTU.BE)
     function obtenerYoutubeId(url) {
       if (!url) return '';
       const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
@@ -707,7 +789,6 @@
       }
     }
 
-    // GESTIÓN DE CLAVES Y PAGO EXCLUSIVO WEBPAY
     function openPagoModal(nombreSala, montoHora) {
       document.getElementById('pago-sala-nombre').innerText = "Reserva Webpay: " + nombreSala;
       document.getElementById('pago-monto-val').value = montoHora || "15000";
@@ -716,9 +797,7 @@
       openModalHelper('pago-modal');
     }
 
-    function closePagoModal() {
-      closeModalHelper('pago-modal');
-    }
+    function closePagoModal() { closeModalHelper('pago-modal'); }
 
     function actualizarMontoPago(modalidad) {
       const bloquePromocional = document.getElementById('bloque-codigo-convenio');
@@ -736,7 +815,6 @@
       }
     }
 
-    // PROCESAR PAGO CON WEBPAY Y GUARDAR EN SUPABASE
     async function procesarPagoYGenerarClave(e) {
       e.preventDefault();
       const nombre = document.getElementById('pago-nombre-cliente').value;
@@ -750,53 +828,42 @@
         return;
       }
 
-      // Generar clave única
       const numRandom = Math.floor(1000 + Math.random() * 9000);
       ultimaClaveGenerada = `WELL-${numRandom}-X`;
 
-      // Guardar registro en Supabase (si está configurado)
       if (supabaseClient) {
         try {
           await supabaseClient
             .from('reservas_salas')
-            .insert([
-              {
-                cliente_nombre: nombre,
-                cliente_email: email,
-                sala_nombre: sala,
-                modalidad: modalidad,
-                monto_pagado: modalidad === 'colaborador' ? 0 : (modalidad === 'semana' ? 80000 : 15000),
-                clave_acceso: ultimaClaveGenerada,
-                metodo_pago: 'webpay',
-                estado_pago: 'aprobado'
-              }
-            ]);
-        } catch (err) {
-          console.error("Error guardando reserva en Supabase:", err);
-        }
+            .insert([{
+              cliente_nombre: nombre,
+              cliente_email: email,
+              sala_nombre: sala,
+              modalidad: modalidad,
+              monto_pagado: modalidad === 'colaborador' ? 0 : (modalidad === 'semana' ? 80000 : 15000),
+              clave_acceso: ultimaClaveGenerada,
+              metodo_pago: 'webpay',
+              estado_pago: 'aprobado'
+            }]);
+        } catch (err) { console.error(err); }
       }
 
-      // Guardar en respaldo de localStorage
       try {
         let clavesGuardadas = JSON.parse(localStorage.getItem('wellness_claves_v1') || '[]');
         clavesGuardadas.push(ultimaClaveGenerada);
         localStorage.setItem('wellness_claves_v1', JSON.stringify(clavesGuardadas));
-      } catch (err) {
-        console.error("Error guardando clave local:", err);
-      }
+      } catch (err) { console.error(err); }
 
       closePagoModal();
       document.getElementById('display-clave-generada').innerText = ultimaClaveGenerada;
       openModalHelper('clave-exitosa-modal');
     }
 
-    function closeClaveExitosaModal() {
-      closeModalHelper('clave-exitosa-modal');
-    }
+    function closeClaveExitosaModal() { closeModalHelper('clave-exitosa-modal'); }
 
     function copiarClaveGenerada() {
       navigator.clipboard.writeText(ultimaClaveGenerada);
-      alert("Clave de acceso copiada al portapapeles: " + ultimaClaveGenerada);
+      alert("Clave de acceso copiada: " + ultimaClaveGenerada);
     }
 
     function entrarDirectoConClave() {
@@ -804,19 +871,12 @@
       testLiveRoom('Sala Virtual Reservada', 'Acceso Validado con Clave');
     }
 
-    function openIngresoClaveModal() {
-      openModalHelper('ingreso-clave-modal');
-    }
+    function openIngresoClaveModal() { openModalHelper('ingreso-clave-modal'); }
+    function closeIngresoClaveModal() { closeModalHelper('ingreso-clave-modal'); }
 
-    function closeIngresoClaveModal() {
-      closeModalHelper('ingreso-clave-modal');
-    }
-
-    // VALIDAR CLAVE DE ACCESO EN SUPABASE Y LOCALSTORAGE
     async function validarClaveEIngresar(e) {
       e.preventDefault();
       const inputClave = document.getElementById('input-clave-ingreso').value.trim().toUpperCase();
-
       let claveValida = false;
 
       if (supabaseClient) {
@@ -828,26 +888,20 @@
             .eq('estado_pago', 'aprobado')
             .maybeSingle();
 
-          if (data && data.clave_acceso) {
-            claveValida = true;
-          }
-        } catch (err) {
-          console.error("Error consultando la clave en Supabase:", err);
-        }
+          if (data && data.clave_acceso) claveValida = true;
+        } catch (err) { console.error(err); }
       }
 
       if (!claveValida) {
         let clavesGuardadas = JSON.parse(localStorage.getItem('wellness_claves_v1') || '["WELL-8942-X", "WELL-1234-X"]');
-        if (clavesGuardadas.includes(inputClave) || inputClave.startsWith('WELL-')) {
-          claveValida = true;
-        }
+        if (clavesGuardadas.includes(inputClave) || inputClave.startsWith('WELL-')) claveValida = true;
       }
 
       if (claveValida) {
         closeIngresoClaveModal();
         testLiveRoom('Sala Virtual (' + inputClave + ')', 'Acceso Autorizado');
       } else {
-        alert("Clave de acceso no encontrada o vencida. Por favor verifica tu código o realiza tu reserva.");
+        alert("Clave de acceso no encontrada. Por favor verifica tu código o realiza tu reserva.");
       }
     }
 
@@ -865,6 +919,7 @@
       filterPlaylist('Todas');
     });
 
+    // FUNCIÓN RENDERIZAR SALAS CON EL BOTÓN ELIMINAR SIN SOBREPOSICIÓN
     function renderRoomsFromData(filtroSalaId = 'todas') {
       const grid = document.getElementById('rooms-grid');
       if (!grid || typeof CATALOGO_WELLNESS === 'undefined' || !CATALOGO_WELLNESS.salas) return;
@@ -884,18 +939,22 @@
         const precio = (room.precioHora !== undefined ? room.precioHora : room.priceHr) || 15000;
         const esDesplegable = room.esDesplegable !== undefined ? room.esDesplegable : room.isDropdown;
 
-        const deleteBtnHTML = isAdminActive ? `<button onclick="deleteRoom('${room.id}')" class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full z-10">Eliminar</button>` : '';
+        // Botón eliminar alineado de forma limpia sin sobreponerse en el título
+        const deleteBtnHTML = isAdminActive ? `<button onclick="deleteRoom('${room.id}')" class="bg-red-600 hover:bg-red-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full transition shadow-sm shrink-0">Eliminar Sala</button>` : '';
 
         const roomHTML = `
           <div class="bg-white rounded-3xl p-5 border border-rain/15 shadow-sm flex flex-col justify-between relative">
-            ${deleteBtnHTML}
             <div>
-              <div class="flex justify-between items-start">
+              <!-- ENCABEZADO CON ESPACIADO LIMPIO Y SIN SOLAPAMIENTO -->
+              <div class="flex justify-between items-start gap-3 mb-2">
                 <div>
                   <span class="text-xs font-semibold text-rain block mb-0.5">${capacidad}</span>
-                  <h3 class="text-lg font-bold text-slate">${nombre}</h3>
+                  <h3 class="text-lg font-bold text-slate leading-snug">${nombre}</h3>
                 </div>
-                <span class="bg-dew/20 text-slate text-[10px] font-bold px-2.5 py-1 rounded-full border border-dew/30">${etiqueta}</span>
+                <div class="flex flex-col items-end gap-1 shrink-0">
+                  <span class="bg-dew/20 text-slate text-[10px] font-bold px-2.5 py-1 rounded-full border border-dew/30">${etiqueta}</span>
+                  ${deleteBtnHTML}
+                </div>
               </div>
               <p class="text-xs text-slate/80 mt-2 leading-relaxed">${descripcion}</p>
             </div>
@@ -908,7 +967,7 @@
                 </div>
                 <button onclick="openPagoModal('${nombre}', '${precio}')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition">Pagar con Webpay</button>
               </div>
-              ${esDesplegable ? `<a href="#reproductor-seccion" class="w-full mt-1 text-center bg-dew/20 text-slate border border-rain/20 text-xs font-semibold py-2 rounded-xl">Desplegar Videoteca Interactiva ↓</a>` : ''}
+              ${esDesplegable ? `<a href="#reproductor-seccion" class="w-full mt-1 text-center bg-dew/20 text-slate border border-rain/20 text-xs font-semibold py-2 rounded-xl hover:bg-dew/40 transition">Desplegar Videoteca Interactiva ↓</a>` : ''}
             </div>
           </div>
         `;
@@ -936,9 +995,18 @@
       }
     }
 
-    function filtrarOEscalarSala(valor) {
-      renderRoomsFromData(valor);
+    function deleteRoom(roomId) {
+      if (confirm('¿Estás seguro de que deseas eliminar esta sala virtual?')) {
+        if (CATALOGO_WELLNESS && CATALOGO_WELLNESS.salas) {
+          CATALOGO_WELLNESS.salas = CATALOGO_WELLNESS.salas.filter(s => s.id !== roomId);
+          guardarEnLocalStorage();
+          renderRoomsFromData();
+          alert('Sala eliminada del catálogo.');
+        }
+      }
     }
+
+    function filtrarOEscalarSala(valor) { renderRoomsFromData(valor); }
 
     function escalarCapacidadSala(cantidad) {
       const num = parseInt(cantidad);
@@ -959,7 +1027,6 @@
       if (!playlistContainer || typeof CATALOGO_WELLNESS === 'undefined') return;
 
       playlistContainer.innerHTML = '';
-
       let videosFiltrados = [];
 
       if ((filtro === 'Todas' || filtro === 'ejercicios') && CATALOGO_WELLNESS.ejercicios) {
@@ -979,7 +1046,7 @@
 
       videosFiltrados.forEach(video => {
         const thumbUrl = obtenerYoutubeThumbnail(video.youtubeUrl);
-        const adminBtn = isAdminActive ? `<button onclick="abrirModalEditarEspecifico('${video.id}', '${video.catKey}')" title="Editar video" class="p-1.5 text-amber-600 hover:bg-amber-50 rounded-xl transition text-xs font-bold">Editar</button>` : '';
+        const adminBtn = isAdminActive ? `<button onclick="abrirModalEditarEspecifico('${video.id}', '${video.catKey}')" title="Editar video" class="p-1.5 text-amber-600 hover:bg-amber-50 rounded-xl transition text-xs font-bold shrink-0">Editar</button>` : '';
 
         const itemHTML = `
           <div class="flex items-center gap-2 p-2 rounded-2xl hover:bg-lightbg transition border border-transparent hover:border-rain/15 group">
@@ -1005,9 +1072,7 @@
       videoActualData = { id: id || 'item-temp', url: embedUrl, titulo: titulo, autor: autor, categoria: catKey || 'ejercicios' };
 
       const iframe = document.getElementById('main-player-iframe');
-      if (iframe) {
-        iframe.src = formattedUrl;
-      }
+      if (iframe) iframe.src = formattedUrl;
 
       document.getElementById('main-player-title').innerText = titulo;
       document.getElementById('main-player-author').innerText = 'Instructor(a) / Autor: ' + autor;
@@ -1017,11 +1082,7 @@
     }
 
     function editarVideoActual() {
-      if (!isAdminActive) {
-        alert("La edición de videos requiere acceso de administración.");
-        openAdminModal();
-        return;
-      }
+      if (!isAdminActive) { openAdminModal(); return; }
       document.getElementById('edit-video-id').value = videoActualData.id;
       document.getElementById('edit-video-category-origin').value = videoActualData.categoria;
       document.getElementById('edit-type').value = videoActualData.categoria || 'ejercicios';
@@ -1034,12 +1095,10 @@
 
     function abrirModalEditarEspecifico(id, catKey) {
       if (!isAdminActive) return;
-
       let itemEncontrado = null;
       if (CATALOGO_WELLNESS[catKey]) {
         itemEncontrado = CATALOGO_WELLNESS[catKey].find(v => v.id === id);
       }
-
       if (!itemEncontrado) {
         ['ejercicios', 'recetas', 'meditaciones'].forEach(key => {
           if (!itemEncontrado && CATALOGO_WELLNESS[key]) {
@@ -1061,9 +1120,7 @@
       }
     }
 
-    function closeEditModal() {
-      closeModalHelper('edit-video-modal');
-    }
+    function closeEditModal() { closeModalHelper('edit-video-modal'); }
 
     function handleEditSubmit(e) {
       e.preventDefault();
@@ -1096,7 +1153,6 @@
       filterPlaylist('Todas');
       
       const conceptoTexto = newType === 'recetas' ? 'Recetas Saludables' : newType === 'meditaciones' ? 'Bienestar & Mente' : 'Movimiento & Ejercicio';
-      
       cambiarVideoPrincipal(updatedItem.id, embedUrl, newTitle, newName, conceptoTexto, newType);
 
       closeEditModal();
@@ -1142,7 +1198,6 @@
         filterPlaylist('Todas');
 
         const conceptoTexto = type === 'recetas' ? 'Recetas Saludables' : type === 'meditaciones' ? 'Bienestar & Mente' : 'Movimiento & Ejercicio';
-        
         cambiarVideoPrincipal(newItem.id, embedUrl, title, name, conceptoTexto, type);
       }
 
@@ -1177,9 +1232,7 @@
         localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         const videoElement = document.getElementById('webcam-video');
         if (videoElement) videoElement.srcObject = localStream;
-      } catch (err) {
-        console.error("Cámara no disponible:", err);
-      }
+      } catch (err) { console.error("Cámara no disponible:", err); }
     }
 
     function toggleMic() {
@@ -1237,9 +1290,6 @@
       closeEvaluationModal();
       alert('Muchas gracias por tu evaluación.');
     }
-
-    function openContactModal() { openModalHelper('contact-modal'); }
-    function closeContactModal() { closeModalHelper('contact-modal'); }
 
     function openAdminModal() {
       if (isAdminActive) { alert("Ya te encuentras en modo Administrador."); }
