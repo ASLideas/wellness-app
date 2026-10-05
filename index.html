@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Natural Wellness — Salud Integrativa LAWENMOLL</title>
+  <title>Natural Wellness — Salud Integrativa</title>
 
-  <!-- CONFIGURACIÓN PWA MÓVIL (ANDROID Y iOS / APPLE) -->
+  <!-- CONFIGURACIÓN PWA MÓVIL (EXCLUSIVO LOGO NATURAL WELLNESS) -->
   <meta name="theme-color" content="#2B4251">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Wellness App">
+  <meta name="apple-mobile-web-app-title" content="Natural Wellness">
   <link rel="apple-touch-icon" href="LOGO WELLNESS.jpg">
-  <link rel="apple-touch-icon" sizes="152x152" href="lawenmoll_logo.jpg">
+  <link rel="apple-touch-icon" sizes="152x152" href="LOGO WELLNESS.jpg">
   <link rel="apple-touch-icon" sizes="180x180" href="LOGO WELLNESS.jpg">
-  <link rel="icon" type="image/jpeg" href="lawenmoll_logo.jpg">
+  <link rel="icon" type="image/jpeg" href="LOGO WELLNESS.jpg">
 
   <!-- MANIFEST INLINE PARA ANDROID CHROME -->
-  <link rel="manifest" href='data:application/manifest+json,{"name":"Natural Wellness LAWENMOLL","short_name":"WellnessApp","start_url":".","display":"standalone","background_color":"#F4F8F9","theme_color":"#2B4251","icons":[{"src":"LOGO WELLNESS.jpg","sizes":"192x192","type":"image/jpeg"},{"src":"lawenmoll_logo.jpg","sizes":"512x512","type":"image/jpeg"}]}'>
+  <link rel="manifest" href='data:application/manifest+json,{"name":"Natural Wellness","short_name":"WellnessApp","start_url":".","display":"standalone","background_color":"#F4F8F9","theme_color":"#2B4251","icons":[{"src":"LOGO WELLNESS.jpg","sizes":"192x192","type":"image/jpeg"},{"src":"LOGO WELLNESS.jpg","sizes":"512x512","type":"image/jpeg"}]}'>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -47,23 +47,20 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col justify-between">
 
-  <!-- PANTALLA DE CARGA (SPLASH SCREEN) CON DOBLE LOGO -->
+  <!-- PANTALLA DE CARGA (SPLASH SCREEN) -->
   <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-lightbg transition-opacity duration-500">
     <div class="relative flex items-center justify-center">
-      <div class="w-32 h-32 rounded-full border-2 border-dew/30 border-t-rain animate-spin absolute"></div>
-      <div class="flex items-center -space-x-4 z-10">
-        <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="w-16 h-16 rounded-full object-cover shadow-lg border-2 border-white ring-2 ring-dew/40" onerror="this.src='wellnes app.jpg'">
-        <img src="lawenmoll_logo.jpg" alt="LAWENMOLL" class="w-16 h-16 rounded-full object-cover shadow-lg border-2 border-white ring-2 ring-rain/40" onerror="this.src='wellnes app.jpg'">
-      </div>
+      <div class="w-28 h-28 rounded-full border-2 border-dew/30 border-t-rain animate-spin absolute"></div>
+      <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="w-20 h-20 rounded-full object-cover shadow-lg z-10 border-2 border-white ring-2 ring-dew/40" onerror="this.src='wellnes app.jpg'">
     </div>
     <h2 class="text-xl font-bold text-slate tracking-wide mt-6">Natural Wellness</h2>
-    <p class="text-xs text-rain mt-1 font-medium animate-pulse">Ecosistema Salud Integrativa · LAWENMOLL</p>
+    <p class="text-xs text-rain mt-1 font-medium animate-pulse">Salud Integrativa & Plataforma Digital</p>
   </div>
 
-  <!-- HEADER DE NAVEGACIÓN CON LOGO LAWENMOLL Y WELLNESS -->
+  <!-- HEADER DE NAVEGACIÓN -->
   <header class="border-b border-rain/15 bg-white/95 p-3 sm:p-4 sticky top-0 z-40 backdrop-blur-md shadow-sm">
     <div class="max-w-6xl mx-auto flex justify-between items-center w-full gap-2">
-      <!-- LOGOS E IDENTIDAD -->
+      <!-- LOGO E IDENTIDAD -->
       <div class="flex items-center gap-2 sm:gap-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
         <div class="flex items-center -space-x-3">
           <img src="LOGO WELLNESS.jpg" alt="Logo Wellness" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-rain/30 shadow-sm" onerror="this.src='wellnes app.jpg'">
@@ -100,7 +97,7 @@
 
   <main class="max-w-6xl mx-auto p-3 sm:p-4 w-full">
 
-    <!-- HERO PORTADA ELEGANTE CON ACCESO AL ECOSISTEMA LAWENMOLL -->
+    <!-- HERO PORTADA ELEGANTE -->
     <section class="rounded-3xl bg-gradient-to-br from-dew/20 via-white to-rain/10 p-5 sm:p-8 my-4 border border-rain/15 shadow-sm relative overflow-hidden">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
         <div class="max-w-2xl">
@@ -257,7 +254,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN SALAS VIRTUALES CON BOTÓN DE ELIMINAR CORREGIDO (SIN SOBREPOSICIÓN) -->
+    <!-- SECCIÓN SALAS VIRTUALES -->
     <section id="salas" class="py-8 border-t border-rain/15">
       <div class="mb-5 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
@@ -281,7 +278,7 @@
 
       <!-- TARJETAS DE SALAS -->
       <div id="rooms-grid" class="grid gap-4 sm:gap-6 md:grid-cols-2">
-        <!-- Renderizado dinámicamente sin solapamiento del botón eliminar -->
+        <!-- Renderizado dinámicamente con distribución perfecta -->
       </div>
     </section>
 
@@ -297,7 +294,7 @@
           <button onclick="openEvaluationModal()" class="bg-currant text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-slate transition shadow-sm">
             Escribir Reseña
           </button>
-          <button onclick="compartirContenido('Natural Wellness LAWENMOLL', 'Descubre nuestras salas virtuales, recetas y ejercicios integrativos', window.location.href)" class="bg-dew/20 text-slate border border-rain/25 px-4 py-2 rounded-full text-xs font-semibold hover:bg-dew/40 transition">
+          <button onclick="compartirContenido('Natural Wellness', 'Descubre nuestras salas virtuales, recetas y ejercicios integrativos', window.location.href)" class="bg-dew/20 text-slate border border-rain/25 px-4 py-2 rounded-full text-xs font-semibold hover:bg-dew/40 transition">
             Compartir App
           </button>
         </div>
@@ -331,7 +328,7 @@
             <p class="text-xs text-slate/80 mt-2 leading-relaxed">"Utilicé la Sala Lotus para un taller de meditación y autoayuda. La transmisión de cámara funcionó impecable."</p>
           </div>
           <div class="mt-4 pt-2 border-t border-rain/10 flex justify-between items-center text-[10px] text-rain">
-            <span>Profesional Verificada LAWENMOLL</span>
+            <span>Profesional Verificada</span>
             <button onclick="compartirWhatsApp('Recomiendo la Sala Lotus en Natural Wellness:', window.location.href)" class="text-slate font-semibold hover:underline">Compartir</button>
           </div>
         </div>
@@ -341,49 +338,32 @@
   </main>
 
   <!-- BOTÓN FLOTANTE WHATSAPP -->
-  <a href="https://wa.me/56912345678?text=Hola%20Natural%20Wellness%20LAWENMOLL,%20quisiera%20consultar%20sobre%20las%20salas%20y%20clases" target="_blank" class="fixed bottom-5 right-5 z-40 bg-emerald-600 text-white px-4 py-3 rounded-full shadow-xl font-semibold text-xs flex items-center gap-2 hover:bg-emerald-700 transition border border-white">
+  <a href="https://wa.me/56912345678?text=Hola%20Natural%20Wellness,%20quisiera%20consultar%20sobre%20las%20salas%20y%20clases" target="_blank" class="fixed bottom-5 right-5 z-40 bg-emerald-600 text-white px-4 py-3 rounded-full shadow-xl font-semibold text-xs flex items-center gap-2 hover:bg-emerald-700 transition border border-white">
     <span>WhatsApp Soporte</span>
   </a>
 
-  <!-- MODAL INSTALACIÓN PWA MÓVIL (ANDROID Y iOS / APPLE) -->
+  <!-- MODAL INSTALACIÓN PWA MÓVIL (CONFIGURACIÓN DIRECTA AUTÓNOMA DEDICADA) -->
   <div id="install-pwa-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate/80 backdrop-blur-sm p-4 pointer-events-none">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rain/20 relative pointer-events-auto">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rain/20 relative text-center pointer-events-auto">
       <button onclick="closeInstallPwaModal()" class="absolute top-4 right-4 bg-lightbg text-slate w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold hover:bg-rain hover:text-white transition">&times;</button>
       
-      <div class="flex items-center gap-3 mb-3">
-        <img src="LOGO WELLNESS.jpg" class="w-12 h-12 rounded-2xl object-cover border border-rain/20 shadow-sm" onerror="this.src='wellnes app.jpg'">
-        <div>
-          <h3 class="text-lg font-bold text-slate leading-tight">Instalar App Móvil</h3>
-          <p class="text-xs text-rain font-medium">Android, iPhone (iOS) & iPad</p>
-        </div>
+      <div class="flex flex-col items-center justify-center gap-2 mb-3">
+        <img src="LOGO WELLNESS.jpg" alt="Natural Wellness" class="w-16 h-16 rounded-2xl object-cover border border-rain/20 shadow-md" onerror="this.src='wellnes app.jpg'">
+        <h3 class="text-lg font-bold text-slate leading-tight mt-1">Natural Wellness</h3>
+        <p class="text-xs text-rain font-medium">Aplicación Móvil Optimizada para Android y iOS</p>
       </div>
 
-      <div class="space-y-4 my-4">
-        <!-- Instrucciones iPhone / iOS -->
-        <div class="p-3.5 bg-lightbg rounded-2xl border border-rain/15">
-          <span class="text-xs font-bold text-slate block mb-1">📱 En iPhone / iPad (Safari iOS):</span>
-          <ol class="text-xs text-slate/80 space-y-1 list-decimal list-inside leading-relaxed">
-            <li>Toca el botón <strong>Compartir</strong> (icono de cuadrado con flecha arriba ⎋).</li>
-            <li>Desplázate hacia abajo y selecciona <strong>"Añadir a pantalla de inicio"</strong> (+).</li>
-            <li>Toca <strong>Añadir</strong> en la esquina superior derecha.</li>
-          </ol>
-        </div>
-
-        <!-- Instrucciones Android -->
-        <div class="p-3.5 bg-lightbg rounded-2xl border border-rain/15">
-          <span class="text-xs font-bold text-slate block mb-1">🤖 En Android (Chrome):</span>
-          <ol class="text-xs text-slate/80 space-y-1 list-decimal list-inside leading-relaxed">
-            <li>Toca los <strong>3 puntos menú</strong> (⋮) en la esquina superior derecha.</li>
-            <li>Selecciona <strong>"Instalar aplicación"</strong> o <strong>"Añadir a pantalla principal"</strong>.</li>
-          </ol>
-        </div>
+      <div class="p-4 bg-lightbg rounded-2xl border border-rain/15 my-4 text-left">
+        <p class="text-xs text-slate/80 leading-relaxed text-center font-medium">
+          Esta plataforma está configurada como Web App nativa. Puedes agregar el acceso directo a la pantalla principal de tu teléfono para ingresar directamente.
+        </p>
       </div>
 
-      <button id="btn-pwa-install-native" onclick="ejecutarInstalacionNativaPwa()" class="w-full py-3 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow-sm hidden">
-        Instalar Ahora en este Dispositivo
+      <button id="btn-pwa-install-native" onclick="ejecutarInstalacionNativaPwa()" class="w-full py-3.5 bg-currant text-white text-xs font-bold rounded-xl hover:bg-slate transition shadow-sm mb-2">
+        Instalar App en el Teléfono
       </button>
-      <button onclick="closeInstallPwaModal()" class="w-full py-2.5 bg-lightbg text-slate text-xs font-semibold rounded-xl hover:bg-rain/20 transition mt-2">
-        Entendido
+      <button onclick="closeInstallPwaModal()" class="w-full py-2.5 bg-lightbg text-slate text-xs font-semibold rounded-xl hover:bg-rain/20 transition">
+        Cerrar
       </button>
     </div>
   </div>
@@ -696,7 +676,7 @@
     let ultimaClaveGenerada = 'WELL-8942-X';
     let videoActualData = { id: 'ejercicio-1', url: 'https://www.youtube.com/embed/ItMcmDCxD6A', titulo: 'Rutina GAP: Glúteos, Abdomen y Piernas', autor: 'NatyGlossGym', categoria: 'ejercicios' };
 
-    // CAPTURA DE PROMPT PWA PARA ANDROID NATIVO
+    // CAPTURA DE PROMPT PWA PARA ANDROID Y NAVEGADORES COMPATIBLES
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
@@ -717,6 +697,8 @@
           deferredPrompt = null;
           closeInstallPwaModal();
         });
+      } else {
+        alert("Tu dispositivo ya tiene la app configurada o lista para usar en la pantalla de inicio.");
       }
     }
 
@@ -759,7 +741,7 @@
       if (!url) return '';
       const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
       const match = url.match(regExp);
-      return (match && match[1]) ? match[1] : '';
+      return (match && match) ? match : '';
     }
 
     function obtenerYoutubeThumbnail(url) {
@@ -919,7 +901,7 @@
       filterPlaylist('Todas');
     });
 
-    // FUNCIÓN RENDERIZAR SALAS CON EL BOTÓN ELIMINAR SIN SOBREPOSICIÓN
+    // RENDERIZADO DE SALAS CON ESTRUCTURA LIMPIA Y SIN TRASLAPE DE BOTONES
     function renderRoomsFromData(filtroSalaId = 'todas') {
       const grid = document.getElementById('rooms-grid');
       if (!grid || typeof CATALOGO_WELLNESS === 'undefined' || !CATALOGO_WELLNESS.salas) return;
@@ -939,19 +921,17 @@
         const precio = (room.precioHora !== undefined ? room.precioHora : room.priceHr) || 15000;
         const esDesplegable = room.esDesplegable !== undefined ? room.esDesplegable : room.isDropdown;
 
-        // Botón eliminar alineado de forma limpia sin sobreponerse en el título
         const deleteBtnHTML = isAdminActive ? `<button onclick="deleteRoom('${room.id}')" class="bg-red-600 hover:bg-red-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full transition shadow-sm shrink-0">Eliminar Sala</button>` : '';
 
         const roomHTML = `
-          <div class="bg-white rounded-3xl p-5 border border-rain/15 shadow-sm flex flex-col justify-between relative">
+          <div class="bg-white rounded-3xl p-5 border border-rain/15 shadow-sm flex flex-col justify-between">
             <div>
-              <!-- ENCABEZADO CON ESPACIADO LIMPIO Y SIN SOLAPAMIENTO -->
-              <div class="flex justify-between items-start gap-3 mb-2">
-                <div>
+              <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
+                <div class="pr-2">
                   <span class="text-xs font-semibold text-rain block mb-0.5">${capacidad}</span>
                   <h3 class="text-lg font-bold text-slate leading-snug">${nombre}</h3>
                 </div>
-                <div class="flex flex-col items-end gap-1 shrink-0">
+                <div class="flex items-center gap-1.5 shrink-0">
                   <span class="bg-dew/20 text-slate text-[10px] font-bold px-2.5 py-1 rounded-full border border-dew/30">${etiqueta}</span>
                   ${deleteBtnHTML}
                 </div>
@@ -959,15 +939,17 @@
               <p class="text-xs text-slate/80 mt-2 leading-relaxed">${descripcion}</p>
             </div>
 
-            <div class="mt-5 pt-3.5 border-t border-rain/10 flex flex-col gap-2">
-              <div class="flex justify-between items-center">
+            <div class="mt-5 pt-3.5 border-t border-rain/10 flex flex-col gap-3">
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                 <div>
                   <span class="text-sm font-bold text-slate block">$${Number(precio).toLocaleString('es-CL')} / hr</span>
-                  <span class="text-[10px] text-rain">Pase Semanal: $80.000 CLP</span>
+                  <span class="text-[10px] text-rain block">Pase Semanal: $80.000 CLP</span>
                 </div>
-                <button onclick="openPagoModal('${nombre}', '${precio}')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition">Pagar con Webpay</button>
+                <button onclick="openPagoModal('${nombre}', '${precio}')" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-sm transition text-center shrink-0">
+                  Pagar con Webpay
+                </button>
               </div>
-              ${esDesplegable ? `<a href="#reproductor-seccion" class="w-full mt-1 text-center bg-dew/20 text-slate border border-rain/20 text-xs font-semibold py-2 rounded-xl hover:bg-dew/40 transition">Desplegar Videoteca Interactiva ↓</a>` : ''}
+              ${esDesplegable ? `<a href="#reproductor-seccion" class="w-full text-center bg-dew/20 text-slate border border-rain/20 text-xs font-semibold py-2 rounded-xl hover:bg-dew/40 transition">Desplegar Videoteca Interactiva ↓</a>` : ''}
             </div>
           </div>
         `;
@@ -983,9 +965,9 @@
             <div class="mt-4 pt-3 border-t border-dew/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
               <div>
                 <span class="text-base font-bold text-amber-300 block">Capacidad: > 20 a 100+ personas</span>
-                <span class="text-[10px] text-dew">Servidor dedicado de alta estabilidad para talleres o congresos</span>
+                <span class="text-[10px] text-dew block">Servidor dedicado de alta estabilidad para talleres o congresos</span>
               </div>
-              <button onclick="openPagoModal('Sala Multitudinaria (Gran Evento)', '25000')" class="bg-red-600 text-white text-xs font-bold px-5 py-2.5 rounded-full shadow hover:bg-red-700 transition">
+              <button onclick="openPagoModal('Sala Multitudinaria (Gran Evento)', '25000')" class="w-full sm:w-auto bg-red-600 text-white text-xs font-bold px-5 py-2.5 rounded-full shadow hover:bg-red-700 transition shrink-0">
                 Pagar con Webpay & Generar Clave
               </button>
             </div>
@@ -1252,7 +1234,7 @@
         localStream.getTracks().forEach(track => track.stop());
         localStream = null;
       }
-      closeModalHelper('live-room-modal');
+      closeLiveRoomModal();
     }
 
     function openProModal() { openModalHelper('pro-submit-modal'); }
